@@ -8,3 +8,8 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 }
 .nav { display: flex; gap: 16px; }
 .menu-btn { padding: 8px 12px; }
+
+.nav a { text-decoration: none; color: inherit; padding: 6px 8px; border-radius: 8px; }
+.nav a.is-active { border: 1px solid #ddd; }
+
+.site-footer { border-top: 1px solid #ddd; padding: 16px 0; margin-top: 40px; }
