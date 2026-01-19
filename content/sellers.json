@@ -1,0 +1,73 @@
+{
+  "title": "Prodejci",
+  "intro": "PapírPoint je k dostání u těchto ověřených prodejců po celé České republice.",
+  "items": [
+    {
+      "name": "Beta Papírnictví",
+      "meta": "Brno • 2 pobočky",
+      "logo": "img/sellers/beta.png",
+      "url": "https://example.com/beta"
+    },
+    {
+      "name": "Gamma Store",
+      "meta": "Online prodej",
+      "logo": "img/sellers/gamma.png",
+      "url": "https://example.com/gamma"
+    },
+    {
+      "name": "Papír & Styl",
+      "meta": "Praha 1 • Kamenná prodejna",
+      "logo": "img/sellers/papir-styl.png"
+    },
+    {
+      "name": "OfficePoint",
+      "meta": "Ostrava • Obchodní centrum",
+      "logo": "img/sellers/officepoint.png",
+      "url": "https://example.com/officepoint"
+    },
+    {
+      "name": "Papírna U Mostu",
+      "meta": "Plzeň",
+      "logo": "img/sellers/papirna-most.png"
+    },
+    {
+      "name": "Stationery Hub",
+      "meta": "Online • Doručení po celé ČR",
+      "logo": "img/sellers/stationery-hub.png",
+      "url": "https://example.com/stationeryhub"
+    },
+    {
+      "name": "Kancelář Pro",
+      "meta": "Hradec Králové",
+      "logo": "img/sellers/kancelar-pro.png"
+    },
+    {
+      "name": "Papírový Svět",
+      "meta": "Liberec • 3 pobočky",
+      "logo": "img/sellers/papirovy-svet.png",
+      "url": "https://example.com/papirovy-svet"
+    },
+    {
+      "name": "Office & Co.",
+      "meta": "Zlín",
+      "logo": "img/sellers/office-co.png"
+    },
+    {
+      "name": "Papír Online",
+      "meta": "E-shop",
+      "logo": "img/sellers/papir-online.png",
+      "url": "https://example.com/papironline"
+    },
+    {
+      "name": "Kancelářský Dům",
+      "meta": "České Budějovice",
+      "logo": "img/sellers/kancelarsky-dum.png"
+    },
+    {
+      "name": "Creative Paper",
+      "meta": "Praha 7 • Design shop",
+      "logo": "img/sellers/creative-paper.png",
+      "url": "https://example.com/creativepaper"
+    }
+  ]
+}
