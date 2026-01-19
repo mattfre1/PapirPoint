@@ -1,0 +1,10 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; }
+.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px; border-bottom: 1px solid #ddd;
+}
+.nav { display: flex; gap: 16px; }
+.menu-btn { padding: 8px 12px; }
