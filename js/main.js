@@ -1,19 +1,26 @@
+function pathPrefix() {
+  // Pokud jsi na /pages/..., potřebuješ o úroveň výš
+  return window.location.pathname.includes("/pages/") ? "../" : "";
+}
+
 async function inject(selector, url) {
   const el = document.querySelector(selector);
   if (!el) return;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Fetch failed: ${url} (${res.status})`);
   el.innerHTML = await res.text();
 }
 
 async function loadLayout() {
-  await inject("#site-header", "/partials/header.html");
-  await inject("#site-footer", "/partials/footer.html");
+  const p = pathPrefix();
 
-  // rok ve footeru
+  await inject("#site-header", `${p}partials/header.html`);
+  await inject("#site-footer", `${p}partials/footer.html`);
+
   const year = document.querySelector("#year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // hamburger menu po vložení headeru
+  // menu logic až po vložení headeru
   const btn = document.querySelector(".menu-btn");
   const nav = document.querySelector("#main-nav");
   if (btn && nav) {
@@ -24,12 +31,12 @@ async function loadLayout() {
     });
   }
 
-  // aktivní položka menu
-  const page = document.body.dataset.page; // "home" | "about" | ...
+  // aktivní odkaz v menu
+  const page = document.body.dataset.page;
   if (page) {
     const active = document.querySelector(`a[data-nav="${page}"]`);
     if (active) active.classList.add("is-active");
   }
 }
 
-loadLayout();
+loadLayout().catch(console.error);
