@@ -13,3 +13,43 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 .nav a.is-active { border: 1px solid #ddd; }
 
 .site-footer { border-top: 1px solid #ddd; padding: 16px 0; margin-top: 40px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+
+.section { padding: 48px 0; }
+.section__title { margin: 0 0 16px; }
+
+.hero { padding-top: 64px; padding-bottom: 64px; }
+.hero__actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.btn--secondary { opacity: 0.9; }
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.sponsor-card {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  place-items: center;
+}
+.sponsor-card img { max-width: 100%; height: auto; }
+
+.social-embed-placeholder {
+  border: 1px dashed #ccc;
+  border-radius: 14px;
+  padding: 32px;
+  text-align: center;
+}
