@@ -362,3 +362,128 @@ loadLayout()
     form.reset();
   });
 }
+
+let socialItems = [];
+let socialIndex = 0;
+
+function openSocialLightbox(index) {
+  const dlg = document.querySelector("#social-lightbox");
+  const img = document.querySelector("#social-lightbox-img");
+  const cap = document.querySelector("#social-lightbox-caption");
+  const actions = document.querySelector("#social-lightbox-actions");
+  if (!dlg || !img) return;
+
+  socialIndex = index;
+  const item = socialItems[socialIndex];
+
+  img.src = withPrefix(item.src);
+  img.alt = item.alt || "";
+  if (cap) cap.textContent = item.caption || "";
+
+  if (actions) {
+    actions.innerHTML = "";
+    if (item.url) {
+      const a = document.createElement("a");
+      a.className = "btn btn--secondary";
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "Otevřít příspěvek";
+      actions.appendChild(a);
+    }
+  }
+
+  dlg.showModal();
+}
+
+function closeSocialLightbox() {
+  const dlg = document.querySelector("#social-lightbox");
+  if (dlg && dlg.open) dlg.close();
+}
+
+function stepSocial(dir) {
+  if (!socialItems.length) return;
+  socialIndex = (socialIndex + dir + socialItems.length) % socialItems.length;
+  openSocialLightbox(socialIndex);
+}
+
+function initSocialLightboxControls() {
+  const dlg = document.querySelector("#social-lightbox");
+  if (!dlg) return;
+
+  dlg.querySelector(".lightbox__close")?.addEventListener("click", closeSocialLightbox);
+  dlg.querySelector(".lightbox__nav--prev")?.addEventListener("click", () => stepSocial(-1));
+  dlg.querySelector(".lightbox__nav--next")?.addEventListener("click", () => stepSocial(1));
+
+  // klik mimo obsah zavře
+  dlg.addEventListener("click", (e) => {
+    const rect = dlg.getBoundingClientRect();
+    const inside =
+      e.clientX >= rect.left && e.clientX <= rect.right &&
+      e.clientY >= rect.top && e.clientY <= rect.bottom;
+    if (!inside) closeSocialLightbox();
+  });
+
+  // klávesnice
+  document.addEventListener("keydown", (e) => {
+    if (!dlg.open) return;
+    if (e.key === "Escape") closeSocialLightbox();
+    if (e.key === "ArrowLeft") stepSocial(-1);
+    if (e.key === "ArrowRight") stepSocial(1);
+  });
+}
+
+async function renderSocialFromJson() {
+  const grid = document.querySelector("#social-grid");
+  if (!grid) return;
+
+  const titleEl = document.querySelector("#social-title");
+  const introEl = document.querySelector("#social-intro");
+
+  try {
+    const res = await fetch(withPrefix("content/social.json"));
+    if (!res.ok) throw new Error(`Fetch social.json failed (${res.status})`);
+    const data = await res.json();
+
+    if (titleEl && data.title) titleEl.textContent = data.title;
+    if (introEl && data.intro) introEl.textContent = data.intro;
+
+    const items = Array.isArray(data.items) ? data.items : [];
+    const safeItems = items.filter(x => x && x.src && x.url);
+
+    grid.innerHTML = "";
+
+    safeItems.forEach((item) => {
+      const a = document.createElement("a");
+      a.className = "social-item";
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.setAttribute("aria-label", item.alt || "Otevřít příspěvek");
+
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.src = withPrefix(item.src);
+      img.alt = item.alt || "";
+
+      a.appendChild(img);
+      grid.appendChild(a);
+    });
+
+    if (safeItems.length === 0 && introEl) {
+      introEl.textContent = "Zatím tu nejsou žádné příspěvky.";
+    }
+  } catch (err) {
+    console.error(err);
+    if (introEl) introEl.textContent = "Příspěvky se nepodařilo načíst.";
+  }
+}
+
+loadLayout()
+  .then(() => Promise.all([
+    renderSellersFromJson(),
+    renderSponsorsFromJson(),
+    renderGalleryFromJson?.(),
+    renderSocialFromJson()
+  ]))
+  .catch(console.error);

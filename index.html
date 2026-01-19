@@ -13,8 +13,8 @@
   <main class="container">
     <section class="section hero">
   <div class="container">
-    <h1>PapírPoint</h1>
-    <p>Krátký popis projektu na 1–2 věty. Co je cílem a proč to existuje.</p>
+    <h1>PapírPOINT</h1>
+    <p>Krátký popis projektu na 1-2 věty. Co je cílem a proč to existuje.</p>
     <div class="hero__actions">
       <a class="btn" href="/pages/about.html">Zjistit víc</a>
       <a class="btn btn--secondary" href="/pages/contacts.html">Kontakt</a>
@@ -40,15 +40,27 @@
         <img src="img/sponsors/coy2.jpg" alt="Firma 2">
       </a>
     </div>
-    <p><a href="/pages/sponsor.html">Zobrazit všechny sponzory →</a></p>
+    <p><a class="btn" href="/pages/about.html">Zobrazit všechny sponzory →</a></p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="section__title">Sociální sítě</h2>
-    <p>Zatím sem dáme placeholder, pak sem vložíme embed feed.</p>
-    <div class="social-embed-placeholder">Feed</div>
+    <h2 class="section__title" id="social-title">Sociální sítě</h2>
+    <p id="social-intro">Načítám…</p>
+
+    <div class="social-grid" id="social-grid" aria-live="polite"></div>
+
+<dialog class="lightbox" id="social-lightbox">
+  <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
+  <img class="lightbox__img" id="social-lightbox-img" alt="">
+  <p class="lightbox__caption" id="social-lightbox-caption"></p>
+  <p class="lightbox__actions" id="social-lightbox-actions"></p>
+
+  <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
+  <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
+</dialog>
+
   </div>
 </section>
 

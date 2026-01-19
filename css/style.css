@@ -493,6 +493,9 @@ body {
 }
 
 .social-link{
+  position: relative;     /* FIX: aby ::after bylo jen uvnitř ikonky */
+  overflow: hidden;       /* FIX: ořízne pulse, ať neleze ven */
+
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -511,6 +514,9 @@ body {
 }
 
 .social-link svg{
+  position: relative;     /* aby bylo vždy nad pulsem */
+  z-index: 1;
+
   width: 18px;
   height: 18px;
   fill: currentColor;
@@ -557,6 +563,7 @@ body {
 }
 
 .social-link::after{
+  pointer-events: none;   /* FIX: overlay nikdy nechytá hover/klik */
   content: "";
   position: absolute;
   inset: 0;
@@ -588,3 +595,48 @@ body {
     opacity: 0;
   }
 }
+
+.social-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.social-item{
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  display: block;
+
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.social-item:hover{
+  transform: translateY(-2px);
+  border-color: #d5d5d5;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.social-item:active{
+  transform: scale(0.98);
+}
+
+.social-item img{
+  width: 100%;
+  aspect-ratio: 1 / 1; /* sjednocení náhledů */
+  object-fit: cover;   /* ořízne do čtverce */
+  display: block;
+}
+
+.lightbox__actions{
+  margin: 0;
+  padding: 0 14px 14px;
+}
+
+
