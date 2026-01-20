@@ -487,3 +487,38 @@ loadLayout()
     renderSocialFromJson()
   ]))
   .catch(console.error);
+
+  function initContactForm() {
+  const form = document.querySelector("#contact-form");
+  const status = document.querySelector("#contact-status");
+  if (!form || !status) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "Odesílám…";
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (!res.ok) throw new Error(`Submit failed (${res.status})`);
+
+      form.reset();
+      status.textContent = "Děkujeme! Zpráva byla odeslána.";
+    } catch (err) {
+      console.error(err);
+      status.textContent = "Odeslání se nepodařilo. Zkus to prosím později.";
+    }
+  });
+}
+
+loadLayout()
+  .then(() => {
+    initContactForm();
+    return Promise.all([renderSellersFromJson(), renderSponsorsFromJson(), renderSocialFromJson()]);
+  })
+  .catch(console.error);
