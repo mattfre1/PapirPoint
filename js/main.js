@@ -18,34 +18,45 @@ function initMobileMenu() {
   const nav = document.querySelector("#main-nav");
   if (!btn || !nav) return;
 
-  const close = () => {
-    nav.classList.remove("is-open");
+  // zabráníme dvojí inicializaci
+  if (btn.dataset.bound === "1") return;
+  btn.dataset.bound = "1";
+
+  const closeMenu = () => {
     btn.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
   };
 
-  btn.addEventListener("click", () => {
-    const isOpen = btn.getAttribute("aria-expanded") === "true";
+  const toggleMenu = () => {
+    const isOpen = nav.classList.contains("is-open");
     btn.setAttribute("aria-expanded", String(!isOpen));
-    nav.classList.toggle("is-open", !isOpen);
+    nav.classList.toggle("is-open");
+  };
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMenu();
   });
 
-  // Zavři menu po kliknutí na odkaz
   nav.addEventListener("click", (e) => {
-    if (e.target.closest("a")) close();
+    if (e.target.closest("a")) closeMenu();
   });
 
-  // Zavři menu klikem mimo
   document.addEventListener("click", (e) => {
-    if (!nav.classList.contains("is-open")) return;
-    const clickInside = nav.contains(e.target) || btn.contains(e.target);
-    if (!clickInside) close();
+    if (e.target.closest(".menu-btn")) return;
+    if (e.target.closest("#main-nav")) return;
+    closeMenu();
   });
 
-  // Když se přepne na desktop šířku, menu zavři (ať nezůstane otevřené)
-  window.addEventListener("resize", () => {
-    if (window.matchMedia("(min-width: 821px)").matches) close();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
   });
+
+  // ✅ teď už je připravené
+  btn.disabled = false;
 }
+
 
 function setActiveNav() {
   const page = document.body.dataset.page; // "home" | "about" | ...
@@ -522,3 +533,57 @@ loadLayout()
     return Promise.all([renderSellersFromJson(), renderSponsorsFromJson(), renderSocialFromJson()]);
   })
   .catch(console.error);
+
+  function initFadeIn(){
+  const items = document.querySelectorAll(".fade-in");
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  items.forEach(el => observer.observe(el));
+}
+
+loadLayout()
+  .then(() => {
+    initFadeIn();
+    initContactForm?.();
+    renderSellersFromJson?.();
+    renderSponsorsFromJson?.();
+    renderGalleryFromJson?.();
+    renderSocialFromJson?.();
+  })
+  .catch(console.error);
+
+  items.forEach((item, index) => {
+  const el = createGalleryItem(item);
+
+  el.classList.add("fade-in");
+  el.style.setProperty("--delay", `${index * 60}ms`);
+
+  grid.appendChild(el);
+});
+
+initFadeIn();
+
+items.forEach((item, index) => {
+  const card = createSellerCard(item); // nebo sponsor
+
+  card.classList.add("fade-in");
+  card.style.setProperty("--delay", `${index * 40}ms`);
+
+  grid.appendChild(card);
+});
+
+

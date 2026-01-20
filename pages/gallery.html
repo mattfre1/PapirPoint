@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Můj web</title>
+  <title>PapírPOINT - Galerie</title>
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/main.js"></script>
 </head>
@@ -11,21 +11,22 @@
   <div id="site-header"></div>
 
   <main class="container">
-    <section class="section">
-  <h1 class="section__title" id="gallery-title">Galerie</h1>
-  <p id="gallery-intro">Načítám…</p>
+  <section class="section fade-in">
+    <h1 class="section__title">Galerie</h1>
+    <div class="gallery-grid" id="gallery-grid"></div>
+    <p id="gallery-intro">Načítám…</p>
 
-  <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+    <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
 
-  <dialog class="lightbox" id="lightbox">
-    <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
-    <img class="lightbox__img" id="lightbox-img" alt="">
-    <p class="lightbox__caption" id="lightbox-caption"></p>
+    <dialog class="lightbox" id="lightbox">
+      <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
+      <img class="lightbox__img" id="lightbox-img" alt="">
+      <p class="lightbox__caption" id="lightbox-caption"></p>
 
-    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
-    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
-  </dialog>
-</section>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
+    </dialog>
+  </section>
 
   </main>
 

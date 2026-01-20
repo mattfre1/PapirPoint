@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Můj web</title>
+  <title>PapírPOINT</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script defer src="../js/main.js"></script>
 </head>
@@ -12,7 +12,7 @@
 
   <main class="container">
     <section class="section hero">
-  <div class="container">
+  <section class="section fade-in">
     <h1>PapírPOINT</h1>
     <p>Krátký popis projektu na 1-2 věty. Co je cílem a proč to existuje.</p>
     <div class="hero__actions">
@@ -22,34 +22,33 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
+<section class="section fade-in">
     <h2 class="section__title">O projektu</h2>
     <p>Delší odstavec…</p>
-  </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <h2 class="section__title">Sponzoři</h2>
-    <div class="sponsors-grid">
-      <a class="sponsor-card" href="#" aria-label="Sponzor 1">
-        <img src="img/sponsors/coy1.jpg" alt="Firma 1">
-      </a>
-      <a class="sponsor-card" href="#" aria-label="Sponzor 2">
-        <img src="img/sponsors/coy2.jpg" alt="Firma 2">
-      </a>
-    </div>
-    <p><a class="btn" href="../pages/sponsor.html">Zobrazit všechny sponzory →</a></p>
+<section class="section fade-in">
+  <h2 class="section__title">Sponzoři</h2>
+
+  <div class="sponsors-grid fade-in">
+    <a class="sponsor-card" href="#" aria-label="Sponzor 1">
+      <img src="img/sponsors/coy1.jpg" alt="Firma 1">
+    </a>
+    <a class="sponsor-card" href="#" aria-label="Sponzor 2">
+      <img src="img/sponsors/coy2.jpg" alt="Firma 2">
+    </a>
   </div>
+
+  <p class="fade-in">
+    <a class="btn" href="../pages/sponsor.html">Zobrazit všechny sponzory →</a>
+  </p>
 </section>
 
-<section class="section">
-  <div class="container">
+<section class="section fade-in">
     <h2 class="section__title" id="social-title">Sociální sítě</h2>
     <p id="social-intro">Načítám…</p>
 
-    <div class="social-grid" id="social-grid" aria-live="polite"></div>
+     <div class="social-grid fade-in" id="social-grid" aria-live="polite"></div>
 
 <dialog class="lightbox" id="social-lightbox">
   <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
@@ -61,7 +60,6 @@
   <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
 </dialog>
 
-  </div>
 </section>
 
   </main>
