@@ -1,0 +1,26 @@
+{
+  "title": "O projektu",
+  "intro": "Krátký úvodní odstavec…",
+
+  "sections": [
+    {
+      "heading": "Proč to děláme",
+      "paragraphs": [
+        "PapírPOINT vznikl jako…",
+        "Chceme propojit…"
+      ],
+      "bullets": [
+        "Jednoduchý přehled prodejců",
+        "Podpora lokálních papírnictví",
+        "Aktuální inspirace na sociálních sítích"
+      ]
+    },
+    {
+      "heading": "Jak to funguje",
+      "paragraphs": [
+        "Na webu najdeš…",
+        "Můžeš také…"
+      ]
+    }
+  ]
+}

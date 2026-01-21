@@ -64,12 +64,130 @@ collections:
         file: "content/gallery.json"
         format: "json"
         fields:
-          - { label: "Nadpis", name: "title", widget: "string" }
-          - { label: "Úvod", name: "intro", widget: "text" }
+          - { label: "Nadpis", name: "title", widget: "string", required: false }
+          - { label: "Úvod", name: "intro", widget: "text", required: false }
+
           - label: "Fotky"
             name: "items"
             widget: "list"
+            summary: "{{fields.caption}} — {{fields.src}}"
             fields:
+              - { label: "Cesta k obrázku", name: "src", widget: "string" }
+              - { label: "Alt", name: "alt", widget: "string", required: false }
+              - { label: "Popisek", name: "caption", widget: "string", required: false }
+
+      
+      - name: "home"
+        label: "Homepage"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - { label: "Popis pod nadpisem", name: "heroDesc", widget: "text" }
+          - { label: "Text O projektu (homepage)", name: "aboutTeaser", widget: "text" }
+          - { label: "Delší odstavec (homepage)", name: "aboutLong", widget: "text", required: false }
+
+          - label: "Vybraní sponzoři (na homepage)"
+            name: "featuredSponsors"
+            widget: "list"
+            min: 0
+            max: 6
+            fields:
+              - { label: "Název", name: "name", widget: "string" }
+              - { label: "Web (URL)", name: "url", widget: "string", required: false }
+              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
+
+          - label: "Vybrané příspěvky (na homepage)"
+            name: "featuredSocial"
+            widget: "list"
+            min: 0
+            max: 12
+            fields:
+              - { label: "Platforma", name: "platform", widget: "select", options: ["instagram","facebook"], required: false }
+              - { label: "Odkaz na post (URL)", name: "url", widget: "string" }
               - { label: "Obrázek (cesta)", name: "image", widget: "string" }
               - { label: "Popisek", name: "caption", widget: "string", required: false }
-              - { label: "Externí odkaz (URL)", name: "url", widget: "string", required: false }
+
+      - name: "pages"
+        label: "Stránky"
+        files:
+        - name: "about"
+          label: "O projektu"
+          file: "content/about.json"
+          format: "json"
+          fields:
+            - { label: "Nadpis", name: "title", widget: "string" }
+            - { label: "Úvod", name: "intro", widget: "text", required: false }
+
+            - label: "Sekce"
+              name: "sections"
+              widget: "list"
+              fields:
+                - { label: "Nadpis sekce", name: "heading", widget: "string" }
+
+                - label: "Odstavce"
+                  name: "paragraphs"
+                  widget: "list"
+                  required: false
+                  field: { label: "Odstavec", name: "text", widget: "text" }
+
+                - label: "Odrážky (tečky)"
+                  name: "bullets"
+                  widget: "list"
+                  required: false
+                  hint: "Volitelné – když je necháš prázdné, nic se nezobrazí."
+                  field: { label: "Bod", name: "text", widget: "string" }
+
+                  - name: "pages"
+                    label: "Stránky"
+                    files:
+                      - name: "contacts"
+                        label: "Kontakt"
+                        file: "content/contacts.json"
+                        format: "json"
+                        fields:
+                          - { label: "Nadpis stránky", name: "title", widget: "string" }
+                          - { label: "Úvodní text", name: "intro", widget: "text", required: false }
+
+                          - label: "Levý sloupec"
+                            name: "left"
+                            widget: "object"
+                            fields:
+                              - { label: "Popisek adresy", name: "addressLabel", widget: "string", required: false }
+                              - label: "Adresa (řádky)"
+                                name: "addressLines"
+                                widget: "list"
+                                required: false
+                                field: { label: "Řádek", name: "text", widget: "string" }
+
+                              - { label: "Popisek e-mailu", name: "emailLabel", widget: "string", required: false }
+                              - { label: "E-mail", name: "email", widget: "string", required: false }
+
+                              - { label: "Popisek telefonu", name: "phoneLabel", widget: "string", required: false }
+                              - { label: "Telefon", name: "phone", widget: "string", required: false }
+
+                              - { label: "Popisek socialních sítí", name: "socialLabel", widget: "string", required: false }
+                              - label: "Sociální sítě"
+                                name: "socials"
+                                widget: "list"
+                                required: false
+                                fields:
+                                  - { label: "Název", name: "label", widget: "string" }
+                                  - { label: "URL", name: "url", widget: "string" }
+
+                          - label: "Formulář"
+                            name: "form"
+                            widget: "object"
+                            fields:
+                              - { label: "Nadpis", name: "title", widget: "string", required: false }
+                              - { label: "Poznámka", name: "note", widget: "text", required: false }
+                              - { label: "Text po úspěchu", name: "successText", widget: "string", required: false }
+                              - { label: "Text při chybě", name: "errorText", widget: "string", required: false }
+
+                          - label: "Mapa"
+                            name: "map"
+                            widget: "object"
+                            fields:
+                              - { label: "Nadpis mapy", name: "title", widget: "string", required: false }
+                              - { label: "Iframe src (Google maps embed)", name: "iframeSrc", widget: "string", required: false }
+                              - { label: "Poznámka pod mapou", name: "note", widget: "text", required: false }

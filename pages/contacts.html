@@ -4,48 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PapírPOINT - Kontakt</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <script defer src="../js/main.js"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/main.js"></script>
 </head>
-<body>
+
+<body data-page="contact">
   <div id="site-header"></div>
 
   <main class="container">
     <section class="section fade-in">
-      <h1 class="section__title">Kontakt</h1>
-      <p>Napiš nám nebo se ozvi přímo. Odpovídáme obvykle do 1–2 pracovních dnů.</p>
+      <h1 class="section__title" id="contacts-title">Kontakt</h1>
+      <p id="contacts-intro">Napiš nám nebo se ozvi přímo. Odpovídáme obvykle do 1–2 pracovních dnů.</p>
 
       <div class="contact-layout">
         <!-- Kontaktní karta -->
         <div class="contact-card">
-          <h2 class="contact-card__title">PapírPoint</h2>
+          <h2 class="contact-card__title" id="contact-card-title">PapírPoint</h2>
 
           <div class="contact-list">
             <div class="contact-item">
-              <div class="contact-item__label">E-mail</div>
-              <a class="contact-item__value" href="mailto:info@papirpoint.cz">info@papirpoint.cz</a>
+              <div class="contact-item__label" id="contact-email-label">E-mail</div>
+              <a class="contact-item__value" id="contact-email" href="mailto:info@papirpoint.cz">info@papirpoint.cz</a>
             </div>
 
             <div class="contact-item">
-              <div class="contact-item__label">Telefon</div>
-              <a class="contact-item__value" href="tel:+420777123456">+420 777 123 456</a>
+              <div class="contact-item__label" id="contact-phone-label">Telefon</div>
+              <a class="contact-item__value" id="contact-phone" href="tel:+420777123456">+420 777 123 456</a>
             </div>
 
             <div class="contact-item">
-              <div class="contact-item__label">Adresa</div>
-              <div class="contact-item__value contact-item__value--block">
-                PapírPoint<br>
-                Ulice 123<br>
-                110 00 Praha
+              <div class="contact-item__label" id="contact-address-label">Adresa</div>
+              <div class="contact-item__value contact-item__value--block" id="contact-address">
+                <div>PapírPoint</div>
+                <div>Ulice 123</div>
+                <div>110 00 Praha</div>
               </div>
             </div>
           </div>
 
           <div class="contact-social-block">
-            <div class="contact-social-title">Sleduj nás</div>
+            <div class="contact-social-title" id="contact-social-title">Sleduj nás</div>
 
+            <!-- Necháme ikonky (CSS) a budeme měnit jen href -->
             <div class="social-links contact-social-links" aria-label="Sociální sítě">
               <a
+                id="contact-social-instagram"
                 href="https://www.instagram.com/papirpoint/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,6 +62,7 @@
               </a>
 
               <a
+                id="contact-social-facebook"
                 href="https://www.facebook.com/profile.php?id=61586903846637"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -78,30 +82,30 @@
         <form class="contact-form" id="contact-form"
               action="https://formspree.io/f/xjggeqjz"
               method="POST">
-          <h2 class="contact-form__title">Napiš zprávu</h2>
+          <h2 class="contact-form__title" id="contact-form-title">Napiš zprávu</h2>
 
           <!-- Meta / anti-spam -->
-          <input type="hidden" name="_subject" value="PapírPoint – nová zpráva z webu">
+          <input type="hidden" name="_subject" id="contact-form-subject" value="PapírPoint – nová zpráva z webu">
           <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
 
           <label class="field">
-            <span class="field__label">Jméno</span>
+            <span class="field__label" id="contact-form-name-label">Jméno</span>
             <input class="field__input" type="text" name="name" autocomplete="name" required>
           </label>
 
           <label class="field">
-            <span class="field__label">E-mail</span>
+            <span class="field__label" id="contact-form-email-label">E-mail</span>
             <input class="field__input" type="email" name="email" autocomplete="email" required>
           </label>
 
           <label class="field">
-            <span class="field__label">Zpráva</span>
+            <span class="field__label" id="contact-form-message-label">Zpráva</span>
             <textarea class="field__input field__textarea" name="message" rows="6" required></textarea>
           </label>
 
-          <button class="btn btn--block" type="submit">Odeslat</button>
+          <button class="btn btn--block" type="submit" id="contact-form-submit">Odeslat</button>
 
-          <p class="contact-form__note">
+          <p class="contact-form__note" id="contact-form-note">
             Odesláním souhlasíš se zpracováním údajů pro účely odpovědi.
           </p>
 
@@ -111,10 +115,11 @@
     </section>
 
     <section class="section fade-in">
-      <h2 class="section__title">Kde nás najdeš</h2>
+      <h2 class="section__title" id="contact-map-title">Kde nás najdeš</h2>
 
       <div class="map-embed">
         <iframe
+          id="contact-map-iframe"
           title="Mapa"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19695.159365515763!2d17.228311073713794!3d49.588221839918674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47124e5ee14e9101%3A0xf03cd3cd96a1ba4a!2zVsO9c3RhdmnFoXTEmyBGbG9yYSBPbG9tb3VjLCBhLnMu!5e1!3m2!1scs!2scz!4v1768939363174!5m2!1scs!2scz"
           style="border:0;"
@@ -123,6 +128,8 @@
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
+
+      <p id="contact-map-note"></p>
     </section>
   </main>
 

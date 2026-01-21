@@ -1,6 +1,15 @@
+/* =========================
+   Helpers: paths + layout
+========================= */
+
 function pathPrefix() {
   // Pokud jsi na /pages/..., potřebuješ o úroveň výš
   return window.location.pathname.includes("/pages/") ? "../" : "";
+}
+
+function withPrefix(relativePath) {
+  const p = pathPrefix();
+  return `${p}${relativePath}`;
 }
 
 async function inject(selector, url) {
@@ -9,8 +18,20 @@ async function inject(selector, url) {
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Fetch failed: ${url} (${res.status})`);
-
   el.innerHTML = await res.text();
+}
+
+function setActiveNav() {
+  const page = document.body?.dataset?.page; // "home" | "about" | ...
+  if (!page) return;
+
+  const active = document.querySelector(`a[data-nav="${page}"]`);
+  if (active) active.classList.add("is-active");
+}
+
+function setFooterYear() {
+  const year = document.querySelector("#year");
+  if (year) year.textContent = new Date().getFullYear();
 }
 
 function initMobileMenu() {
@@ -53,27 +74,11 @@ function initMobileMenu() {
     if (e.key === "Escape") closeMenu();
   });
 
-  // ✅ teď už je připravené
   btn.disabled = false;
-}
-
-
-function setActiveNav() {
-  const page = document.body.dataset.page; // "home" | "about" | ...
-  if (!page) return;
-
-  const active = document.querySelector(`a[data-nav="${page}"]`);
-  if (active) active.classList.add("is-active");
-}
-
-function setFooterYear() {
-  const year = document.querySelector("#year");
-  if (year) year.textContent = new Date().getFullYear();
 }
 
 async function loadLayout() {
   const p = pathPrefix();
-
   await inject("#site-header", `${p}partials/header.html`);
   await inject("#site-footer", `${p}partials/footer.html`);
 
@@ -82,14 +87,76 @@ async function loadLayout() {
   setActiveNav();
 }
 
-loadLayout().catch(console.error);
+/* =========================
+   Fade-in
+========================= */
 
-function withPrefix(relativePath) {
-  const p = pathPrefix();
-  // relativePath očekáváme jako "img/..." nebo "content/..."
-  return `${p}${relativePath}`;
+function initFadeIn() {
+  const els = document.querySelectorAll(".fade-in");
+  if (!els.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  els.forEach((el) => observer.observe(el));
 }
 
+/* =========================
+   Contact form
+========================= */
+
+function initContactForm() {
+  const form = document.querySelector("#contact-form");
+  const status = document.querySelector("#contact-status");
+  if (!form || !status) return;
+
+  // zabráníme dvojí inicializaci
+  if (form.dataset.bound === "1") return;
+  form.dataset.bound = "1";
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "Odesílám…";
+
+    // Pokud není action, jen “fake” odeslání (nezlomí web)
+    const action = form.getAttribute("action");
+    if (!action) {
+      form.reset();
+      status.textContent = "Díky! Zpráva je připravená k odeslání (doplníme odesílací službu).";
+      return;
+    }
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!res.ok) throw new Error(`Submit failed (${res.status})`);
+
+      form.reset();
+      status.textContent = "Děkujeme! Zpráva byla odeslána.";
+    } catch (err) {
+      console.error(err);
+      status.textContent = "Odeslání se nepodařilo. Zkus to prosím později.";
+    }
+  });
+}
+
+/* =========================
+   Sellers
+========================= */
 
 function createSellerCard(item) {
   const hasUrl = typeof item.url === "string" && item.url.trim().length > 0;
@@ -152,42 +219,36 @@ async function renderSellersFromJson() {
     const items = Array.isArray(data.items) ? data.items : [];
 
     for (const item of items) {
-      // minimální validace
       if (!item || !item.name || !item.logo) continue;
       grid.appendChild(createSellerCard(item));
     }
 
-    if (items.length === 0 && introEl) {
-      introEl.textContent = "Zatím tu nejsou žádní prodejci.";
-    }
+    if (items.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádní prodejci.";
   } catch (err) {
     console.error(err);
     if (introEl) introEl.textContent = "Prodejce se nepodařilo načíst.";
   }
 }
 
-loadLayout()
-  .then(renderSellersFromJson)
-  .catch(console.error);
+/* =========================
+   Sponsors
+========================= */
 
-  function createSponsorCard(item) {
+function createSponsorCard(item) {
   const hasUrl = typeof item.url === "string" && item.url.trim().length > 0;
 
   const el = document.createElement(hasUrl ? "a" : "div");
   el.className = "grid-item";
+  el.dataset.type = "sponsor";
 
   if (hasUrl) {
     el.href = item.url;
     el.target = "_blank";
     el.rel = "noopener noreferrer";
     el.setAttribute("aria-label", `${item.name} (otevřít web)`);
-
-    // volitelně: označ jako sponsor (můžeš pak stylovat)
-    el.dataset.type = "sponsor";
   } else {
     el.setAttribute("role", "group");
     el.setAttribute("aria-label", item.name);
-    el.dataset.type = "sponsor";
   }
 
   const img = document.createElement("img");
@@ -239,21 +300,18 @@ async function renderSponsorsFromJson() {
       grid.appendChild(createSponsorCard(item));
     }
 
-    if (items.length === 0 && introEl) {
-      introEl.textContent = "Zatím tu nejsou žádní sponzoři.";
-    }
+    if (items.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádní sponzoři.";
   } catch (err) {
     console.error(err);
     if (introEl) introEl.textContent = "Sponzory se nepodařilo načíst.";
   }
 }
 
-loadLayout()
-  .then(() => Promise.all([renderSellersFromJson(), renderSponsorsFromJson()]))
-  .catch(console.error);
+/* =========================
+   Gallery + Lightbox
+========================= */
 
-
-  let galleryItems = [];
+let galleryItems = [];
 let galleryIndex = 0;
 
 function openLightbox(index) {
@@ -287,20 +345,23 @@ function initLightboxControls() {
   const dlg = document.querySelector("#lightbox");
   if (!dlg) return;
 
+  if (dlg.dataset.bound === "1") return;
+  dlg.dataset.bound = "1";
+
   dlg.querySelector(".lightbox__close")?.addEventListener("click", closeLightbox);
   dlg.querySelector(".lightbox__nav--prev")?.addEventListener("click", () => stepLightbox(-1));
   dlg.querySelector(".lightbox__nav--next")?.addEventListener("click", () => stepLightbox(1));
 
-  // klik mimo obsah (na backdrop) zavře
   dlg.addEventListener("click", (e) => {
     const rect = dlg.getBoundingClientRect();
     const inside =
-      e.clientX >= rect.left && e.clientX <= rect.right &&
-      e.clientY >= rect.top && e.clientY <= rect.bottom;
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
     if (!inside) closeLightbox();
   });
 
-  // klávesnice
   document.addEventListener("keydown", (e) => {
     if (!dlg.open) return;
     if (e.key === "Escape") closeLightbox();
@@ -325,7 +386,7 @@ async function renderGalleryFromJson() {
     if (introEl && data.intro) introEl.textContent = data.intro;
 
     const items = Array.isArray(data.items) ? data.items : [];
-    galleryItems = items.filter(x => x && x.src);
+    galleryItems = items.filter((x) => x && x.src);
 
     grid.innerHTML = "";
 
@@ -354,25 +415,9 @@ async function renderGalleryFromJson() {
   }
 }
 
-loadLayout()
-  .then(() => Promise.all([
-    renderSellersFromJson(),
-    renderSponsorsFromJson(),
-    renderGalleryFromJson()
-  ]))
-  .catch(console.error);
-
-  function initContactForm() {
-  const form = document.querySelector("#contact-form");
-  const status = document.querySelector("#contact-status");
-  if (!form || !status) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    status.textContent = "Díky! Zpráva je připravená k odeslání (napojíme na odesílací službu).";
-    form.reset();
-  });
-}
+/* =========================
+   Social (page) + optional lightbox
+========================= */
 
 let socialItems = [];
 let socialIndex = 0;
@@ -422,20 +467,23 @@ function initSocialLightboxControls() {
   const dlg = document.querySelector("#social-lightbox");
   if (!dlg) return;
 
+  if (dlg.dataset.bound === "1") return;
+  dlg.dataset.bound = "1";
+
   dlg.querySelector(".lightbox__close")?.addEventListener("click", closeSocialLightbox);
   dlg.querySelector(".lightbox__nav--prev")?.addEventListener("click", () => stepSocial(-1));
   dlg.querySelector(".lightbox__nav--next")?.addEventListener("click", () => stepSocial(1));
 
-  // klik mimo obsah zavře
   dlg.addEventListener("click", (e) => {
     const rect = dlg.getBoundingClientRect();
     const inside =
-      e.clientX >= rect.left && e.clientX <= rect.right &&
-      e.clientY >= rect.top && e.clientY <= rect.bottom;
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
     if (!inside) closeSocialLightbox();
   });
 
-  // klávesnice
   document.addEventListener("keydown", (e) => {
     if (!dlg.open) return;
     if (e.key === "Escape") closeSocialLightbox();
@@ -460,11 +508,13 @@ async function renderSocialFromJson() {
     if (introEl && data.intro) introEl.textContent = data.intro;
 
     const items = Array.isArray(data.items) ? data.items : [];
-    const safeItems = items.filter(x => x && x.src && x.url);
+    const safeItems = items.filter((x) => x && x.src && x.url);
 
+    socialItems = safeItems;
     grid.innerHTML = "";
 
-    safeItems.forEach((item) => {
+    safeItems.forEach((item, idx) => {
+      // pokud máš social lightbox, můžeš místo <a> použít <button> a otevřít lightbox
       const a = document.createElement("a");
       a.className = "social-item";
       a.href = item.url;
@@ -479,111 +529,367 @@ async function renderSocialFromJson() {
 
       a.appendChild(img);
       grid.appendChild(a);
+
+      // Když chceš lightbox pro social, odkomentuj:
+      // a.addEventListener("click", (e) => { e.preventDefault(); openSocialLightbox(idx); });
     });
 
-    if (safeItems.length === 0 && introEl) {
-      introEl.textContent = "Zatím tu nejsou žádné příspěvky.";
-    }
+    if (safeItems.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádné příspěvky.";
+
+    initSocialLightboxControls();
   } catch (err) {
     console.error(err);
     if (introEl) introEl.textContent = "Příspěvky se nepodařilo načíst.";
   }
 }
 
-loadLayout()
-  .then(() => Promise.all([
+/* =========================
+   Homepage blocks (content/home.json)
+========================= */
+
+function createHomeSponsorCard(item) {
+  const a = document.createElement("a");
+  a.className = "sponsor-card";
+  a.href = item.url || "#";
+
+  if (item.url) {
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+  }
+
+  a.setAttribute("aria-label", item.name || "Sponzor");
+
+  const img = document.createElement("img");
+  img.src = withPrefix(item.logo);
+  img.alt = item.logoAlt || item.name || "Sponzor";
+  img.loading = "lazy";
+
+  a.appendChild(img);
+  return a;
+}
+
+function createHomeSocialItem(item) {
+  const a = document.createElement("a");
+  a.className = "social-item";
+  a.href = item.url || "#";
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.setAttribute("aria-label", (item.caption || "Příspěvek") + " (otevřít)");
+
+  const img = document.createElement("img");
+  img.src = withPrefix(item.image);
+  img.alt = item.caption || "Příspěvek";
+  img.loading = "lazy";
+
+  a.appendChild(img);
+  return a;
+}
+
+async function renderHomeFromJson() {
+  const heroDescEl = document.querySelector("#home-hero-desc");
+  const aboutEl = document.querySelector("#home-about-text");
+  const aboutLongEl = document.querySelector("#home-about-long");
+  const sponsorsGrid = document.querySelector("#home-sponsors-grid");
+  const socialGrid = document.querySelector("#home-social-grid");
+  const socialIntro = document.querySelector("#social-intro");
+
+  // nejsme na homepage
+  if (!heroDescEl && !aboutEl && !aboutLongEl && !sponsorsGrid && !socialGrid) return;
+
+  try {
+    const res = await fetch(withPrefix("content/home.json"));
+    if (!res.ok) throw new Error(`Fetch home.json failed (${res.status})`);
+    const data = await res.json();
+
+    if (heroDescEl && typeof data.heroDesc === "string") heroDescEl.textContent = data.heroDesc;
+    if (aboutEl && typeof data.aboutTeaser === "string") aboutEl.textContent = data.aboutTeaser;
+
+    if (aboutLongEl) {
+      if (typeof data.aboutLong === "string" && data.aboutLong.trim().length) {
+        aboutLongEl.textContent = data.aboutLong;
+        aboutLongEl.style.display = "";
+      } else {
+        aboutLongEl.textContent = "";
+        aboutLongEl.style.display = "none";
+      }
+    }
+
+    if (sponsorsGrid) {
+      sponsorsGrid.innerHTML = "";
+      const featured = Array.isArray(data.featuredSponsors) ? data.featuredSponsors : [];
+      featured.forEach((item) => {
+        if (!item || !item.logo) return;
+        sponsorsGrid.appendChild(createHomeSponsorCard(item));
+      });
+    }
+
+    if (socialGrid) {
+      socialGrid.innerHTML = "";
+      const featured = Array.isArray(data.featuredSocial) ? data.featuredSocial : [];
+      featured.forEach((item) => {
+        if (!item || !item.image || !item.url) return;
+        socialGrid.appendChild(createHomeSocialItem(item));
+      });
+
+      if (socialIntro) {
+        socialIntro.textContent = featured.length
+          ? "Vybrané příspěvky (kliknutím otevřeš originál)."
+          : "Zatím tu nejsou žádné příspěvky.";
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    if (socialIntro) socialIntro.textContent = "Nepodařilo se načíst obsah homepage.";
+  }
+}
+
+async function renderAboutFromJson() {
+  // když nejsme na about stránce, nic nedělej
+  const titleEl = document.querySelector("#about-title");
+  const introEl = document.querySelector("#about-intro");
+  const container = document.querySelector("#about-sections");
+  const fallbackSection1 = document.querySelector("#about-h2-1"); // pokud jedeš “pevná IDčka”
+
+  // podporujeme 2 varianty:
+  // 1) dynamické sekce do #about-sections
+  // 2) fallback na pevná IDčka (h2/p1/p2…)
+  const hasDynamic = !!container;
+  const hasStatic = !!titleEl || !!introEl || !!fallbackSection1;
+
+  if (!hasDynamic && !hasStatic) return;
+
+  try {
+    const res = await fetch(withPrefix("content/about.json"));
+    if (!res.ok) throw new Error(`Fetch about.json failed (${res.status})`);
+    const data = await res.json();
+
+    if (titleEl && data.title) titleEl.textContent = data.title;
+    if (introEl && data.intro) introEl.textContent = data.intro;
+
+    // Varianta 1: dynamický render do #about-sections
+    if (container) {
+      container.innerHTML = "";
+      const sections = Array.isArray(data.sections) ? data.sections : [];
+
+      sections.forEach((sec) => {
+        if (!sec) return;
+
+        const sectionEl = document.createElement("section");
+        sectionEl.className = "section fade-in";
+
+        if (sec.heading) {
+          const h2 = document.createElement("h2");
+          h2.textContent = sec.heading;
+          sectionEl.appendChild(h2);
+        }
+
+        // odstavce
+        const paragraphs = Array.isArray(sec.paragraphs) ? sec.paragraphs : [];
+        paragraphs.forEach((p) => {
+          const text = typeof p === "string" ? p : p?.text;
+          if (!text) return;
+
+          const para = document.createElement("p");
+          para.textContent = text;
+          sectionEl.appendChild(para);
+        });
+
+        // ✅ ODRÁŽKY (VOLITELNÉ)
+        const bullets = Array.isArray(sec.bullets) ? sec.bullets : [];
+        const safeBullets = bullets
+          .map((b) => (typeof b === "string" ? b : b?.text))
+          .filter((t) => typeof t === "string" && t.trim().length);
+
+        if (safeBullets.length) {
+          const ul = document.createElement("ul");
+          ul.className = "about-list";
+
+          safeBullets.forEach((text) => {
+            const li = document.createElement("li");
+            li.textContent = text;
+            ul.appendChild(li);
+          });
+
+          sectionEl.appendChild(ul);
+        }
+
+        container.appendChild(sectionEl);
+      });
+    } else {
+      // Varianta 2: pevná IDčka (volitelné)
+      const sections = Array.isArray(data.sections) ? data.sections : [];
+
+      const setText = (id, text) => {
+        const el = document.querySelector(id);
+        if (!el) return;
+        el.textContent = text || "";
+        if (!text) el.style.display = "none";
+      };
+
+      setText("#about-h2-1", sections[0]?.heading);
+      setText("#about-p-1", sections[0]?.paragraphs?.[0]?.text ?? sections[0]?.paragraphs?.[0]);
+      setText("#about-p-2", sections[0]?.paragraphs?.[1]?.text ?? sections[0]?.paragraphs?.[1]);
+
+      setText("#about-h2-2", sections[1]?.heading);
+      setText("#about-p-3", sections[1]?.paragraphs?.[0]?.text ?? sections[1]?.paragraphs?.[0]);
+      setText("#about-p-4", sections[1]?.paragraphs?.[1]?.text ?? sections[1]?.paragraphs?.[1]);
+
+      // ODRÁŽKY u statické varianty:
+      // Aby šly vykreslit i tady, musel bys mít v HTML např. <ul id="about-ul-1"></ul>, <ul id="about-ul-2"></ul>
+      // Když je nemáš, nic se neděje (žádná chyba).
+    }
+  } catch (err) {
+    console.error(err);
+    if (titleEl) titleEl.textContent = "O projektu";
+    if (introEl) introEl.textContent = "Obsah se nepodařilo načíst.";
+  }
+}
+
+
+async function renderContactsFromJson() {
+  const titleEl = document.querySelector("#contacts-title");
+  const introEl = document.querySelector("#contacts-intro");
+
+  // když nejsme na kontakt stránce, pryč
+  if (!titleEl && !introEl) return;
+
+  const addressLabelEl = document.querySelector("#contacts-address-label");
+  const addressEl = document.querySelector("#contacts-address");
+
+  const emailLabelEl = document.querySelector("#contacts-email-label");
+  const emailEl = document.querySelector("#contacts-email");
+
+  const phoneLabelEl = document.querySelector("#contacts-phone-label");
+  const phoneEl = document.querySelector("#contacts-phone");
+
+  const socialLabelEl = document.querySelector("#contacts-social-label");
+  const socialsEl = document.querySelector("#contacts-socials");
+
+  const formTitleEl = document.querySelector("#contacts-form-title");
+  const formNoteEl = document.querySelector("#contacts-form-note");
+
+  const mapTitleEl = document.querySelector("#contacts-map-title");
+  const mapEl = document.querySelector("#contacts-map");
+  const mapNoteEl = document.querySelector("#contacts-map-note");
+
+  try {
+    const res = await fetch(withPrefix("content/contacts.json"));
+    if (!res.ok) throw new Error(`Fetch contacts.json failed (${res.status})`);
+    const data = await res.json();
+
+    if (titleEl && data.title) titleEl.textContent = data.title;
+    if (introEl && data.intro) introEl.textContent = data.intro;
+
+    // LEFT
+    const left = data.left || {};
+
+    if (addressLabelEl) addressLabelEl.textContent = left.addressLabel || "";
+    if (addressEl) {
+      addressEl.innerHTML = "";
+      const lines = Array.isArray(left.addressLines) ? left.addressLines : [];
+      lines.forEach((line) => {
+        const t = typeof line === "string" ? line : line?.text;
+        if (!t) return;
+        const div = document.createElement("div");
+        div.textContent = t;
+        addressEl.appendChild(div);
+      });
+    }
+
+    if (emailLabelEl) emailLabelEl.textContent = left.emailLabel || "";
+    if (emailEl) {
+      const email = left.email || "";
+      emailEl.textContent = email;
+      emailEl.href = email ? `mailto:${email}` : "#";
+      if (!email) emailEl.style.display = "none";
+    }
+
+    if (phoneLabelEl) phoneLabelEl.textContent = left.phoneLabel || "";
+    if (phoneEl) {
+      const phone = left.phone || "";
+      phoneEl.textContent = phone;
+      phoneEl.href = phone ? `tel:${String(phone).replace(/\s+/g, "")}` : "#";
+      if (!phone) phoneEl.style.display = "none";
+    }
+
+    if (socialLabelEl) socialLabelEl.textContent = left.socialLabel || "";
+    if (socialsEl) {
+      socialsEl.innerHTML = "";
+      const socials = Array.isArray(left.socials) ? left.socials : [];
+
+      socials.forEach((s) => {
+        if (!s || !s.url) return;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = s.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = s.label || s.url;
+
+        li.appendChild(a);
+        socialsEl.appendChild(li);
+      });
+
+      if (!socials.length) socialsEl.style.display = "none";
+    }
+
+    // FORM TEXTS
+    const form = data.form || {};
+    if (formTitleEl) formTitleEl.textContent = form.title || "";
+    if (formNoteEl) formNoteEl.textContent = form.note || "";
+
+    // Uložíme texty pro initContactForm (volitelně)
+    // Pokud chceš, můžeš si je vyčíst v initContactForm z datasetu.
+    const status = document.querySelector("#contact-status");
+    if (status) {
+      status.dataset.successText = form.successText || "";
+      status.dataset.errorText = form.errorText || "";
+    }
+
+    // MAP
+    const map = data.map || {};
+    if (mapTitleEl) mapTitleEl.textContent = map.title || "";
+    if (mapEl) {
+      const src = map.iframeSrc || "";
+      if (src) {
+        mapEl.src = src;
+        mapEl.style.display = "";
+      } else {
+        mapEl.removeAttribute("src");
+        mapEl.style.display = "none";
+      }
+    }
+    if (mapNoteEl) mapNoteEl.textContent = map.note || "";
+
+  } catch (err) {
+    console.error(err);
+    if (introEl) introEl.textContent = "Kontakty se nepodařilo načíst.";
+  }
+}
+
+
+
+/* =========================
+   Single init (ONLY ONCE)
+========================= */
+
+async function initSite() {
+  await loadLayout();
+
+  // render pages depending on existing DOM
+  await Promise.allSettled([
+    renderHomeFromJson(),
+    renderAboutFromJson(),
     renderSellersFromJson(),
     renderSponsorsFromJson(),
-    renderGalleryFromJson?.(),
-    renderSocialFromJson()
-  ]))
-  .catch(console.error);
+    renderGalleryFromJson(),
+    renderSocialFromJson(),
+    renderContactsFromJson(),
+  ]);
 
-  function initContactForm() {
-  const form = document.querySelector("#contact-form");
-  const status = document.querySelector("#contact-status");
-  if (!form || !status) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    status.textContent = "Odesílám…";
-
-    try {
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
-      });
-
-      if (!res.ok) throw new Error(`Submit failed (${res.status})`);
-
-      form.reset();
-      status.textContent = "Děkujeme! Zpráva byla odeslána.";
-    } catch (err) {
-      console.error(err);
-      status.textContent = "Odeslání se nepodařilo. Zkus to prosím později.";
-    }
-  });
+  initContactForm();
+  initFadeIn();
 }
 
-loadLayout()
-  .then(() => {
-    initContactForm();
-    return Promise.all([renderSellersFromJson(), renderSponsorsFromJson(), renderSocialFromJson()]);
-  })
-  .catch(console.error);
-
-  function initFadeIn(){
-  const items = document.querySelectorAll(".fade-in");
-  if (!items.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-  items.forEach(el => observer.observe(el));
-}
-
-loadLayout()
-  .then(() => {
-    initFadeIn();
-    initContactForm?.();
-    renderSellersFromJson?.();
-    renderSponsorsFromJson?.();
-    renderGalleryFromJson?.();
-    renderSocialFromJson?.();
-  })
-  .catch(console.error);
-
-  items.forEach((item, index) => {
-  const el = createGalleryItem(item);
-
-  el.classList.add("fade-in");
-  el.style.setProperty("--delay", `${index * 60}ms`);
-
-  grid.appendChild(el);
-});
-
-initFadeIn();
-
-items.forEach((item, index) => {
-  const card = createSellerCard(item); // nebo sponsor
-
-  card.classList.add("fade-in");
-  card.style.setProperty("--delay", `${index * 40}ms`);
-
-  grid.appendChild(card);
-});
-
-
+initSite().catch(console.error);

@@ -7,60 +7,47 @@
   <link rel="stylesheet" href="../css/style.css" />
   <script defer src="../js/main.js"></script>
 </head>
-<body>
+
+<body data-page="home">
   <div id="site-header"></div>
 
   <main class="container">
-    <section class="section hero">
-  <section class="section fade-in">
-    <h1>PapírPOINT</h1>
-    <p>Krátký popis projektu na 1-2 věty. Co je cílem a proč to existuje.</p>
-    <div class="hero__actions">
-      <a class="btn" href="../pages/about.html">Zjistit víc</a>
-      <a class="btn btn--secondary" href="../pages/contacts.html">Kontakt</a>
-    </div>
-  </div>
-</section>
 
-<section class="section fade-in">
-    <h2 class="section__title">O projektu</h2>
-    <p>Delší odstavec…</p>
-</section>
+    <!-- HERO -->
+    <section class="section fade-in hero">
+      <h1>PapírPOINT</h1>
+      <p id="home-hero-desc">Načítám…</p>
 
-<section class="section fade-in">
-  <h2 class="section__title">Sponzoři</h2>
+      <div class="hero__actions">
+        <a class="btn" href="pages/about.html">Zjistit víc</a>
+        <a class="btn btn--secondary" href="pages/contacts.html">Kontakt</a>
+      </div>
+    </section>
 
-  <div class="sponsors-grid fade-in">
-    <a class="sponsor-card" href="#" aria-label="Sponzor 1">
-      <img src="img/sponsors/coy1.jpg" alt="Firma 1">
-    </a>
-    <a class="sponsor-card" href="#" aria-label="Sponzor 2">
-      <img src="img/sponsors/coy2.jpg" alt="Firma 2">
-    </a>
-  </div>
+    <!-- O PROJEKTU -->
+    <section class="section fade-in">
+      <h2 class="section__title">O projektu</h2>
+      <p id="home-about-text">Načítám…</p>
+    </section>
 
-  <p class="fade-in">
-    <a class="btn" href="../pages/sponsor.html">Zobrazit všechny sponzory →</a>
-  </p>
-</section>
+    <!-- SPONZOŘI (featured z content/home.json) -->
+    <section class="section fade-in">
+      <h2 class="section__title">Sponzoři</h2>
 
-<section class="section fade-in">
-    <h2 class="section__title" id="social-title">Sociální sítě</h2>
-    <p id="social-intro">Načítám…</p>
+      <div class="sponsors-grid fade-in" id="home-sponsors-grid" aria-live="polite"></div>
 
-     <div class="social-grid fade-in" id="social-grid" aria-live="polite"></div>
+      <p class="fade-in">
+        <a class="btn" href="pages/sponsor.html">Zobrazit všechny sponzory →</a>
+      </p>
+    </section>
 
-<dialog class="lightbox" id="social-lightbox">
-  <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
-  <img class="lightbox__img" id="social-lightbox-img" alt="">
-  <p class="lightbox__caption" id="social-lightbox-caption"></p>
-  <p class="lightbox__actions" id="social-lightbox-actions"></p>
+    <!-- SOCIAL (featured z content/home.json) -->
+    <section class="section fade-in">
+      <h2 class="section__title">Sociální sítě</h2>
+      <p id="social-intro">Načítám…</p>
 
-  <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
-  <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
-</dialog>
-
-</section>
+      <div class="social-grid fade-in" id="home-social-grid" aria-live="polite"></div>
+    </section>
 
   </main>
 

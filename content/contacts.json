@@ -1,0 +1,37 @@
+{
+  "title": "Kontakt",
+  "intro": "Napište nám – ozveme se co nejdříve.",
+
+  "left": {
+    "addressLabel": "Adresa",
+    "addressLines": [
+      "PapírPOINT",
+      "Ulice 123",
+      "110 00 Praha"
+    ],
+    "emailLabel": "E-mail",
+    "email": "info@papirpoint.cz",
+    "phoneLabel": "Telefon",
+    "phone": "+420 123 456 789",
+
+    "socialLabel": "Sociální sítě",
+    "socials": [
+      { "label": "Instagram", "url": "https://instagram.com/..." },
+      { "label": "Facebook", "url": "https://facebook.com/..." },
+      { "label": "TikTok", "url": "https://tiktok.com/@..." }
+    ]
+  },
+
+  "form": {
+    "title": "Napište nám",
+    "note": "Pole označená * jsou povinná.",
+    "successText": "Děkujeme! Zpráva byla odeslána.",
+    "errorText": "Odeslání se nepodařilo. Zkus to prosím později."
+  },
+
+  "map": {
+    "title": "Kde nás najdete",
+    "iframeSrc": "https://www.google.com/maps/embed?pb=...",
+    "note": "Mapa je orientační."
+  }
+}
