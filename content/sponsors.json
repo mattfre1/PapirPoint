@@ -47,26 +47,10 @@
       "logo": "img/sponsors/paperworks.png"
     },
     {
-      "name": "GreenPrint",
-      "meta": "Ekologický tisk",
-      "logo": "img/sponsors/greenprint.png",
-      "url": "https://example.com/greenprint"
-    },
-    {
-      "name": "Kancelářský Servis",
-      "meta": "Servis a poradenství",
-      "logo": "img/sponsors/kancelarsky-servis.png"
-    },
-    {
       "name": "Design & Paper",
       "meta": "Designové papíry",
       "logo": "img/sponsors/design-paper.png",
       "url": "https://example.com/designpaper"
-    },
-    {
-      "name": "OfficeStart",
-      "meta": "Podpora začínajících firem",
-      "logo": "img/sponsors/officestart.png"
     }
   ]
 }
