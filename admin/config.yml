@@ -70,46 +70,9 @@ collections:
                 hint: "Volitelné – když je necháš prázdné, nic se nezobrazí."
                 field: { label: "Bod", name: "text", widget: "string" }
 
-      - name: "contacts"
-        label: "Kontakt"
-        file: "content/contacts.json"
-        format: "json"
-        fields:
-          - { label: "Nadpis stránky", name: "pageTitle", widget: "string" }
-          - { label: "Úvodní text", name: "intro", widget: "text", required: false }
-
-          - { label: "Nadpis karty", name: "cardTitle", widget: "string", required: false }
-
-          - { label: "Popisek e-mailu", name: "emailLabel", widget: "string", required: false }
-          - { label: "E-mail", name: "email", widget: "string", required: false }
-
-          - { label: "Popisek telefonu", name: "phoneLabel", widget: "string", required: false }
-          - { label: "Telefon", name: "phone", widget: "string", required: false }
-
-          - { label: "Popisek adresy", name: "addressLabel", widget: "string", required: false }
-          - label: "Adresa (řádky)"
-            name: "addressLines"
-            widget: "list"
-            required: false
-            field: { label: "Řádek", name: "text", widget: "string" }
-
-          - { label: "Nadpis social sekce", name: "socialTitle", widget: "string", required: false }
-          - { label: "Instagram URL", name: "instagramUrl", widget: "string", required: false }
-          - { label: "Facebook URL", name: "facebookUrl", widget: "string", required: false }
-
-          - { label: "Nadpis formuláře", name: "formTitle", widget: "string", required: false }
-          - { label: "Předmět (hidden _subject)", name: "formSubject", widget: "string", required: false }
-          - { label: "Text pod tlačítkem (souhlas)", name: "formNote", widget: "text", required: false }
-          - { label: "Text po úspěchu", name: "successText", widget: "string", required: false }
-          - { label: "Text při chybě", name: "errorText", widget: "string", required: false }
-
-          - { label: "Nadpis mapy", name: "mapTitle", widget: "string", required: false }
-          - { label: "Mapa iframe src", name: "mapIframeSrc", widget: "string", required: false }
-          - { label: "Poznámka pod mapou", name: "mapNote", widget: "text", required: false }
-
-      - name: "sponsors"
-        label: "Sponzoři"
-        file: "content/sponsors.json"
+      - name: "sellers"
+        label: "Prodejci"
+        file: "content/sellers.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string" }
@@ -124,9 +87,9 @@ collections:
               - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
               - { label: "Meta", name: "meta", widget: "string", required: false }
 
-      - name: "sellers"
-        label: "Prodejci"
-        file: "content/sellers.json"
+      - name: "sponsors"
+        label: "Sponzoři"
+        file: "content/sponsors.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string" }
@@ -157,3 +120,55 @@ collections:
               - { label: "Cesta k obrázku", name: "src", widget: "string" }
               - { label: "Alt", name: "alt", widget: "string", required: false }
               - { label: "Popisek", name: "caption", widget: "string", required: false }
+
+      - name: "contacts"
+        label: "Kontakt"
+        file: "content/contacts.json"
+        format: "json"
+        fields:
+          - { label: "Nadpis stránky", name: "title", widget: "string" }
+          - { label: "Úvodní text", name: "intro", widget: "text", required: false }
+
+          - label: "Levý sloupec"
+            name: "left"
+            widget: "object"
+            fields:
+              - { label: "Popisek adresy", name: "addressLabel", widget: "string", required: false }
+              - label: "Adresa (řádky)"
+                name: "addressLines"
+                widget: "list"
+                required: false
+                field: { label: "Řádek", name: "text", widget: "string" }
+
+              - { label: "Popisek e-mailu", name: "emailLabel", widget: "string", required: false }
+              - { label: "E-mail", name: "email", widget: "string", required: false }
+
+              - { label: "Popisek telefonu", name: "phoneLabel", widget: "string", required: false }
+              - { label: "Telefon", name: "phone", widget: "string", required: false }
+
+              - { label: "Popisek social sekce", name: "socialLabel", widget: "string", required: false }
+              - label: "Sociální sítě"
+                name: "socials"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}} — {{fields.url}}"
+                fields:
+                  - { label: "Název", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+
+          - label: "Formulář"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Nadpis", name: "title", widget: "string", required: false }
+              - { label: "Poznámka", name: "note", widget: "text", required: false }
+              - { label: "Text po úspěchu", name: "successText", widget: "string", required: false }
+              - { label: "Text při chybě", name: "errorText", widget: "string", required: false }
+
+          - label: "Mapa"
+            name: "map"
+            widget: "object"
+            fields:
+              - { label: "Nadpis mapy", name: "title", widget: "string", required: false }
+              - { label: "Iframe src (Google maps embed)", name: "iframeSrc", widget: "string", required: false }
+              - { label: "Poznámka pod mapou", name: "note", widget: "text", required: false }
