@@ -1,0 +1,76 @@
+backend:
+  name: git-gateway
+  repo: mattfre1/PapirPoint
+  branch: main
+
+publish_mode: simple
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+collections:
+  - name: "content"
+    label: "Obsah webu"
+    files:
+      - name: "about"
+        label: "O projektu"
+        file: "content/about.json"
+        format: "json"
+        fields:
+          - { label: "Nadpis", name: "title", widget: "string" }
+          - { label: "Úvod", name: "intro", widget: "text" }
+          - label: "Sekce"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Nadpis sekce", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+      - name: "sponsors"
+        label: "Sponzoři"
+        file: "content/sponsors.json"
+        format: "json"
+        fields:
+          - { label: "Nadpis", name: "title", widget: "string" }
+          - { label: "Úvod", name: "intro", widget: "text" }
+          - label: "Položky"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Název", name: "name", widget: "string" }
+              - { label: "Web (URL)", name: "url", widget: "string", required: false }
+              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
+              - { label: "Meta", name: "meta", widget: "string", required: false }
+
+      - name: "sellers"
+        label: "Prodejci"
+        file: "content/sellers.json"
+        format: "json"
+        fields:
+          - { label: "Nadpis", name: "title", widget: "string" }
+          - { label: "Úvod", name: "intro", widget: "text" }
+          - label: "Položky"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Název", name: "name", widget: "string" }
+              - { label: "Web (URL)", name: "url", widget: "string", required: false }
+              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
+              - { label: "Meta", name: "meta", widget: "string", required: false }
+
+      - name: "gallery"
+        label: "Galerie"
+        file: "content/gallery.json"
+        format: "json"
+        fields:
+          - { label: "Nadpis", name: "title", widget: "string" }
+          - { label: "Úvod", name: "intro", widget: "text" }
+          - label: "Fotky"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Obrázek (cesta)", name: "image", widget: "string" }
+              - { label: "Popisek", name: "caption", widget: "string", required: false }
+              - { label: "Externí odkaz (URL)", name: "url", widget: "string", required: false }
