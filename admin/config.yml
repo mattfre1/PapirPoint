@@ -1,6 +1,5 @@
 backend:
   name: git-gateway
-  repo: mattfre1/PapirPoint
   branch: main
 
 publish_mode: simple
