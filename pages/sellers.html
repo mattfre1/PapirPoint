@@ -17,7 +17,23 @@
             <p id="sellers-intro">Načítám seznam…</p>
 
     <div class="grid" id="sellers-grid" aria-live="polite"></div>
+    
+    <!-- Seller modal -->
+    <dialog class="seller-modal" id="seller-modal" aria-label="Detail prodejce">
+      <button class="seller-modal__close" type="button" aria-label="Zavřít">✕</button>
 
+      <div class="seller-modal__header">
+        <h2 class="seller-modal__title" id="seller-modal-title"></h2>
+        <p class="seller-modal__meta" id="seller-modal-meta"></p>
+      </div>
+
+      <div class="seller-modal__body">
+        <div class="seller-modal__photos" id="seller-modal-photos" aria-label="Fotky prodejce"></div>
+        <p class="seller-modal__desc" id="seller-modal-desc"></p>
+      </div>
+      
+      <div class="seller-modal__actions" id="seller-modal-actions"></div>
+    </dialog>
         <noscript>
             <p>Pro zobrazení seznamu prodejců je potřeba zapnout JavaScript.</p>
         </noscript>

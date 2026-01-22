@@ -17,21 +17,20 @@
     "socialLabel": "Sociální sítě",
     "socials": [
       { "label": "Instagram", "url": "https://instagram.com/..." },
-      { "label": "Facebook", "url": "https://facebook.com/..." },
-      { "label": "TikTok", "url": "https://tiktok.com/@..." }
+      { "label": "Facebook", "url": "https://facebook.com/..." }
     ]
   },
 
   "form": {
     "title": "Napište nám",
-    "note": "Pole označená * jsou povinná.",
+    "note": "",
     "successText": "Děkujeme! Zpráva byla odeslána.",
     "errorText": "Odeslání se nepodařilo. Zkus to prosím později."
   },
 
   "map": {
     "title": "Kde nás najdete",
-    "iframeSrc": "https://www.google.com/maps/embed?pb=...",
+    "iframeSrc": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4680.94595053037!2d17.252192035130157!3d49.59196309371824!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47124e8bb74b128f%3A0x517148eb146768c1!2zUGV2bm9zdCBwb3puw6Fuw60!5e1!3m2!1scs!2scz!4v1769116644046!5m2!1scs!2scz",
     "note": "Mapa je orientační."
   }
 }

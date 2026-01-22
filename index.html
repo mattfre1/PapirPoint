@@ -11,42 +11,52 @@
 <body data-page="home">
   <div id="site-header"></div>
 
-  <main class="container">
+  <!-- ✅ Full-width sekce, container je až uvnitř (lepší pro background/gradienty) -->
+  <main>
 
     <!-- HERO -->
-    <section class="section fade-in hero">
-      <h1>PapírPOINT</h1>
-      <p id="home-hero-desc">Načítám…</p>
+    <section class="section fade-in hero section--soft">
+      <div class="container">
+        <h1>PapírPOINT</h1>
+        <p id="home-hero-desc">Načítám…</p>
 
-      <div class="hero__actions">
-        <a class="btn" href="pages/about.html">Zjistit víc</a>
-        <a class="btn btn--secondary" href="pages/contacts.html">Kontakt</a>
+        <div class="hero__actions">
+          <a class="btn" href="pages/about.html">Zjistit víc</a>
+          <a class="btn btn--secondary" href="pages/contacts.html">Kontakt</a>
+        </div>
       </div>
     </section>
 
     <!-- O PROJEKTU -->
     <section class="section fade-in">
-      <h2 class="section__title">O projektu</h2>
-      <p id="home-about-text">Načítám…</p>
+      <div class="container">
+        <h2 class="section__title">O projektu</h2>
+        <p id="home-about-text">Načítám…</p>
+      </div>
     </section>
 
     <!-- SPONZOŘI (featured z content/home.json) -->
-    <section class="section fade-in">
-      <h2 class="section__title">Sponzoři</h2>
+    <section class="section fade-in section--soft">
+      <div class="container">
+        <h2 class="section__title">Sponzoři</h2>
 
-      <div class="sponsors-grid fade-in" id="home-sponsors-grid" aria-live="polite"></div>
+        <div class="sponsors-grid fade-in" id="home-sponsors-grid" aria-live="polite"></div>
 
-      <p class="fade-in">
-        <a class="btn" href="pages/sponsor.html">Zobrazit všechny sponzory →</a>
-      </p>
+        <p class="fade-in">
+          <a class="btn" href="pages/sponsor.html">Zobrazit všechny sponzory →</a>
+        </p>
+      </div>
     </section>
 
     <!-- SOCIAL (featured z content/home.json) -->
     <section class="section fade-in">
-      <h2 class="section__title">Sociální sítě</h2>
-      <p id="social-intro">Načítám…</p>
+      <div class="container">
+        <h2 class="section__title">Sociální sítě</h2>
+        <p id="social-intro">Načítám…</p>
 
-      <div class="social-grid fade-in" id="home-social-grid" aria-live="polite"></div>
+        <!-- ✅ id upravené na správné podle JS (renderHomeFromJson používá #home-social-grid) -->
+        <div class="social-grid fade-in" id="home-social-grid" aria-live="polite"></div>
+      </div>
     </section>
 
   </main>

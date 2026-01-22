@@ -33,25 +33,57 @@ function setFooterYear() {
   const year = document.querySelector("#year");
   if (year) year.textContent = new Date().getFullYear();
 }
-
 function initMobileMenu() {
   const btn = document.querySelector(".menu-btn");
   const nav = document.querySelector("#main-nav");
   if (!btn || !nav) return;
 
-  // zabráníme dvojí inicializaci
+  const isMobile = window.matchMedia("(max-width: 820px)").matches;
+
+  nav.hidden = isMobile;                 // mobile: schovat, desktop: ukázat
+  nav.classList.remove("is-open");
+  btn.classList.remove("is-open");
+  btn.setAttribute("aria-expanded", "false");
+  
   if (btn.dataset.bound === "1") return;
   btn.dataset.bound = "1";
 
+  // Backdrop element (vytvoříme jen jednou)
+  let backdrop = document.querySelector(".menu-backdrop");
+  if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.className = "menu-backdrop";
+    document.body.appendChild(backdrop);
+  }
+
+  const openMenu = () => {
+    btn.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+
+    nav.hidden = false;            // ✅ skutečně zobrazíme
+    // v dalším snímku přidáme class pro animaci
+    requestAnimationFrame(() => nav.classList.add("is-open"));
+
+    backdrop.classList.add("is-visible");
+  };
+
   const closeMenu = () => {
+    btn.classList.remove("is-open");
     btn.setAttribute("aria-expanded", "false");
+
     nav.classList.remove("is-open");
+    backdrop.classList.remove("is-visible");
+
+    // po doběhnutí animace schovat úplně
+    window.setTimeout(() => {
+      // schovej jen pokud už není znovu otevřené
+      if (!nav.classList.contains("is-open")) nav.hidden = true;
+    }, 180);
   };
 
   const toggleMenu = () => {
-    const isOpen = nav.classList.contains("is-open");
-    btn.setAttribute("aria-expanded", String(!isOpen));
-    nav.classList.toggle("is-open");
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    isOpen ? closeMenu() : openMenu();
   };
 
   btn.addEventListener("click", (e) => {
@@ -64,18 +96,44 @@ function initMobileMenu() {
     if (e.target.closest("a")) closeMenu();
   });
 
-  document.addEventListener("click", (e) => {
-    if (e.target.closest(".menu-btn")) return;
-    if (e.target.closest("#main-nav")) return;
-    closeMenu();
-  });
+  // klik mimo / na backdrop
+  backdrop.addEventListener("click", closeMenu);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
   });
 
+  // když se přepne na desktop šířku, menu schovej (aby nezůstalo “viset”)
+  const mq = window.matchMedia("(max-width: 820px)");
+  mq.addEventListener("change", () => {
+    if (!mq.matches) {
+      // desktop – necháme nav “normálně”, ale zavřeme mobilní stavy
+      nav.hidden = false;
+      nav.classList.remove("is-open");
+      backdrop.classList.remove("is-visible");
+      btn.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+    } else {
+      // mobile – startujeme zavřené
+      nav.hidden = true;
+      nav.classList.remove("is-open");
+      backdrop.classList.remove("is-visible");
+      btn.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Start state (mobile zavřené)
+  if (window.matchMedia("(max-width: 820px)").matches) {
+    nav.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  } else {
+    nav.hidden = false;
+  }
+
   btn.disabled = false;
 }
+
 
 async function loadLayout() {
   const p = pathPrefix();
@@ -158,21 +216,121 @@ function initContactForm() {
    Sellers
 ========================= */
 
-function createSellerCard(item) {
-  const hasUrl = typeof item.url === "string" && item.url.trim().length > 0;
+let sellersItems = [];
+let sellersIndex = 0;
 
-  const el = document.createElement(hasUrl ? "a" : "div");
-  el.className = "grid-item";
+function openSellerModal(index) {
+  const dlg = document.querySelector("#seller-modal");
+  const titleEl = document.querySelector("#seller-modal-title");
+  const metaEl = document.querySelector("#seller-modal-meta");
+  const descEl = document.querySelector("#seller-modal-desc");
+  const photosEl = document.querySelector("#seller-modal-photos");
+  const actionsEl = document.querySelector("#seller-modal-actions");
+  if (!dlg || !titleEl || !descEl || !photosEl || !actionsEl) return;
 
-  if (hasUrl) {
-    el.href = item.url;
-    el.target = "_blank";
-    el.rel = "noopener noreferrer";
-    el.setAttribute("aria-label", `${item.name} (otevřít web)`);
+  sellersIndex = index;
+  const item = sellersItems[sellersIndex];
+  if (!item) return;
+
+  titleEl.textContent = item.name || "";
+
+  // meta
+  metaEl.textContent = item.meta || "";
+  metaEl.style.display = item.meta ? "" : "none";
+
+  // popis
+  descEl.textContent = item.description || "";
+  descEl.style.display = item.description ? "" : "none";
+
+  // fotky (max 3)
+  photosEl.innerHTML = "";
+  const photos = Array.isArray(item.photos) ? item.photos.slice(0, 3) : [];
+
+  if (photos.length) {
+    photosEl.style.display = "";
+    photos.forEach((p, i) => {
+      if (!p?.src) return;
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.src = withPrefix(p.src);
+      img.alt = p.alt || `${item.name} – fotka ${i + 1}`;
+      photosEl.appendChild(img);
+    });
   } else {
-    el.setAttribute("role", "group");
-    el.setAttribute("aria-label", item.name);
+    photosEl.style.display = "none";
   }
+
+  // akce (nový formát: item.link; fallback: item.url)
+  actionsEl.innerHTML = "";
+
+  const link = item.link || null;
+
+  // fallback pro starý formát, kdyby někde ještě byl item.url
+  const legacyUrl = typeof item.url === "string" && item.url.trim().length ? item.url.trim() : "";
+
+  const type = link?.type || (legacyUrl ? "web" : "none");
+  const url =
+    (typeof link?.url === "string" && link.url.trim().length ? link.url.trim() : "") ||
+    legacyUrl;
+
+  const customLabel = typeof link?.label === "string" ? link.label.trim() : "";
+
+  if (type !== "none" && url) {
+    const a = document.createElement("a");
+    a.className = "btn btn--secondary";
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+
+    if (customLabel) {
+      a.textContent = customLabel;
+    } else {
+      a.textContent = type === "social" ? "Otevřít sociální sítě" : "Otevřít web prodejce";
+    }
+
+    actionsEl.appendChild(a);
+  }
+
+  dlg.showModal();
+}
+
+function closeSellerModal() {
+  const dlg = document.querySelector("#seller-modal");
+  if (dlg && dlg.open) dlg.close();
+}
+
+function initSellerModalControls() {
+  const dlg = document.querySelector("#seller-modal");
+  if (!dlg) return;
+
+  if (dlg.dataset.bound === "1") return;
+  dlg.dataset.bound = "1";
+
+  dlg.querySelector(".seller-modal__close")?.addEventListener("click", closeSellerModal);
+
+  // klik mimo obsah dialogu zavře (backdrop)
+  dlg.addEventListener("click", (e) => {
+    const rect = dlg.getBoundingClientRect();
+    const inside =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+    if (!inside) closeSellerModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!dlg.open) return;
+    if (e.key === "Escape") closeSellerModal();
+  });
+}
+
+function createSellerCard(item, index) {
+  const el = document.createElement("button");
+  el.type = "button";
+  el.className = "grid-item";
+  el.setAttribute("aria-label", `Detail: ${item.name}`);
+  el.dataset.index = String(index);
 
   const img = document.createElement("img");
   img.className = "grid-item__logo";
@@ -197,12 +355,13 @@ function createSellerCard(item) {
   el.appendChild(img);
   el.appendChild(textWrap);
 
+  el.addEventListener("click", () => openSellerModal(index));
   return el;
 }
 
 async function renderSellersFromJson() {
   const grid = document.querySelector("#sellers-grid");
-  if (!grid) return; // nejsme na stránce prodejců
+  if (!grid) return; // nejsme na stránce sellers
 
   const titleEl = document.querySelector("#sellers-title");
   const introEl = document.querySelector("#sellers-intro");
@@ -215,15 +374,18 @@ async function renderSellersFromJson() {
     if (titleEl && data.title) titleEl.textContent = data.title;
     if (introEl && data.intro) introEl.textContent = data.intro;
 
-    grid.innerHTML = "";
     const items = Array.isArray(data.items) ? data.items : [];
+    sellersItems = items;
 
-    for (const item of items) {
-      if (!item || !item.name || !item.logo) continue;
-      grid.appendChild(createSellerCard(item));
-    }
+    grid.innerHTML = "";
+    items.forEach((item, idx) => {
+      if (!item || !item.name || !item.logo) return;
+      grid.appendChild(createSellerCard(item, idx));
+    });
 
     if (items.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádní prodejci.";
+
+    initSellerModalControls();
   } catch (err) {
     console.error(err);
     if (introEl) introEl.textContent = "Prodejce se nepodařilo načíst.";
@@ -812,10 +974,45 @@ async function renderContactsFromJson() {
       if (!phone) phoneEl.style.display = "none";
     }
 
-    if (socialLabelEl) socialLabelEl.textContent = left.socialLabel || "";
+  if (socialLabelEl) socialLabelEl.textContent = left.socialLabel || "";
+
+  const socials = Array.isArray(left.socials) ? left.socials : [];
+
+  const findByLabel = (label) =>
+    socials.find((s) => (s?.label || "").trim().toLowerCase() === label);
+
+  const ig = findByLabel("instagram");
+  const fb = findByLabel("facebook");
+  const tt = findByLabel("tiktok");
+
+  // 1) Preferujeme ikonky v HTML (když existují)
+  const igA = document.querySelector("#contacts-social-instagram");
+  const fbA = document.querySelector("#contacts-social-facebook");
+  const ttA = document.querySelector("#contacts-social-tiktok");
+
+  const hasIconSet = !!(igA || fbA || ttA);
+
+  if (hasIconSet) {
+    if (igA) {
+      if (ig?.url) { igA.href = ig.url; igA.style.display = ""; }
+      else { igA.style.display = "none"; }
+    }
+    if (fbA) {
+      if (fb?.url) { fbA.href = fb.url; fbA.style.display = ""; }
+      else { fbA.style.display = "none"; }
+    }
+    if (ttA) {
+      if (tt?.url) { ttA.href = tt.url; ttA.style.display = ""; }
+      else { ttA.style.display = "none"; }
+    }
+
+    // Pokud máš starý <ul id="contacts-socials"> z minula, klidně ho schovej
+    if (socialsEl) socialsEl.style.display = "none";
+  } else {
+    // 2) Fallback: textový seznam (původní chování)
     if (socialsEl) {
+      socialsEl.style.display = "";
       socialsEl.innerHTML = "";
-      const socials = Array.isArray(left.socials) ? left.socials : [];
 
       socials.forEach((s) => {
         if (!s || !s.url) return;
@@ -833,6 +1030,8 @@ async function renderContactsFromJson() {
 
       if (!socials.length) socialsEl.style.display = "none";
     }
+  }
+
 
     // FORM TEXTS
     const form = data.form || {};

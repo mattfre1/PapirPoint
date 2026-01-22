@@ -15,27 +15,33 @@
       "url": "https://example.com",
       "logo": "img/sponsors/coy2.jpg",
       "logoAlt": "Firma 2"
+    },
+    {
+      "name": "Firma 3",
+      "url": "https://example.com",
+      "logo": "img/sponsors/coy2.jpg",
+      "logoAlt": "Firma 3"
     }
   ],
 
   "featuredSocial": [
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/p/XXXXXXXX/",
-      "image": "img/social/ig1.jpg",
+      "url": "hhttps://www.instagram.com/papirpoint/",
+      "image": "img/homepage/insta1.jpg",
       "caption": "Instagram post"
     },
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/p/YYYYYYYY/",
-      "image": "img/social/ig2.jpg",
+      "url": "https://www.instagram.com/papirpoint/",
+      "image": "img/homepage/insta2.jpg",
       "caption": "Instagram post"
     },
     {
-      "platform": "facebook",
-      "url": "https://www.facebook.com/XXXXXXXX",
-      "image": "img/social/fb1.jpg",
-      "caption": "Facebook post"
+      "platform": "instagram",
+      "url": "https://www.instagram.com/papirpoint/",
+      "image": "img/homepage/insta3.jpg",
+      "caption": "Instagram post"
     }
   ]
 }
