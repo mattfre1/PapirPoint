@@ -137,8 +137,10 @@ function initMobileMenu() {
 
 async function loadLayout() {
   const p = pathPrefix();
-  await inject("#site-header", `${p}partials/header.html`);
-  await inject("#site-footer", `${p}partials/footer.html`);
+  await Promise.all([
+    inject("#site-header", `${p}partials/header.html`),
+    inject("#site-footer", `${p}partials/footer.html`),
+  ]);
 
   setFooterYear();
   initMobileMenu();
@@ -183,7 +185,7 @@ function initContactForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.textContent = "Odesílám…";
+    status.textContent = status.dataset.sendingText || "Odesílám…";
 
     // Pokud není action, jen “fake” odeslání (nezlomí web)
     const action = form.getAttribute("action");
@@ -204,10 +206,10 @@ function initContactForm() {
       if (!res.ok) throw new Error(`Submit failed (${res.status})`);
 
       form.reset();
-      status.textContent = "Děkujeme! Zpráva byla odeslána.";
+      status.textContent = status.dataset.successText || "Děkujeme! Zpráva byla odeslána.";
     } catch (err) {
       console.error(err);
-      status.textContent = "Odeslání se nepodařilo. Zkus to prosím později.";
+      status.textContent = status.dataset.errorText || "Odeslání se nepodařilo. Zkus to prosím později.";
     }
   });
 }
@@ -262,7 +264,7 @@ function openSellerModal(index) {
 
   // akce (nový formát: item.link; fallback: item.url)
   actionsEl.innerHTML = "";
-
+  actionsEl.style.display = "none"; // default: schovat, pokud nemáme žádnou akci
   const link = item.link || null;
 
   // fallback pro starý formát, kdyby někde ještě byl item.url
@@ -281,6 +283,8 @@ function openSellerModal(index) {
     a.href = url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
+    actionsEl.appendChild(a);
+    actionsEl.style.display = "";   // máme akci → ukaž lištu
 
     if (customLabel) {
       a.textContent = customLabel;
@@ -397,11 +401,12 @@ async function renderSellersFromJson() {
 ========================= */
 
 function createSponsorCard(item) {
-  const hasUrl = typeof item.url === "string" && item.url.trim().length > 0;
-
+  const hasUrl = !!item.url;
   const el = document.createElement(hasUrl ? "a" : "div");
   el.className = "grid-item";
-  el.dataset.type = "sponsor";
+  if (!hasUrl) el.classList.add("grid-item--static");
+
+  el.dataset.type = "sponsor";  
 
   if (hasUrl) {
     el.href = item.url;
@@ -730,9 +735,12 @@ function createHomeSponsorCard(item) {
   return a;
 }
 
-function createHomeSocialItem(item) {
+function createHomeSocialItem(item, idx = 0) {
   const a = document.createElement("a");
-  a.className = "social-item";
+
+  const platform = (item.platform || "").toLowerCase();
+  a.className = "social-item" + (platform === "instagram" ? " social-item--ig" : "");
+
   a.href = item.url || "#";
   a.target = "_blank";
   a.rel = "noopener noreferrer";
@@ -741,11 +749,14 @@ function createHomeSocialItem(item) {
   const img = document.createElement("img");
   img.src = withPrefix(item.image);
   img.alt = item.caption || "Příspěvek";
-  img.loading = "lazy";
-
+  img.loading = idx < 3 ? "eager" : "lazy";
+  img.decoding = "async";
   a.appendChild(img);
+  if (idx < 1) img.fetchPriority = "high"; // jen úplně první
+
   return a;
 }
+
 
 async function renderHomeFromJson() {
   const heroDescEl = document.querySelector("#home-hero-desc");
@@ -788,9 +799,9 @@ async function renderHomeFromJson() {
     if (socialGrid) {
       socialGrid.innerHTML = "";
       const featured = Array.isArray(data.featuredSocial) ? data.featuredSocial : [];
-      featured.forEach((item) => {
+      featured.forEach((item, idx) => {
         if (!item || !item.image || !item.url) return;
-        socialGrid.appendChild(createHomeSocialItem(item));
+      socialGrid.appendChild(createHomeSocialItem(item, idx));
       });
 
       if (socialIntro) {
@@ -1076,8 +1087,11 @@ async function renderContactsFromJson() {
 async function initSite() {
   await loadLayout();
 
-  // render pages depending on existing DOM
-  await Promise.allSettled([
+  // ✅ ať se stránka odhalí hned
+  initFadeIn();
+
+  // ✅ nenecháme render blokovat zobrazení
+  Promise.allSettled([
     renderHomeFromJson(),
     renderAboutFromJson(),
     renderSellersFromJson(),
@@ -1085,10 +1099,12 @@ async function initSite() {
     renderGalleryFromJson(),
     renderSocialFromJson(),
     renderContactsFromJson(),
-  ]);
+  ]).then(() => {
+    // ✅ po doplnění dynamických sekcí znovu napoj observer
+    initFadeIn();
+  });
 
   initContactForm();
-  initFadeIn();
 }
 
 initSite().catch(console.error);

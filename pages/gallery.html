@@ -6,28 +6,32 @@
   <title>PapírPOINT - Galerie</title>
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/main.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-page="gallery">
 
   <div id="site-header"></div>
 
   <main class="container">
-  <section class="section fade-in">
-    <h1 class="section__title">Galerie</h1>
-    <div class="gallery-grid" id="gallery-grid"></div>
-    <p id="gallery-intro">Načítám…</p>
+    <section class="section fade-in">
+      <h1 class="section__title" id="gallery-title">Galerie</h1>
 
-    <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+      <p id="gallery-intro">Načítám…</p>
 
-    <dialog class="lightbox" id="lightbox">
-      <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
-      <img class="lightbox__img" id="lightbox-img" alt="">
-      <p class="lightbox__caption" id="lightbox-caption"></p>
+      <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
 
-      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
-      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
-    </dialog>
-  </section>
+      <dialog class="lightbox" id="lightbox">
+        <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
+        <img class="lightbox__img" id="lightbox-img" alt="">
+        <p class="lightbox__caption" id="lightbox-caption"></p>
+
+        <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
+      </dialog>
+    </section>
+
 
   </main>
 
