@@ -5,7 +5,7 @@ backend:
 publish_mode: simple
 
 media_folder: "img/uploads"
-public_folder: "/img/uploads"
+public_folder: "img/uploads"
 
 collections:
   - name: "content"
@@ -29,7 +29,7 @@ collections:
             fields:
               - { label: "Název", name: "name", widget: "string" }
               - { label: "Web (URL)", name: "url", widget: "string", required: false }
-              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Logo (cesta)", name: "logo", widget: "image" }
               - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
 
           - label: "Vybrané příspěvky (na homepage)"
@@ -40,7 +40,7 @@ collections:
             fields:
               - { label: "Platforma", name: "platform", widget: "select", options: ["instagram","facebook"], required: false }
               - { label: "Odkaz na post (URL)", name: "url", widget: "string" }
-              - { label: "Obrázek (cesta)", name: "image", widget: "string" }
+              - { label: "Obrázek (cesta)", name: "image", widget: "image" }
               - { label: "Popisek", name: "caption", widget: "string", required: false }
 
       - name: "about"
@@ -99,7 +99,7 @@ collections:
                   - { label: "URL", name: "url", widget: "string", required: false }
                   - { label: "Text tlačítka (volitelné)", name: "label", widget: "string", required: false }
 
-              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Logo (cesta)", name: "logo", widget: "image" }
               - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
               - { label: "Meta", name: "meta", widget: "string", required: false }
 
@@ -129,7 +129,7 @@ collections:
             fields:
               - { label: "Název", name: "name", widget: "string" }
               - { label: "Web (URL)", name: "url", widget: "string", required: false }
-              - { label: "Logo (cesta)", name: "logo", widget: "string" }
+              - { label: "Logo (cesta)", name: "logo", widget: "image" }
               - { label: "Alt text", name: "logoAlt", widget: "string", required: false }
               - { label: "Meta", name: "meta", widget: "string", required: false }
 
@@ -146,7 +146,7 @@ collections:
             widget: "list"
             summary: "{{fields.caption}} — {{fields.src}}"
             fields:
-              - { label: "Cesta k obrázku", name: "src", widget: "string" }
+              - { label: "Cesta k obrázku", name: "src", widget: "image" }
               - { label: "Alt", name: "alt", widget: "string", required: false }
               - { label: "Popisek", name: "caption", widget: "string", required: false }
 
