@@ -2,7 +2,6 @@
   "heroDesc": "Krátký popis projektu na 1–2 věty. Co je cílem a proč to existuje.",
   "aboutTeaser": "PapírPOINT propojuje zákazníky a papírnictví. Najdeš u nás prodejce, sponzory, galerii a novinky na jednom místě.",
   "aboutLong": "Delší odstavec…",
-
   "featuredSponsors": [
     {
       "name": "Firma 1",
@@ -23,12 +22,11 @@
       "logoAlt": "Firma 3"
     }
   ],
-
   "featuredSocial": [
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/papirpoint/",
-      "image": "img/homepage/insta1.jpg",
+      "image": "img/uploads/vid_20260115_110859_00_024_2026-01-18_20-43-42_screenshot.jpg",
       "caption": "Instagram post"
     },
     {
