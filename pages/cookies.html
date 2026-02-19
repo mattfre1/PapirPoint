@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zásady cookies | PapírPOINT</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" style="padding: 24px 0;">
+    <h1>Zásady používání cookies</h1>
+
+    <p>
+      Na tomto webu používáme cookies a podobné technologie pro zajištění správného fungování webu a pro načítání
+      obsahu třetích stran (např. Google Maps). Volitelné cookies si můžeš kdykoliv změnit.
+    </p>
+
+    <h2>Co jsou cookies?</h2>
+    <p>
+      Cookies jsou malé textové soubory, které si web může uložit do tvého zařízení. Pomáhají například s tím,
+      aby web správně fungoval, nebo aby si pamatoval tvé volby.
+    </p>
+
+    <h2>Jaké cookies používáme</h2>
+
+    <h3>Nezbytné (technické) cookies</h3>
+    <p>
+      Tyto cookies jsou nutné pro základní funkce webu (např. zobrazení stránek, bezpečnost, základní nastavení).
+      Tyto cookies nelze vypnout.
+    </p>
+
+    <h3>Externí obsah / volitelné cookies (např. Google Maps)</h3>
+    <p>
+      Pokud povolíš externí obsah, může se načíst mapa Google Maps. Třetí strany (Google) mohou používat cookies
+      a zpracovávat údaje o používání služby dle svých zásad.
+    </p>
+
+    <h2>Změna nebo odvolání souhlasu</h2>
+    <p>
+      Svůj souhlas můžeš kdykoliv změnit kliknutím na tlačítko níže. Poté se znovu zobrazí cookie lišta.
+    </p>
+
+    <button class="btn btn--secondary" type="button" id="cookies-reset">
+      Změnit nastavení cookies
+    </button>
+
+    <h2>Kontakt</h2>
+    <p>
+      Pokud máš dotazy k cookies, napiš nám přes kontaktní formulář na stránce Kontakt.
+    </p>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="cookie-mount"></div>
+
+  <script src="../main.js"></script>
+  <script>
+    // reset souhlasu
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("cookies-reset");
+      if (!btn) return;
+      btn.addEventListener("click", () => {
+        try { localStorage.removeItem("pp_cookie_consent_v1"); } catch(e) {}
+        location.reload();
+      });
+    });
+  </script>
+</body>
+</html>

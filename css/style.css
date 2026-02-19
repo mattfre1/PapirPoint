@@ -851,42 +851,59 @@ button.grid-item{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(64,93,230,0.85),
-    rgba(131,58,180,0.85),
-    rgba(225,48,108,0.85),
-    rgba(253,29,29,0.85),
-    rgba(245,96,64,0.85),
-    rgba(247,119,55,0.85)
-  );
+  background:
+    linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    linear-gradient(
+      135deg,
+      rgba(64,93,230,0.88),
+      rgba(131,58,180,0.88),
+      rgba(225,48,108,0.88),
+      rgba(253,29,29,0.88),
+      rgba(245,96,64,0.88),
+      rgba(247,119,55,0.88)
+    );
   opacity: 0;
   transition: opacity 150ms ease;
 }
 
+/* badge + ikona (maskou), ale maska je FILL verze, takže má detaily */
 .social-item--ig::before{
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 44px;
-  height: 44px;
+  width: 128px;                 /* velikost badge */
+  height: 128px ;
   transform: translate(-50%, -50%);
-  background: #fff;
   opacity: 0;
   transition: opacity 150ms ease;
   z-index: 2;
 
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6zm4.9-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6zm4.9-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z'/%3E%3C/svg%3E") center/contain no-repeat;
+  /* badge */
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+
+  /* ikona uvnitř badge */
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.2a4.8 4.8 0 1 1 0 9.6a4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6Zm4.9-.9a1.1 1.1 0 1 1 0 2.2a1.1 1.1 0 0 1 0-2.2Z'/%3E%3C/svg%3E") center/58% no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.2a4.8 4.8 0 1 1 0 9.6a4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6Zm4.9-.9a1.1 1.1 0 1 1 0 2.2a1.1 1.1 0 0 1 0-2.2Z'/%3E%3C/svg%3E") center/58% no-repeat;
+
+  /* barva ikonky = prosvítá “pozadí” -> uděláme ji tmavou */
+  background-color: rgba(17,17,17,0.92);
 }
 
+/* hover zapnutí */
 .social-item--ig:hover::after,
 .social-item--ig:hover::before{
   opacity: 1;
 }
 
-.social-item--ig:hover img{ filter: brightness(0.65); }
+/* fotka se ztmaví – pomůže čitelnosti */
+.social-item--ig:hover img{
+  filter: brightness(0.6) contrast(1.05);
+}
 
 /* Fade / stagger animace */
 .fade-in{
@@ -971,7 +988,7 @@ body[data-page="about"] h2 {
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.3;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
   margin-bottom: 0.6rem;
 }
 
@@ -1114,4 +1131,250 @@ body[data-page="about"] h2 {
 .menu-backdrop.is-visible{
   opacity: 1;
   pointer-events: auto;
+}
+/* =========================
+   Sellers + Sponsors – 1 sloupec, stejné boxy, vycentrované logo
+========================= */
+
+body[data-page="sellers"] .grid,
+body[data-page="sponsors"] .grid{
+  display: grid;
+  grid-template-columns: 1fr;   /* vše pod sebou */
+  gap: 16px;
+
+  max-width: 820px;            /* stejná šířka obsahu */
+  margin: 0 auto;              /* vycentrování */
+  padding: 0 16px;             /* bezpečné odsazení na mobilu */
+}
+
+/* Karta */
+body[data-page="sellers"] .grid-item,
+body[data-page="sponsors"] .grid-item{
+  /* sjednocení rozměru */
+  height: 150px;               /* jednotná výška všech boxů */
+  width: 100%;
+
+  /* layout: logo + text */
+  display: grid;
+  grid-template-columns: 96px 1fr; /* pevný sloupec pro logo */
+  gap: 18px;
+
+  /* původní styl zůstane (border, background, hover) z tvého .grid-item */
+  padding: 20px;
+  border-radius: 18px;
+
+  /* srovnání obsahu */
+  align-items: center;
+}
+
+/* Levý sloupec: logo přesně doprostřed */
+body[data-page="sellers"] .grid-item__logo,
+body[data-page="sponsors"] .grid-item__logo{
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  justify-self: center;        /* vodorovné centrování v levém sloupci */
+  align-self: center;          /* svislé centrování */
+  object-fit: contain;
+}
+
+/* Textový sloupec */
+body[data-page="sellers"] .grid-item__text,
+body[data-page="sponsors"] .grid-item__text{
+  min-width: 0;                /* nutné pro ellipsis */
+  overflow: hidden;            /* ať nic nepřetéká */
+  display: grid;
+  gap: 6px;
+}
+
+/* Název – 1 řádek + … */
+body[data-page="sellers"] .grid-item__title,
+body[data-page="sponsors"] .grid-item__title{
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Meta – max cca 2 řádky (bez webkit) */
+body[data-page="sellers"] .grid-item__meta,
+body[data-page="sponsors"] .grid-item__meta{
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  line-height: 1.35;
+
+  max-height: calc(1.35em * 2); /* cca 2 řádky */
+  overflow: hidden;
+}
+
+/* Jemné “zklidnění” na menších displejích */
+@media (max-width: 520px){
+  body[data-page="sellers"] .grid-item,
+  body[data-page="sponsors"] .grid-item{
+    height: 142px;
+    grid-template-columns: 84px 1fr;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  body[data-page="sellers"] .grid-item__logo,
+  body[data-page="sponsors"] .grid-item__logo{
+    width: 72px;
+    height: 72px;
+  }
+}
+.grid-item__desc{
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* =========================
+   Kontakt – větší sociální ikonky (hranatější), hover zachován
+========================= */
+
+body[data-page="contact"] .contact-social-links{
+  gap: 14px; /* trochu větší mezera */
+}
+
+body[data-page="contact"] .contact-social-links .social-link{
+  width: 58px;
+  height: 58px;
+  border-radius: 16px; /* hranaté/zaoblené čtverce místo koleček */
+}
+
+/* Nové ikonky jsou “stroke”, tak jim dáme příjemnou velikost */
+body[data-page="contact"] .contact-social-links .social-link svg{
+  width: 26px;
+  height: 26px;
+  fill: none; /* ať to není “vyplněné” */
+}
+
+/* =========================
+   Sellers + Sponsors – zarovnání nadpisu s gridem
+========================= */
+
+body[data-page="sellers"] .section__title,
+body[data-page="sponsors"] .section__title,
+body[data-page="sellers"] #sellers-intro,
+body[data-page="sponsors"] #sponsors-intro{
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ===== Cookie bar ===== */
+.cookiebar{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 999;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.cookiebar.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.cookiebar__inner{
+  max-width: 1000px;
+  margin: 0 auto;
+
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  padding: 14px 14px;
+
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cookiebar__text p{
+  margin: 6px 0 0;
+  opacity: .85;
+  max-width: 62ch;
+}
+
+.cookiebar__text a{
+  color: inherit;
+  text-decoration: underline;
+}
+
+.cookiebar__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px){
+  .cookiebar__inner{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookiebar__actions .btn{
+    width: 100%;
+  }
+}
+
+.map-consent{
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 18px;
+  background: rgba(255,255,255,0.9);
+}
+
+.map-consent__box h3{ margin: 0 0 8px; }
+.map-consent__box p{ margin: 0 0 12px; opacity: .85; }
+
+.map-consent__link{
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: underline;
+  color: inherit;
+  opacity: .85;
+}
+
+
+/* ===== Google mapa ===== */
+.map-wrap{
+  border-radius: 20px;           /* stejné zaoblení jako máš jinde */
+  overflow: hidden;              /* důležité pro ořez rohů */
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  border: 1px solid #e6e6e6;
+}
+
+.map-wrap iframe{
+  display: block;
+  width: 100%;
+  height: 380px;
+}
+
+.footer-link{
+  font-size: 14px;
+  color: #777;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.footer-link:hover{
+  text-decoration: underline;
 }

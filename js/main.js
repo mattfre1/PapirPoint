@@ -140,6 +140,7 @@ async function loadLayout() {
   await Promise.all([
     inject("#site-header", `${p}partials/header.html`),
     inject("#site-footer", `${p}partials/footer.html`),
+    inject("#cookie-mount", `${p}partials/cookies.html`),
   ]);
 
   setFooterYear();
@@ -355,6 +356,12 @@ function createSellerCard(item, index) {
 
   textWrap.appendChild(title);
   if (item.meta) textWrap.appendChild(meta);
+  if (item.description) {
+  const desc = document.createElement("p");
+  desc.className = "grid-item__desc";
+  desc.textContent = item.description.slice(0, 120) + "...";
+  textWrap.appendChild(desc);
+  }
 
   el.appendChild(img);
   el.appendChild(textWrap);
@@ -960,13 +967,20 @@ async function renderContactsFromJson() {
     if (addressEl) {
       addressEl.innerHTML = "";
       const lines = Array.isArray(left.addressLines) ? left.addressLines : [];
-      lines.forEach((line) => {
-        const t = typeof line === "string" ? line : line?.text;
-        if (!t) return;
-        const div = document.createElement("div");
-        div.textContent = t;
-        addressEl.appendChild(div);
-      });
+
+      const parentItem = addressEl.closest(".contact-item");
+
+      if (lines.length === 0) {
+        if (parentItem) parentItem.style.display = "none";
+      } else {
+        lines.forEach((line) => {
+          const t = typeof line === "string" ? line : line?.text;
+          if (!t) return;
+          const div = document.createElement("div");
+          div.textContent = t;
+          addressEl.appendChild(div);
+        });
+      }
     }
 
     if (emailLabelEl) emailLabelEl.textContent = left.emailLabel || "";
@@ -1078,6 +1092,87 @@ async function renderContactsFromJson() {
   }
 }
 
+const CONSENT_KEY = "pp_cookie_consent_v1"; 
+// hodnoty: "necessary" | "analytics"
+
+function getConsent() {
+  try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
+}
+
+function setConsent(value) {
+  try { localStorage.setItem(CONSENT_KEY, value); } catch {}
+}
+
+function showCookieBar() {
+  const bar = document.querySelector("#cookiebar");
+  if (!bar) return;
+  bar.hidden = false;
+  requestAnimationFrame(() => bar.classList.add("is-visible"));
+}
+
+function hideCookieBar() {
+  const bar = document.querySelector("#cookiebar");
+  if (!bar) return;
+  bar.classList.remove("is-visible");
+  window.setTimeout(() => (bar.hidden = true), 160);
+}
+
+function enableAnalyticsIfAllowed() {
+  const consent = getConsent();
+  if (consent !== "analytics") return;
+
+  // ✅ Sem patří načtení GA / Plausible / Matomo apod.
+  // Příklad: načíst script až po souhlasu
+  // const s = document.createElement("script");
+  // s.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXX";
+  // s.async = true;
+  // document.head.appendChild(s);
+}
+
+function initCookieBar() {
+  const bar = document.querySelector("#cookiebar");
+  const acceptBtn = document.querySelector("#cookie-accept");
+  const declineBtn = document.querySelector("#cookie-decline");
+  if (!bar || !acceptBtn || !declineBtn) return;
+
+  // zabránit dvojí inicializaci
+  if (bar.dataset.bound === "1") return;
+  bar.dataset.bound = "1";
+
+  const consent = getConsent();
+  if (!consent) showCookieBar();
+  else enableAnalyticsIfAllowed();
+
+  acceptBtn.addEventListener("click", () => {
+  setConsent("analytics");
+  hideCookieBar();
+
+  enableAnalyticsIfAllowed();
+  loadMapNow(); // ✅ automaticky načíst mapu po souhlasu
+  });
+
+  declineBtn.addEventListener("click", () => {
+    setConsent("necessary");
+    hideCookieBar();
+  });
+}
+
+function loadMapNow() {
+  const wrap = document.querySelector("#map-consent");
+  const tpl = document.querySelector("#map-iframe-template");
+  if (!wrap || !tpl) return;
+
+  // když už je iframe vložený, nic nedělej
+  if (wrap.dataset.loaded === "1") return;
+  wrap.dataset.loaded = "1";
+
+  wrap.replaceWith(tpl.content.cloneNode(true));
+}
+
+function initMapConsent() {
+  const consent = getConsent(); // "necessary" | "analytics" | null
+  if (consent === "analytics") loadMapNow();
+}
 
 
 /* =========================
@@ -1087,6 +1182,8 @@ async function renderContactsFromJson() {
 async function initSite() {
   await loadLayout();
 
+  initCookieBar();
+  initMapConsent();
   // ✅ ať se stránka odhalí hned
   initFadeIn();
 

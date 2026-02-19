@@ -3,12 +3,6 @@
   "intro": "Napište nám – ozveme se co nejdříve.",
 
   "left": {
-    "addressLabel": "Adresa",
-    "addressLines": [
-      "PapírPOINT",
-      "Ulice 123",
-      "110 00 Praha"
-    ],
     "emailLabel": "E-mail",
     "email": "info@papirpoint.cz",
     "phoneLabel": "Telefon",
