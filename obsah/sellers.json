@@ -1,0 +1,68 @@
+{
+  "title": "Prodejci",
+  "intro": "PapírPoint je k dostání u těchto ověřených prodejců po celé České republice.",
+  "items": [
+    {
+      "name": "Beta Papírnictví",
+      "meta": "Brno • 2 pobočky",
+      "logo": "obrazky/sponsors/coy4.jpg",
+      "link": {
+        "type": "web",
+        "url": "https://example.com/beta",
+        "label": "Otevřít web"
+      },
+      "description": "Rodinné papírnictví se zaměřením na kreativní potřeby, kvalitní papíry a drobné dárky. Rádi poradí s výběrem i na místě.",
+      "photos": [
+        { "src": "obrazky/homepage/insta1.jpg", "alt": "Interiér prodejny Beta Papírnictví" },
+        { "src": "obrazky/homepage/insta2.jpg", "alt": "Regály s papíry a bloky" },
+        { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail výběru kreativních potřeb" }
+      ]
+    },
+    {
+      "name": "Gamma Store",
+      "meta": "Online prodej",
+      "logo": "obrazky/sponsors/coy4.jpg",
+      "link": {
+        "type": "web",
+        "url": "https://example.com/gamma",
+        "label": "Otevřít web"
+      },
+      "description": "E-shop se širokou nabídkou kancelářských potřeb a rychlým doručením po celé ČR. Často mívají zvýhodněné balíčky.",
+      "photos": [
+        { "src": "obrazky/homepage/insta1.jpg", "alt": "Balení objednávky Gamma Store" },
+        { "src": "obrazky/homepage/insta2.jpg", "alt": "Ukázka sortimentu na stole" },
+        { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail papírových produktů" }
+      ]
+    },
+    {
+      "name": "Papír & Styl",
+      "meta": "Praha 1 • Kamenná prodejna",
+      "logo": "obrazky/sponsors/coy4.jpg",
+      "link": {
+        "type": "none"
+      },
+      "description": "Menší design shop s důrazem na estetiku a prémiové materiály. Ideální pro milovníky diáře, zápisníků a hezkých doplňků.",
+      "photos": [
+        { "src": "obrazky/homepage/insta1.jpg", "alt": "Vitrína prodejny Papír & Styl" },
+        { "src": "obrazky/homepage/insta2.jpg", "alt": "Výběr zápisníků a bloků" },
+        { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail balicích papírů" }
+      ]
+    },
+    {
+      "name": "OfficePoint",
+      "meta": "Ostrava • Obchodní centrum",
+      "logo": "obrazky/sponsors/coy4.jpg",
+      "link": {
+        "type": "web",
+        "url": "https://example.com/officepoint",
+        "label": "Otevřít web"
+      },
+      "description": "Praktické papírnictví v OC s orientací na kancelářský sortiment a školní výbavu. Vhodné i pro rychlé nákupy na poslední chvíli.",
+      "photos": [
+        { "src": "obrazky/homepage/insta1.jpg", "alt": "Pult a vstup do prodejny OfficePoint" },
+        { "src": "obrazky/homepage/insta2.jpg", "alt": "Kancelářský sortiment na regálech" },
+        { "src": "obrazky/homepage/insta3.jpg", "alt": "Školní potřeby a bloky" }
+      ]
+    }
+  ]
+}

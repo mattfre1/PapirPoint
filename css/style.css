@@ -627,16 +627,15 @@ button.grid-item{
 
 .contact-item__value:hover{ text-decoration: underline; }
 
-.contact-item__value--block{
+/*.contact-item__value--block{
   padding-left: 10px;
   border-left: 2px solid #eee;
-}
+}*/
 
 .contact-item__value--block:hover{ text-decoration: none; }
 
 /* Social sekce v kontaktu */
 .contact-social-block{
-  margin-top: 18px;
   padding-top: 14px;
   border-top: 1px solid #efefef;
 }
@@ -1367,14 +1366,64 @@ body[data-page="sponsors"] #sponsors-intro{
   height: 380px;
 }
 
+/* Footer: Cookies link ve stejném stylu jako ikonky */
 .footer-link{
-  font-size: 14px;
-  color: #777;
-  text-decoration: none;
+  display: inline-flex;
   align-items: center;
-  margin-top: 6px;
+  justify-content: center;
+
+  height: 40px;                 /* stejné jako .social-link */
+  padding: 0 14px;
+  border-radius: 999px;
+
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #111;
+
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+
+  text-decoration: none;
+
+  transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease, color 150ms ease;
 }
 
-.footer-link:hover{
-  text-decoration: underline;
+/* ===== Footer “pill” odkazy (Cookies/GDPR/Podmínky) ===== */
+.footer-pill{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;                 /* sedí na výšku social ikonek (40x40) */
+  padding: 0 12px;
+
+  border-radius: 999px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #111;
+
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 0.9rem;
+
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.footer-pill:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+.footer-pill:active{
+  transform: scale(0.98);
+}
+
+.footer-pill:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.15);
 }

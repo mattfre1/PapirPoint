@@ -4,8 +4,8 @@ backend:
 
 publish_mode: simple
 
-media_folder: "img/uploads"
-public_folder: "img/uploads"
+media_folder: "obrazky/uploads"
+public_folder: "obrazky/uploads"
 
 collections:
   - name: "content"
@@ -14,7 +14,7 @@ collections:
 
       - name: "home"
         label: "Homepage"
-        file: "content/home.json"
+        file: "obsah/home.json"
         format: "json"
         fields:
           - { label: "Popis pod nadpisem", name: "heroDesc", widget: "text" }
@@ -45,7 +45,7 @@ collections:
 
       - name: "about"
         label: "O projektu"
-        file: "content/about.json"
+        file: "obsah/about.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string" }
@@ -72,7 +72,7 @@ collections:
 
       - name: "sellers"
         label: "Prodejci"
-        file: "content/sellers.json"
+        file: "obsah/sellers.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string" }
@@ -118,7 +118,7 @@ collections:
 
       - name: "sponsors"
         label: "Sponzoři"
-        file: "content/sponsors.json"
+        file: "obsah/sponsors.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string" }
@@ -135,7 +135,7 @@ collections:
 
       - name: "gallery"
         label: "Galerie"
-        file: "content/gallery.json"
+        file: "obsah/gallery.json"
         format: "json"
         fields:
           - { label: "Nadpis", name: "title", widget: "string", required: false }
@@ -152,7 +152,7 @@ collections:
 
       - name: "contacts"
         label: "Kontakt"
-        file: "content/contacts.json"
+        file: "obsah/contacts.json"
         format: "json"
         fields:
           - { label: "Nadpis stránky", name: "title", widget: "string" }

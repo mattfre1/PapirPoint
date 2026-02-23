@@ -6,19 +6,19 @@
     {
       "name": "Firma 1",
       "url": "https://example.com",
-      "logo": "img/sponsors/coy1.jpg",
+      "logo": "obrazky/sponsors/coy1.jpg",
       "logoAlt": "Firma 1"
     },
     {
       "name": "Firma 2",
       "url": "https://example.com",
-      "logo": "img/sponsors/coy2.jpg",
+      "logo": "obrazky/sponsors/coy2.jpg",
       "logoAlt": "Firma 2"
     },
     {
       "name": "Firma 3",
       "url": "https://example.com",
-      "logo": "img/sponsors/coy2.jpg",
+      "logo": "obrazky/sponsors/coy3.jpg",
       "logoAlt": "Firma 3"
     }
   ],
@@ -26,19 +26,19 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/papirpoint/",
-      "image": "img/uploads/vid_20260115_110859_00_024_2026-01-18_20-43-42_screenshot.jpg",
+      "image": "obrazky/uploads/vid_20260115_110859_00_024_2026-01-18_20-43-42_screenshot.jpg",
       "caption": "Instagram post"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/papirpoint/",
-      "image": "img/homepage/insta2.jpg",
+      "image": "obrazky/homepage/insta2.jpg",
       "caption": "Instagram post"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/papirpoint/",
-      "image": "img/homepage/insta3.jpg",
+      "image": "obrazky/homepage/insta3.jpg",
       "caption": "Instagram post"
     }
   ]

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Galerie | PapírPOINT</title>
+  <meta name="description" content="Galerie PapírPOINT: inspirace, ukázky, momentky a obsah z projektu." />
+  <link rel="canonical" href="https://papirpoint.cz/stranky/galerie.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PapírPOINT" />
+  <meta property="og:title" content="Galerie | PapírPOINT" />
+  <meta property="og:description" content="Inspirace, ukázky a momentky z projektu PapírPOINT." />
+  <meta property="og:url" content="https://papirpoint.cz/stranky/galerie.html" />
+  <meta property="og:image" content="https://papirpoint.cz/img/preview.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie | PapírPOINT" />
+  <meta name="twitter:description" content="Inspirace, ukázky a momentky z projektu PapírPOINT." />
+  <meta name="twitter:image" content="https://papirpoint.cz/img/preview.webp" />
+
+  <meta name="theme-color" content="#f6f4f1" />
+
+  <!-- Ikony (pokud je máš v rootu, nech) -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Styles / Scripts -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/main.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-page="gallery">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="section fade-in">
+      <h1 class="section__title" id="gallery-title">Galerie</h1>
+
+      <p id="gallery-intro">Načítám…</p>
+
+      <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+
+      <dialog class="lightbox" id="lightbox">
+        <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>
+        <img class="lightbox__img" id="lightbox-img" alt="">
+        <p class="lightbox__caption" id="lightbox-caption"></p>
+
+        <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Předchozí">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Další">›</button>
+      </dialog>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- cookie lišta vždy až uvnitř body (typicky úplně dole) -->
+  <div id="cookie-mount"></div>
+</body>
+</html>

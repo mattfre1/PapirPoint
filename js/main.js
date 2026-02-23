@@ -3,8 +3,7 @@
 ========================= */
 
 function pathPrefix() {
-  // Pokud jsi na /pages/..., potřebuješ o úroveň výš
-  return window.location.pathname.includes("/pages/") ? "../" : "";
+  return window.location.pathname.includes("/stranky/") ? "../" : "";
 }
 
 function withPrefix(relativePath) {
@@ -378,7 +377,7 @@ async function renderSellersFromJson() {
   const introEl = document.querySelector("#sellers-intro");
 
   try {
-    const res = await fetch(withPrefix("content/sellers.json"));
+    const res = await fetch(withPrefix("obsah/sellers.json"));
     if (!res.ok) throw new Error(`Fetch sellers.json failed (${res.status})`);
     const data = await res.json();
 
@@ -459,7 +458,7 @@ async function renderSponsorsFromJson() {
   const introEl = document.querySelector("#sponsors-intro");
 
   try {
-    const res = await fetch(withPrefix("content/sponsors.json"));
+    const res = await fetch(withPrefix("obsah/sponsors.json"));
     if (!res.ok) throw new Error(`Fetch sponsors.json failed (${res.status})`);
     const data = await res.json();
 
@@ -552,7 +551,7 @@ async function renderGalleryFromJson() {
   const introEl = document.querySelector("#gallery-intro");
 
   try {
-    const res = await fetch(withPrefix("content/gallery.json"));
+    const res = await fetch(withPrefix("obsah/gallery.json"));
     if (!res.ok) throw new Error(`Fetch gallery.json failed (${res.status})`);
     const data = await res.json();
 
@@ -674,7 +673,7 @@ async function renderSocialFromJson() {
   const introEl = document.querySelector("#social-intro");
 
   try {
-    const res = await fetch(withPrefix("content/social.json"));
+    const res = await fetch(withPrefix("obsah/social.json"));
     if (!res.ok) throw new Error(`Fetch social.json failed (${res.status})`);
     const data = await res.json();
 
@@ -777,7 +776,7 @@ async function renderHomeFromJson() {
   if (!heroDescEl && !aboutEl && !aboutLongEl && !sponsorsGrid && !socialGrid) return;
 
   try {
-    const res = await fetch(withPrefix("content/home.json"));
+    const res = await fetch(withPrefix("obsah/home.json"));
     if (!res.ok) throw new Error(`Fetch home.json failed (${res.status})`);
     const data = await res.json();
 
@@ -839,7 +838,7 @@ async function renderAboutFromJson() {
   if (!hasDynamic && !hasStatic) return;
 
   try {
-    const res = await fetch(withPrefix("content/about.json"));
+    const res = await fetch(withPrefix("obsah/about.json"));
     if (!res.ok) throw new Error(`Fetch about.json failed (${res.status})`);
     const data = await res.json();
 
@@ -940,7 +939,7 @@ async function renderContactsFromJson() {
   const emailEl = document.querySelector("#contacts-email");
 
   const phoneLabelEl = document.querySelector("#contacts-phone-label");
-  const phoneEl = document.querySelector("#contacts-phone");
+  const phonesWrapEl = document.querySelector("#contacts-phones");
 
   const socialLabelEl = document.querySelector("#contacts-social-label");
   const socialsEl = document.querySelector("#contacts-socials");
@@ -953,7 +952,7 @@ async function renderContactsFromJson() {
   const mapNoteEl = document.querySelector("#contacts-map-note");
 
   try {
-    const res = await fetch(withPrefix("content/contacts.json"));
+    const res = await fetch(withPrefix("obsah/contacts.json"));
     if (!res.ok) throw new Error(`Fetch contacts.json failed (${res.status})`);
     const data = await res.json();
 
@@ -991,12 +990,26 @@ async function renderContactsFromJson() {
       if (!email) emailEl.style.display = "none";
     }
 
-    if (phoneLabelEl) phoneLabelEl.textContent = left.phoneLabel || "";
-    if (phoneEl) {
-      const phone = left.phone || "";
-      phoneEl.textContent = phone;
-      phoneEl.href = phone ? `tel:${String(phone).replace(/\s+/g, "")}` : "#";
-      if (!phone) phoneEl.style.display = "none";
+    if (phoneLabelEl) phoneLabelEl.textContent = left.phoneLabel || "Telefon";
+
+    if (phonesWrapEl) {
+      phonesWrapEl.innerHTML = "";
+
+      const phones = [left.phone, left.phone2]
+        .filter((p) => typeof p === "string" && p.trim().length);
+
+      if (!phones.length) {
+        if (phoneItemEl) phoneItemEl.style.display = "none";
+      } else {
+        phones.forEach((phone) => {
+          const a = document.createElement("a");
+          a.className = "contact-item__value";
+          a.href = `tel:${phone.replace(/\s+/g, "")}`;
+          a.textContent = phone;
+          a.style.display = "block"; // každé číslo pod sebe
+          phonesWrapEl.appendChild(a);
+        });
+      }
     }
 
   if (socialLabelEl) socialLabelEl.textContent = left.socialLabel || "";

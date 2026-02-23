@@ -3,16 +3,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PapírPOINT - Kontakt</title>
+
+  <title>Kontakt | PapírPOINT</title>
+  <meta name="description" content="Kontakt na PapírPOINT. Napiš nám přes formulář, najdeš tu e-mail, telefon, adresu i mapu (po odsouhlasení volitelných cookies)." />
+  <link rel="canonical" href="https://papirpoint.cz/stranky/kontakty.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PapírPOINT" />
+  <meta property="og:title" content="Kontakt | PapírPOINT" />
+  <meta property="og:description" content="Napiš nám přes formulář nebo se ozvi přímo. Najdeš tu e-mail, telefon, adresu i mapu." />
+  <meta property="og:url" content="https://papirpoint.cz/stranky/kontakty.html" />
+  <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kontakt | PapírPOINT" />
+  <meta name="twitter:description" content="Napiš nám přes formulář nebo se ozvi přímo. E-mail, telefon, adresa i mapa." />
+  <meta name="twitter:image" content="https://papirpoint.cz/obrazky/preview.webp" />
+
+  <meta name="theme-color" content="#f6f4f1" />
+
+  <!-- Ikony / PWA -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Styles / Scripts -->
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/main.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
-<div id="cookie-mount"></div>
 
 <body data-page="contact">
   <div id="site-header"></div>
@@ -33,9 +62,9 @@
               <a class="contact-item__value" id="contacts-email" href="#">—</a>
             </div>
 
-            <div class="contact-item">
+            <div class="contact-item" id="contacts-phone-item">
               <div class="contact-item__label" id="contacts-phone-label">Telefon</div>
-              <a class="contact-item__value" id="contacts-phone" href="#">—</a>
+              <div class="contact-item__value contact-item__value--block" id="contacts-phones"></div>
             </div>
 
             <div class="contact-item">
@@ -66,7 +95,6 @@
                   <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
                   <path d="M16.5 7.5v.01" />
                 </svg>
-
               </a>
 
               <a
@@ -85,11 +113,9 @@
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
                 </svg>
-
               </a>
             </div>
           </div>
-
         </div>
 
         <!-- Formulář -->
@@ -98,7 +124,6 @@
               method="POST">
           <h2 class="contact-form__title" id="contacts-form-title">Napiš zprávu</h2>
 
-          <!-- Meta / anti-spam -->
           <input type="hidden" name="_subject" id="contact-form-subject" value="PapírPoint – nová zpráva z webu">
           <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
 
@@ -138,7 +163,6 @@
         </div>
       </div>
 
-
       <template id="map-iframe-template">
         <div class="map-wrap">
           <iframe
@@ -150,14 +174,16 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
-         </div>
+        </div>
       </template>
-
 
       <p id="contacts-map-note"></p>
     </section>
   </main>
 
   <div id="site-footer"></div>
+
+  <!-- cookie lišta vždy uvnitř body -->
+  <div id="cookie-mount"></div>
 </body>
 </html>
