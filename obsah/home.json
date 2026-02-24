@@ -1,7 +1,7 @@
 {
-  "heroDesc": "Krátký popis projektu na 1–2 věty. Co je cílem a proč to existuje.",
-  "aboutTeaser": "PapírPOINT propojuje zákazníky a papírnictví. Najdeš u nás prodejce, sponzory, galerii a novinky na jednom místě.",
-  "aboutLong": "Delší odstavec…",
+  "heroDesc": "PapírPOINT je papírenský veletrh v Olomouci, který propojuje české výrobce, malé kreativní značky a milovníky papírnictví z celé Moravy i dalších regionů. Na jednom místě představuje originální zápisníky, autorské ilustrace, ručně vyráběné papíry, diáře a další papírenské produkty od lokálních tvůrců.",
+  "aboutTeaser": "PapírPOINT vznikl z lásky k papíru, ilustraci a tvůrčí komunitě. Na Moravě dosud chyběl papírenský veletrh zaměřený na malé značky a autorské výrobce, kteří tvoří s důrazem na kvalitu a originalitu.Cílem PapírPOINTu je vytvořit prostor, kde se mohou potkat výrobci, ilustrátoři, designéři i zákazníci, kteří hledají výjimečné papírenské produkty. Nejde jen o prodej – jde o osobní setkání, inspiraci a sdílení zkušeností.",
+  "aboutLong": "Návštěvníci se mohou těšit na široký výběr papírenských produktů od českých značek – od autorských zápisníků a diářů přes ilustrace až po ručně vyráběné papíry, tiskoviny a kreativní potřeby. PapírPOINT je místem, kde se propojuje tradiční řemeslo s moderním designem.",
   "featuredSponsors": [
     {
       "name": "Firma 1",
@@ -25,8 +25,8 @@
   "featuredSocial": [
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/papirpoint/",
-      "image": "obrazky/uploads/vid_20260115_110859_00_024_2026-01-18_20-43-42_screenshot.jpg",
+      "url": "https://www.instagram.com/p/DVJbShGjBOs/",
+      "image": "obrazky/homepage/insta4.webp",
       "caption": "Instagram post"
     },
     {

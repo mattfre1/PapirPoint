@@ -8,13 +8,16 @@
   <meta name="description" content="PapírPOINT propojuje zákazníky a papírnictví. Najdete u nás prodejce, partnery a inspiraci na jednom místě." />
   <link rel="canonical" href="https://papirpoint.cz/" />
 
+  <meta name="seznam-wmt" content="xEDthe6p1f6427ZbJDBMFyv3ID10WVra" />
+  <meta name="msvalidate.01" content="E4C75D6270B8468CF6AD25155E9BC9C9" />
+
   <!-- Open Graph (Facebook/LinkedIn/Messenger) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PapírPOINT" />
   <meta property="og:title" content="PapírPOINT – Místo kde papír spojuje." />
   <meta property="og:description" content="PapírPOINT propojuje zákazníky a papírnictví. Prodejci, partneři a inspirace na jednom místě." />
   <meta property="og:url" content="https://papirpoint.cz/" />
-  <meta property="og:image" content="https://papirpoint.cz/img/preview.webp" />
+  <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -22,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PapírPOINT – Místo kde papír spojuje." />
   <meta name="twitter:description" content="Prodejci, partneři a inspirace na jednom místě." />
-  <meta name="twitter:image" content="https://papirpoint.cz/img/preview.webp" />
+  <meta name="twitter:image" content="https://papirpoint.cz/obrazky/preview.webp" />
 
   <meta name="theme-color" content="#f6f4f1" />
 
@@ -41,6 +44,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap" rel="stylesheet">
+  
 </head>
 
 <div id="cookie-mount"></div>
@@ -50,13 +55,69 @@
 
   <!-- ✅ Full-width sekce, container je až uvnitř (lepší pro background/gradienty) -->
   <main>
+    <section class="hero-banner">
+      <div class="container hero-banner__inner">
+        
+        <img 
+          src="obrazky/papirpoint_banner.png" 
+          alt="PapírPOINT"
+          class="hero-banner__logo"
+        >
 
-    <!-- HERO -->
+        <div class="hero-banner__claim">
+          <h1>Místo, kde papír spojuje</h1>
+        </div>
+
+      </div>
+    </section>
+    
+    <section class="event-strip">
+      <div class="container">
+        <div class="event-grid">
+
+          <div class="event-block">
+            <div class="event-icon" aria-hidden="true">
+              <!-- kalendář -->
+              <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm12 8H5v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9ZM6 6a1 1 0 0 0-1 1v1h14V7a1 1 0 0 0-1-1H6Z"/>
+              </svg>
+            </div>
+
+            <div class="event-main">17. 10. 2026</div>
+            <div class="event-sub">10:00 – 18:00</div>
+          </div>
+
+          <div class="event-block">
+            <div class="event-icon" aria-hidden="true">
+              <!-- lokace -->
+              <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5Z"/>
+              </svg>
+            </div>
+
+            <div class="event-main">Pevnost poznání</div>
+            <div class="event-sub">
+              Areál Korunní pevnůstky,<br>
+              17. listopadu 7, 779 00 Olomouc
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- O PROJEKTU -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 class="section__title">O projektu</h2>
+        <p id="home-hero-desc">Načítám…</p>
+        
+      </div>
+    </section>
+
     <section class="section fade-in hero section--soft">
       <div class="container">
-        <h1>Vše pro kreativní papírnictví</h1>
 
-        <p id="home-hero-desc">Načítám…</p>
+        <p id="home-about-text">Načítám…</p>
 
         <div class="hero__actions">
           <a class="btn" href="stranky/o-nas.html">Zjistit víc</a>
@@ -65,15 +126,7 @@
       </div>
     </section>
 
-    <!-- O PROJEKTU -->
-    <section class="section fade-in">
-      <div class="container">
-        <h2 class="section__title">O projektu</h2>
-        <p id="home-about-text">Načítám…</p>
-      </div>
-    </section>
-
-    <!-- SPONZOŘI (featured z content/home.json) -->
+    <!-- SPONZOŘI (featured z content/home.json)
     <section class="section fade-in section--soft">
       <div class="container">
         <h2 class="section__title">Sponzoři</h2>
@@ -84,7 +137,7 @@
           <a class="btn btn--secondary" href="stranky/partneri.html">Zobrazit všechny sponzory →</a>
         </p>
       </div>
-    </section>
+    </section> -->
 
     <!-- SOCIAL (featured z content/home.json) -->
     <section class="section fade-in">

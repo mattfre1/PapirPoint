@@ -1,9 +1,19 @@
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="/">
-      <img src="/obrazky/paper.png" alt="PapírPOINT logo" class="brand__logo" />
-      <span class="brand__name">PapírPOINT</span>
-    </a>
+<a class="brand" href="/" aria-label="PapírPOINT – domů">
+  <picture>
+    <source srcset="/obrazky/papirpoint.png" type="image/webp">
+    <img
+      class="brand__logo"
+      src="obrazky/papirpoint.png"
+      alt="PapírPOINT"
+      width="520"
+      height="120"
+      decoding="async"
+    >
+  </picture>
+  <span class="sr-only">PapírPOINT</span>
+</a>
 
     <button class="menu-btn" type="button"
       aria-expanded="false"

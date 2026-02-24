@@ -1,7 +1,3 @@
-/* =========================
-   Helpers: paths + layout
-========================= */
-
 function pathPrefix() {
   return window.location.pathname.includes("/stranky/") ? "../" : "";
 }
