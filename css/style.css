@@ -94,6 +94,11 @@ h1{
   position: relative;
 }
 
+.section__about{
+  padding-top: 14px;
+  position: relative;
+}
+
 .hero{ padding:28px 0; }
 
 .hero p{
@@ -212,7 +217,7 @@ h1{
 .brand__logo{
   height: 50px;
   width: auto;
-  max-width: 250px; /* místo pevné width (nedělá deformace) */
+  max-width: 500px; /* místo pevné width (nedělá deformace) */
   display: block;
 }
 
@@ -1473,6 +1478,11 @@ body[data-page="sponsors"] #sponsors-intro{
   opacity: 0.95;
 }
 
+.event-icon__image{
+  width: 100px;
+  height: 100px;
+}
+
 .event-icon svg{
   width: 42px;
   height: 42px;
@@ -1512,12 +1522,14 @@ body[data-page="sponsors"] #sponsors-intro{
   .event-icon{
     margin: 0;
     place-items: start center;
+    width: 70px;
+    height: 70px;
   }
 
-  .event-icon svg{
-    width: 40px;
-    height: 40px;
-  }
+  .event-icon__image{
+  width: 70px;
+  height: 70px;
+}
 
   .event-main{ margin-top: 2px; }
 }
@@ -1708,6 +1720,8 @@ body[data-page="home"] .section__title{
     grid-column: 1;
     grid-row: 1 / span 2;
     align-self: start;
+    width: 40px;
+    height: 40px;
   }
 
   /* Datum / místo vždy do pravého sloupce */
