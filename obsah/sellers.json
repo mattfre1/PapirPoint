@@ -13,7 +13,7 @@
       },
       "description": "Rodinné papírnictví se zaměřením na kreativní potřeby, kvalitní papíry a drobné dárky. Rádi poradí s výběrem i na místě.",
       "photos": [
-        { "src": "obrazky/homepage/insta1.jpg", "alt": "Interiér prodejny Beta Papírnictví" },
+        { "src": "obrazky/homepage/insta8.jpg", "alt": "Interiér prodejny Beta Papírnictví" },
         { "src": "obrazky/homepage/insta2.jpg", "alt": "Regály s papíry a bloky" },
         { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail výběru kreativních potřeb" }
       ]
@@ -29,7 +29,7 @@
       },
       "description": "E-shop se širokou nabídkou kancelářských potřeb a rychlým doručením po celé ČR. Často mívají zvýhodněné balíčky.",
       "photos": [
-        { "src": "obrazky/homepage/insta1.jpg", "alt": "Balení objednávky Gamma Store" },
+        { "src": "obrazky/homepage/insta8.jpg", "alt": "Balení objednávky Gamma Store" },
         { "src": "obrazky/homepage/insta2.jpg", "alt": "Ukázka sortimentu na stole" },
         { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail papírových produktů" }
       ]
@@ -43,7 +43,7 @@
       },
       "description": "Menší design shop s důrazem na estetiku a prémiové materiály. Ideální pro milovníky diáře, zápisníků a hezkých doplňků.",
       "photos": [
-        { "src": "obrazky/homepage/insta1.jpg", "alt": "Vitrína prodejny Papír & Styl" },
+        { "src": "obrazky/homepage/insta8.jpg", "alt": "Vitrína prodejny Papír & Styl" },
         { "src": "obrazky/homepage/insta2.jpg", "alt": "Výběr zápisníků a bloků" },
         { "src": "obrazky/homepage/insta3.jpg", "alt": "Detail balicích papírů" }
       ]
@@ -59,7 +59,7 @@
       },
       "description": "Praktické papírnictví v OC s orientací na kancelářský sortiment a školní výbavu. Vhodné i pro rychlé nákupy na poslední chvíli.",
       "photos": [
-        { "src": "obrazky/homepage/insta1.jpg", "alt": "Pult a vstup do prodejny OfficePoint" },
+        { "src": "obrazky/homepage/insta8.jpg", "alt": "Pult a vstup do prodejny OfficePoint" },
         { "src": "obrazky/homepage/insta2.jpg", "alt": "Kancelářský sortiment na regálech" },
         { "src": "obrazky/homepage/insta3.jpg", "alt": "Školní potřeby a bloky" }
       ]
