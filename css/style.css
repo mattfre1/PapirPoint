@@ -99,7 +99,7 @@ h1{
   position: relative;
 }
 
-.hero{ padding:28px 0; }
+.hero{ padding:0 0 28px 0; }
 
 .hero p{
   max-width: auto;
