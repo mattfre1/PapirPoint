@@ -2,6 +2,37 @@
   "title": "Prodejci",
   "intro": "Prodejce budeme postupně představovat - máte se na co těšit!",
   "items": [
-    {  }
+    {
+      "name": "Z lásky ke vzpomínkám",
+      "meta": "Zastavte se na stánku a zamilujte si nové zvířecí přátelé. Vzhůru za dobrodružstvím Z lásky ke vzpomínkám!",
+      "logo": "obrazky/sellers/1/1_prodejce_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.zlaskykevzpominkam.cz",
+        "label": "Otevřít web"
+      },
+      "description": "Sebi a Renča spolu tvoří Z lásky ke vzpomínkám přes 8 let. Na své si přijdou milovníci kvalitního papíru, samolepek, obrázků a vybrat si můžete třeba i nedatovaný kalendář, diář nebo omalovánky. Jejich prvním počinem byla kniha Já miminko, která slouží k uchování vzpomínek pro první chvíle s miminkem. Vznikl i 2. díl. Pokračování se jmenuje Já, rostu, je určeno dětem od dvou do šesti let a je ideální na zapsání hlášek malých raubířů. Knihami provázejí originální ilustrace mývalů a vyder, které si můžete odnést ve spoustě dalších podob na krásném papíře.",
+      "photos": [
+        { "src": "obrazky/sellers/1/43.jpg", "alt": "Interiér prodejny Beta Papírnictví"},
+        { "src": "obrazky/sellers/1/62.jpg", "alt": "Regály s papíry a bloky" },
+        { "src": "obrazky/sellers/1/64.jpg", "alt": "Detail výběru kreativních potřeb" }
+      ]
+    },
+    {
+      "name": "Reformát",
+      "meta": "Kde odpad získává nový život",
+      "logo": "obrazky/sellers/2/2_prodejce_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://reformat.cz",
+        "label": "Otevřít web"
+      },
+      "description": "Reformát proměňuje odpadové a nevyužitelné materiály v designové, funkční a udržitelné produkty. Každý kousek je vyroben minimálně z 80 % z upcyklovaných materiálů a spojuje tradiční knihařské řemeslo s moderním přístupem k udržitelnosti. V portfoliu najdete stylová fotoalba, zápisníky, bezdatové diáře, penály, klíčenky a mnoho dalšího. Reformát také podporuje zero-waste životní styl – nabízí pratelné pytle na odpadky, sáčky na potraviny či praktické obaly pro bezobalové nakupování. Značka klade důraz na udržitelný rozvoj, práci s druhotnými materiály a precizní řemeslné zpracování. Každý produkt nese myšlenku odpovědné spotřeby a estetické hodnoty v jednom.",
+      "photos": [
+        { "src": "obrazky/sellers/2/2_1.jpg", "alt": "Interiér prodejny Beta Papírnictví" },
+        { "src": "obrazky/sellers/2/2_2.jpg", "alt": "Regály s papíry a bloky" },
+        { "src": "obrazky/sellers/2/2_3.jpg", "alt": "Detail výběru kreativních potřeb" }
+      ]
+    }
   ]
 }

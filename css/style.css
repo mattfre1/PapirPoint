@@ -1091,8 +1091,9 @@ body[data-page="about"] h2 {
 }
 
 .seller-modal__meta{
-  margin: 6px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .seller-modal__body{
@@ -1111,11 +1112,12 @@ body[data-page="about"] h2 {
 
 .seller-modal__photos img{
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: auto;
+  object-fit: contain;
   border-radius: 14px;
   border: 1px solid rgba(106,24,14,0.12);
   background: #fff;
+  max-height: 500px;
 }
 
 .seller-modal__desc{
@@ -1234,7 +1236,7 @@ body[data-page="sponsors"] .grid-item__title{
 body[data-page="sellers"] .grid-item__meta,
 body[data-page="sponsors"] .grid-item__meta{
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   opacity: 0.75;
   line-height: 1.35;
 
