@@ -1117,7 +1117,6 @@ body[data-page="about"] h2 {
   border-radius: 14px;
   border: 1px solid rgba(106,24,14,0.12);
   background: #fff;
-  max-height: 500px;
 }
 
 .seller-modal__desc{
@@ -1173,6 +1172,9 @@ body[data-page="about"] h2 {
 /* =========================
    Sellers + Sponsors – 1 sloupec, stejné boxy, vycentrované logo
 ========================= */
+/* =========================
+   Sellers + Sponsors – 1 sloupec, stejné boxy, vycentrované logo
+========================= */
 body[data-page="sellers"] .grid,
 body[data-page="sponsors"] .grid{
   display: grid;
@@ -1197,18 +1199,19 @@ body[data-page="sponsors"] .grid-item{
   padding: 20px;
   border-radius: 18px;
 
-  align-items: center;
+  align-items: start;
 }
 
-/* Levý sloupec: logo doprostřed */
+/* Levý sloupec: logo */
 body[data-page="sellers"] .grid-item__logo,
 body[data-page="sponsors"] .grid-item__logo{
   width: 80px;
   height: 80px;
   border-radius: 16px;
   justify-self: center;
-  align-self: center;
+  align-self: start;
   object-fit: contain;
+  margin-top: 2px;
 }
 
 /* Textový sloupec */
@@ -1216,7 +1219,9 @@ body[data-page="sellers"] .grid-item__text,
 body[data-page="sponsors"] .grid-item__text{
   min-width: 0;
   overflow: hidden;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   gap: 6px;
 }
 
@@ -1232,15 +1237,34 @@ body[data-page="sponsors"] .grid-item__title{
   text-overflow: ellipsis;
 }
 
-/* Meta – max cca 2 řádky */
+/* Meta – max 2 řádky */
 body[data-page="sellers"] .grid-item__meta,
 body[data-page="sponsors"] .grid-item__meta{
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   opacity: 0.75;
   line-height: 1.35;
 
-  max-height: calc(1.35em * 2);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* Popis – max 2 řádky */
+body[data-page="sellers"] .grid-item__desc,
+body[data-page="sponsors"] .grid-item__desc{
+  margin-top: 4px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
@@ -1259,29 +1283,6 @@ body[data-page="sponsors"] .grid-item__meta{
     height: 72px;
   }
 }
-
-.grid-item__desc{
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 4px;
-}
-
-/* aby dlouhá slova/URL nikdy nevylezla z karty */
-.grid-item__desc{
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-/* u sellers/sponsors (kde máš vyšší karty) omez popis na řádky */
-body[data-page="sellers"] .grid-item__desc,
-body[data-page="sponsors"] .grid-item__desc{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* dej 2 nebo 3 */
-  line-clamp: 2;
-  overflow: hidden;
-}
-
 /* =========================
    Kontakt – větší sociální ikonky (hranatější), hover zachován
 ========================= */
@@ -1758,4 +1759,38 @@ body[data-page="home"] .section__title{
   height: auto;
   aspect-ratio: 16 / 9;   /* klidně změň třeba na 4/3 */
   object-fit: cover;
+}
+
+.seller-actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.seller-social{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+  background: #f3f1ed;
+
+  transition: all 0.2s ease;
+}
+
+.seller-social svg{
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.seller-social--ig:hover{
+  background: radial-gradient(circle at 30% 107%, 
+    #fdf497 0%, #fdf497 5%, 
+    #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: white;
 }
