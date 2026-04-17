@@ -16,9 +16,9 @@
         },
       "description": "Sebi a Renča spolu tvoří Z lásky ke vzpomínkám přes 8 let. Na své si přijdou milovníci kvalitního papíru, samolepek, obrázků a vybrat si můžete třeba i nedatovaný kalendář, diář nebo omalovánky. Jejich prvním počinem byla kniha Já miminko, která slouží k uchování vzpomínek pro první chvíle s miminkem. Vznikl i 2. díl. Pokračování se jmenuje Já, rostu, je určeno dětem od dvou do šesti let a je ideální na zapsání hlášek malých raubířů. Knihami provázejí originální ilustrace mývalů a vyder, které si můžete odnést ve spoustě dalších podob na krásném papíře.",
       "photos": [
-        { "src": "obrazky/sellers/1/43.jpg", "alt": "Interiér prodejny Beta Papírnictví"},
-        { "src": "obrazky/sellers/1/62.jpg", "alt": "Regály s papíry a bloky" },
-        { "src": "obrazky/sellers/1/64.jpg", "alt": "Detail výběru kreativních potřeb" }
+        { "src": "obrazky/sellers/1/43.jpg", "alt": "Kalendář"},
+        { "src": "obrazky/sellers/1/62.jpg", "alt": "Samolepka" },
+        { "src": "obrazky/sellers/1/64.jpg", "alt": "Omalovánka" }
       ]
     },
     {
@@ -35,9 +35,28 @@
         },
       "description": "Reformát proměňuje odpadové a nevyužitelné materiály v designové, funkční a udržitelné produkty. Každý kousek je vyroben minimálně z 80 % z upcyklovaných materiálů a spojuje tradiční knihařské řemeslo s moderním přístupem k udržitelnosti. V portfoliu najdete stylová fotoalba, zápisníky, bezdatové diáře, penály, klíčenky a mnoho dalšího. Reformát také podporuje zero-waste životní styl – nabízí pratelné pytle na odpadky, sáčky na potraviny či praktické obaly pro bezobalové nakupování. Značka klade důraz na udržitelný rozvoj, práci s druhotnými materiály a precizní řemeslné zpracování. Každý produkt nese myšlenku odpovědné spotřeby a estetické hodnoty v jednom.",
       "photos": [
-        { "src": "obrazky/sellers/2/2_1.jpg", "alt": "Interiér prodejny Beta Papírnictví" },
-        { "src": "obrazky/sellers/2/2_2.jpg", "alt": "Regály s papíry a bloky" },
-        { "src": "obrazky/sellers/2/2_3.jpg", "alt": "Detail výběru kreativních potřeb" }
+        { "src": "obrazky/sellers/2/2_1.jpg", "alt": "Fotoalbum" },
+        { "src": "obrazky/sellers/2/2_2.jpg", "alt": "Papírové koše" },
+        { "src": "obrazky/sellers/2/2_3.jpg", "alt": "Kožený blok" }
+      ]
+    },
+    {
+      "name": "Be Nice",
+      "meta": "Designové eko papírnictví",
+      "logo": "obrazky/sellers/3/Be Nice logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.benice-shop.cz",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/benice_cz/"
+          }
+        },
+      "description": "Jmenujeme se Mirka a Terka a měly jsme sen založit designové papírnictví, které spojí dohromady krásný design, ekologii a lásku ke kvalitnímu papíru. Chtěly jsme do České republiky přinést designovou variantu papírových potřeb, které budou navíc ekologické a budou vám dělat radost. Spojily jsme tedy naše přednosti – znalost polygrafie, ekologie a designu a založily Be Nice – značku designového eko papírnictví. V nabídce Be Nice objevíte vše, co si milovník papíru může přát. Od balicích papírů, přes přání, až po dárky, deníky, samolepky a každodenní papírové pomocníky. Výrobky Be Nice jsou navrhovány a vyráběny v České republice v naší malé rodinné tiskárně z kvalitních ekologických materiálů, které osobně vybíráme a testujeme. Autorské ilustrace na výrobcích tvoří pro Be Nice přední české výtvarnice – motivy na vašem výrobku tudíž jinde než u nás nenajdete.",
+      "photos": [
+        { "src": "obrazky/sellers/3/Be_Nice_Denik.jpg", "alt": "Deník pro miminko" },
+        { "src": "obrazky/sellers/3/Be_Nice_Denik1.jpg", "alt": "Zájmový deník" },
+        { "src": "obrazky/sellers/3/Be_Nice_fotoalbum.jpg", "alt": "Fotoalbum Adventure" }
       ]
     }
   ]
