@@ -195,6 +195,12 @@ h1{
   background: var(--pp-cream);
 }
 
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 11; /* o 1 výš než .site-header který má z-index: 10 */
+}
+
 .site-header__inner{
   display: flex;
   align-items: center;
@@ -1110,13 +1116,14 @@ body[data-page="about"] h2 {
   .seller-modal__photos{ grid-template-columns: 1fr; }
 }
 
-.seller-modal__photos img{
+.seller-modal__photos img {
   width: 100%;
-  aspect-ratio: auto;
-  object-fit: contain;
-  border-radius: 14px;
-  border: 1px solid rgba(106,24,14,0.12);
-  background: #fff;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #f8f8f8;
+  border-radius: 1rem;
+  clip-path: inset(0 round 1rem);
+  display: block;
 }
 
 .seller-modal__desc{

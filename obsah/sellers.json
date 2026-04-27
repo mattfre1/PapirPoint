@@ -58,6 +58,25 @@
         { "src": "obrazky/sellers/3/Be_Nice_Denik1.jpg", "alt": "Zájmový deník" },
         { "src": "obrazky/sellers/3/Be_Nice_fotoalbum.jpg", "alt": "Fotoalbum Adventure" }
       ]
+    },
+    {
+      "name": "Trochu hezčí",
+      "meta": "Někdy stačí, když je okolí jen trochu hezčí.",
+      "logo": "obrazky/sellers/4/4_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.trochu-hezci.cz",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/trochuhezci/"
+          }
+        },
+      "description": "Někdy stačí, když je okolí jen trochu hezčí. A to je pro mě taky cílem, udělat okolí trochu hezčí - vizuálně i pocitově. Ať už moje tvorba a výrobky udělají někomu radost, zkrášlí něčí deníček nebo nástěnku či inspirují k vlastní tvorbě, prostě pokud někomu moje práce udělá, v jakkoli malé či velké míře, trochu hezčí den, tak to považuji za úspěch.",
+      "photos": [
+        { "src": "obrazky/sellers/4/4_1.png", "alt": "Stánek" },
+        { "src": "obrazky/sellers/4/4_2.png", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/4/4_3.png", "alt": "Výrobek2" }
+      ]
     }
   ]
 }
