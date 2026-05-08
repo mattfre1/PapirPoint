@@ -1109,21 +1109,34 @@ body[data-page="about"] h2 {
 .seller-modal__photos{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
 @media (max-width: 700px){
-  .seller-modal__photos{ grid-template-columns: 1fr; }
+  .seller-modal__photos{
+    grid-template-columns: 1fr;
+  }
+}
+
+.seller-modal__photo-wrap {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(106,24,14,0.08);
+  background: #f3f1ed;
 }
 
 .seller-modal__photos img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  background: #f8f8f8;
-  border-radius: 1rem;
-  clip-path: inset(0 round 1rem);
   display: block;
+  transition: transform 300ms ease;
+}
+
+.seller-modal__photo-wrap:hover img {
+  transform: scale(1.04);
 }
 
 .seller-modal__desc{

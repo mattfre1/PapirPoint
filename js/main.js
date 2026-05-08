@@ -249,11 +249,14 @@ function openSellerModal(index) {
     photosEl.style.display = "";
     photos.forEach((p, i) => {
       if (!p?.src) return;
+      const wrap = document.createElement("div");
+      wrap.className = "seller-modal__photo-wrap";
       const img = document.createElement("img");
       img.loading = "lazy";
       img.src = withPrefix(p.src);
       img.alt = p.alt || `${item.name} – fotka ${i + 1}`;
-      photosEl.appendChild(img);
+      wrap.appendChild(img);
+      photosEl.appendChild(wrap);
     });
   } else {
     photosEl.style.display = "none";

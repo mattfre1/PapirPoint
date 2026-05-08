@@ -77,6 +77,44 @@
         { "src": "obrazky/sellers/4/4_2.png", "alt": "Výrobek1" },
         { "src": "obrazky/sellers/4/4_3.png", "alt": "Výrobek2" }
       ]
+    },
+    {
+      "name": "Tapira",
+      "meta": "Malá česká značka ručně vyráběných zápisníků a autorských samolepek",
+      "logo": "obrazky/sellers/5/TAPIRACZ.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.tapira.cz/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/tapira_papir/"
+          }
+        },
+      "description": "Tapira je malá česká značka ručně vyráběných zápisníků a autorských samolepek inspirovaných přírodou. Vznikají u nás papírenské produkty, které spojují praktičnost a kvalitní zpracování. Dáváme si záležet na poctivé ruční práci, kvalitních materiálech a motivech s vlastním charakterem. Tvoříme věci, které dlouho dobře slouží a zároveň dělají radost při každodenním používání.",
+      "photos": [
+        { "src": "obrazky/sellers/5/5_1.jpg", "alt": "Stánek" },
+        { "src": "obrazky/sellers/5/5_2.jpg", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/5/5_3.jpg", "alt": "Výrobek2" }
+      ]
+    },
+        {
+      "name": "Podle sebe",
+      "meta": "E-shop se sebepoznávacími produkty",
+      "logo": "obrazky/sellers/6/ps_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.podlesebe.cz/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/podlesebe/"
+          }
+        },
+      "description": "Podle sebe je e-shop se sebepoznávacími produkty. Nabízí několik edic konverzačních karet – pro děti a dospělé (1. díl pro děti od 4 let, 2. díl od 8 let), karty pro partnery a univerzální edici. Karty pomáhají lidem lépe poznat sebe i své blízké prostřednictvím hlubších rozhovorů a rozvíjejí vztahy partnerské, rodinné i přátelské. Součástí nabídky je také sebekoučovací deník, který provází čtenáře otázkami, příběhy a cvičeními při budování života, jaký si skutečně přejí.",
+      "photos": [
+        { "src": "obrazky/sellers/6/6_1.jpg", "alt": "Stánek" },
+        { "src": "obrazky/sellers/6/6_2.jpg", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/6/6_3.jpg", "alt": "Výrobek2" }
+      ]
     }
   ]
 }
