@@ -115,6 +115,44 @@
         { "src": "obrazky/sellers/6/6_2.jpg", "alt": "Výrobek1" },
         { "src": "obrazky/sellers/6/6_3.jpg", "alt": "Výrobek2" }
       ]
+    },
+    {
+      "name": "Tabasamu",
+      "meta": "Poskytujeme rodičům praktické nástroje a tipy, jak podpořit wellbeing dětí a mládeže. Laskavě, odborně a s dávkou kreativity.",
+      "logo": "obrazky/sellers/7/7_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.tabasamu.cz",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/tabasamu_cz/"
+          }
+        },
+      "description": "Tabasamu je česká značka, která pomáhá rodičům i dětem v porozumění emocím. Věříme, že každé dítě má právo cítit se pochopené a přijímané. Přesně takové, jaké je. Tvoříme pomůcky pro děti (deníky, kartičky) a pořádáme webináře. Všechny produkty tvoříme nejen s láskou, ale také ve spolupráci s odborníky. Díky tomu jsou opravdu užitečné a hravé.",
+      "photos": [
+        { "src": "obrazky/sellers/7/7_1.jpg", "alt": "Stánek" },
+        { "src": "obrazky/sellers/7/7_2.jpg", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/7/7_3.jpg", "alt": "Výrobek2" }
+      ]
+    },
+    {
+      "name": "Notessy",
+      "meta": "Papírnictví pro všechny milovnice a milovníky variabilního plánování",
+      "logo": "obrazky/sellers/8/8_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.notessy.cz",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/notessy_cz/"
+          }
+        },
+      "description": "Notessy je lokální české papírnictví pro všechny milovnice a milovníky variabilního plánování. Na PapírPOINT přivezeme ručně šité kroužkové desky z veganské kůže, ve kterých si můžete listy libovolně přidávat, ubírat nebo přemisťovat podle toho, jak zrovna potřebujete. Se stylovými deskami Notessy vás nezaskočí žádná změna termínu ani přesunutý projekt. Těšit se můžete také na náplně pro plánování Bullet journal, nedatované kalendáře, ilustrované samolepky, habit trackery, vymazlené balíčky a spoustu drobností, které potěší každou milovnici čtení, cestování nebo kreativního plánování. Zastavte se za námi ve stánku Notessy — budeme se na vás těšit! Pája & Dominik",
+      "photos": [
+        { "src": "obrazky/sellers/8/8_1.jpg", "alt": "Stánek" },
+        { "src": "obrazky/sellers/8/8_2.jpg", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/8/8_3.jpg", "alt": "Výrobek2" }
+      ]
     }
   ]
 }
