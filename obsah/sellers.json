@@ -61,7 +61,7 @@
     },
     {
       "name": "Trochu hezčí",
-      "meta": "Někdy stačí, když je okolí jen trochu hezčí.",
+      "meta": "Někdy stačí, když je okolí jen trochu hezčí",
       "logo": "obrazky/sellers/4/4_logo.png",
       "link": {
         "type": "web",
@@ -152,6 +152,44 @@
         { "src": "obrazky/sellers/8/8_1.jpg", "alt": "Stánek" },
         { "src": "obrazky/sellers/8/8_2.jpg", "alt": "Výrobek1" },
         { "src": "obrazky/sellers/8/8_3.jpg", "alt": "Výrobek2" }
+      ]
+    },
+    {
+      "name": "Bonebrush Art",
+      "meta": "Každé dílo je malým světem samo o sobě",
+      "logo": "obrazky/sellers/9/9_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.bonebrushart.cz",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/bonebrushart/"
+          }
+        },
+      "description": "Bonebrush Art vzniklo z touhy vyprávět příběhy obrazem. Dvě tvůrkyně tu nechávají ožívat jemné i temnější motivy, osobní symboliku a emoce zachycené v ilustracích a kresbách. Každé dílo je malým světem samo o sobě — tichým, magickým a lehce snovým — vytvořeným pro ty, kdo hledají víc než jen hezký obraz.",
+      "photos": [
+        { "src": "obrazky/sellers/9/9_1.webp", "alt": "Stánek" },
+        { "src": "obrazky/sellers/9/9_2.webp", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/9/9_3.webp", "alt": "Výrobek2" }
+      ]
+    },
+    {
+      "name": "Míša v Šálku",
+      "meta": "Proměňujeme Míšiny akvarelové ilustrace v naše papírenské drobnosti",
+      "logo": "obrazky/sellers/10/10_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.misavsalku.cz/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/misavsalku_cz/"
+          }
+        },
+      "description": "Míša v šálku je malé autorské papírnictví, jehož internetová vrátka otevřela Míša s Vojtou pro všechny, jejichž šálkem kávy je plánování, bullet journal a hlavně – diářové samolepky. V samém srdci Brna proměňujeme Míšiny akvarelové ilustrace v naše papírenské drobnosti, se kterými přijedeme udělat radost vám i vašim diářům!",
+      "photos": [
+        { "src": "obrazky/sellers/10/10_1.webp", "alt": "Stánek" },
+        { "src": "obrazky/sellers/10/10_2.webp", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/10/10_3.webp", "alt": "Výrobek2" }
       ]
     }
   ]
