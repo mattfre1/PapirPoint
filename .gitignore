@@ -1,0 +1,6 @@
+# Lokální nástroje a náhled (nepatří na web)
+.claude/
+
+# Systémové soubory
+Thumbs.db
+.DS_Store

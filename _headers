@@ -1,0 +1,36 @@
+# Netlify HTTP hlavičky – https://docs.netlify.com/routing/headers/
+
+# Bezpečnostní hlavičky pro celý web
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Administrace CMS – neindexovat
+/admin/*
+  X-Robots-Tag: noindex
+
+# Obrázky – cache 30 dní (při výměně obrázku ideálně změň i název souboru)
+/obrazky/*
+  Cache-Control: public, max-age=2592000
+
+# Favicony a ikony – cache 7 dní
+/favicon.ico
+  Cache-Control: public, max-age=604800
+/favicon.svg
+  Cache-Control: public, max-age=604800
+/favicon-96x96.png
+  Cache-Control: public, max-age=604800
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+/web-app-manifest-192x192.png
+  Cache-Control: public, max-age=604800
+/web-app-manifest-512x512.png
+  Cache-Control: public, max-age=604800
+
+# CSS a JS – krátká cache, aby se změny projevily rychle
+/css/*
+  Cache-Control: public, max-age=600, must-revalidate
+/js/*
+  Cache-Control: public, max-age=600, must-revalidate

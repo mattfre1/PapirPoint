@@ -1,3 +1,6 @@
+// Označí, že běží JS – CSS pak smí skrývat .fade-in prvky (progressive enhancement)
+document.documentElement.classList.add("js");
+
 function pathPrefix() {
   return window.location.pathname.includes("/stranky/") ? "../" : "";
 }
@@ -629,134 +632,6 @@ async function renderGalleryFromJson() {
 }
 
 /* =========================
-   Social (page) + optional lightbox
-========================= */
-
-let socialItems = [];
-let socialIndex = 0;
-
-function openSocialLightbox(index) {
-  const dlg = document.querySelector("#social-lightbox");
-  const img = document.querySelector("#social-lightbox-img");
-  const cap = document.querySelector("#social-lightbox-caption");
-  const actions = document.querySelector("#social-lightbox-actions");
-  if (!dlg || !img) return;
-
-  socialIndex = index;
-  const item = socialItems[socialIndex];
-
-  img.src = withPrefix(item.src);
-  img.alt = item.alt || "";
-  if (cap) cap.textContent = item.caption || "";
-
-  if (actions) {
-    actions.innerHTML = "";
-    if (item.url) {
-      const a = document.createElement("a");
-      a.className = "btn btn--secondary";
-      a.href = item.url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.textContent = "Otevřít příspěvek";
-      actions.appendChild(a);
-    }
-  }
-
-  dlg.showModal();
-}
-
-function closeSocialLightbox() {
-  const dlg = document.querySelector("#social-lightbox");
-  if (dlg && dlg.open) dlg.close();
-}
-
-function stepSocial(dir) {
-  if (!socialItems.length) return;
-  socialIndex = (socialIndex + dir + socialItems.length) % socialItems.length;
-  openSocialLightbox(socialIndex);
-}
-
-function initSocialLightboxControls() {
-  const dlg = document.querySelector("#social-lightbox");
-  if (!dlg) return;
-
-  if (dlg.dataset.bound === "1") return;
-  dlg.dataset.bound = "1";
-
-  dlg.querySelector(".lightbox__close")?.addEventListener("click", closeSocialLightbox);
-  dlg.querySelector(".lightbox__nav--prev")?.addEventListener("click", () => stepSocial(-1));
-  dlg.querySelector(".lightbox__nav--next")?.addEventListener("click", () => stepSocial(1));
-
-  dlg.addEventListener("click", (e) => {
-    const rect = dlg.getBoundingClientRect();
-    const inside =
-      e.clientX >= rect.left &&
-      e.clientX <= rect.right &&
-      e.clientY >= rect.top &&
-      e.clientY <= rect.bottom;
-    if (!inside) closeSocialLightbox();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (!dlg.open) return;
-    if (e.key === "Escape") closeSocialLightbox();
-    if (e.key === "ArrowLeft") stepSocial(-1);
-    if (e.key === "ArrowRight") stepSocial(1);
-  });
-}
-
-async function renderSocialFromJson() {
-  const grid = document.querySelector("#social-grid");
-  if (!grid) return;
-
-  const titleEl = document.querySelector("#social-title");
-  const introEl = document.querySelector("#social-intro");
-
-  try {
-    const res = await fetch(withPrefix("obsah/social.json"));
-    if (!res.ok) throw new Error(`Fetch social.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    const items = Array.isArray(data.items) ? data.items : [];
-    const safeItems = items.filter((x) => x && x.src && x.url);
-
-    socialItems = safeItems;
-    grid.innerHTML = "";
-
-    safeItems.forEach((item, idx) => {
-      // pokud máš social lightbox, můžeš místo <a> použít <button> a otevřít lightbox
-      const a = document.createElement("a");
-      a.className = "social-item";
-      a.href = item.url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.setAttribute("aria-label", item.alt || "Otevřít příspěvek");
-
-      const img = document.createElement("img");
-      img.loading = "lazy";
-      img.src = withPrefix(item.src);
-      img.alt = item.alt || "";
-
-      a.appendChild(img);
-      grid.appendChild(a);
-
-      // Když chceš lightbox pro social, odkomentuj:
-      // a.addEventListener("click", (e) => { e.preventDefault(); openSocialLightbox(idx); });
-    });
-
-    if (safeItems.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádné příspěvky.";
-
-    initSocialLightboxControls();
-  } catch (err) {
-    console.error(err);
-    if (introEl) introEl.textContent = "Příspěvky se nepodařilo načíst.";
-  }
-}
-
-/* =========================
    Homepage blocks (content/home.json)
 ========================= */
 
@@ -1038,6 +913,8 @@ async function renderContactsFromJson() {
       const phones = [left.phone, left.phone2]
         .filter((p) => typeof p === "string" && p.trim().length);
 
+      const phoneItemEl = document.querySelector("#contacts-phone-item");
+
       if (!phones.length) {
         if (phoneItemEl) phoneItemEl.style.display = "none";
       } else {
@@ -1247,7 +1124,6 @@ async function initSite() {
     renderSellersFromJson(),
     renderSponsorsFromJson(),
     renderGalleryFromJson(),
-    renderSocialFromJson(),
     renderContactsFromJson(),
   ]).then(() => {
     // ✅ po doplnění dynamických sekcí znovu napoj observer

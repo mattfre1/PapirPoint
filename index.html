@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PapírPOINT – Místo, kde papír spojuje</title>
-  <meta name="description" content="PapírPOINT propojuje zákazníky a papírnictví. Najdete u nás prodejce, partnery a inspiraci na jednom místě." />
+  <title>PapírPOINT – papírenský festival v Olomouci | 17. 10. 2026</title>
+  <meta name="description" content="Papírenský festival českých autorských značek. 17. října 2026, Pevnost poznání Olomouc. Diáře, samolepky, washi pásky, přáníčka a jejich tvůrci na jednom místě." />
   <link rel="canonical" href="https://papirpoint.cz/" />
 
   <script type="application/ld+json">
@@ -19,6 +19,16 @@
       "endDate": "2026-10-17T18:00:00+02:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "keywords": "papírenský festival, papírnictví, kreativní market, Olomouc, samolepky, washi pásky, diáře, scrapbooking",
+      "isAccessibleForFree": false,
+      "offers": {
+        "@type": "Offer",
+        "name": "Vstupné",
+        "price": "50",
+        "priceCurrency": "CZK",
+        "availability": "https://schema.org/InStock",
+        "url": "https://papirpoint.cz/"
+      },
       "url": "https://papirpoint.cz/",
       "image": [
         "https://papirpoint.cz/obrazky/preview.webp"
@@ -64,25 +74,37 @@
     }
   </script>
   
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PapírPOINT",
+      "alternateName": "PapírPOINT – papírenský festival v Olomouci",
+      "url": "https://papirpoint.cz/",
+      "inLanguage": "cs",
+      "publisher": { "@id": "https://papirpoint.cz/#organization" }
+    }
+  </script>
+
   <meta name="seznam-wmt" content="g2U8SLE9kylrA6HRT9HGq2D4JkCV7wzo" />
   <meta name="msvalidate.01" content="E4C75D6270B8468CF6AD25155E9BC9C9" />
-  <meta name="robots" content="index,follow">
-  <link rel="alternate" hreflang="cs-CZ" href="https://papirpoint.cz/">
 
   <!-- Open Graph (Facebook/LinkedIn/Messenger) -->
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="cs_CZ" />
   <meta property="og:site_name" content="PapírPOINT" />
-  <meta property="og:title" content="PapírPOINT – Místo, kde papír spojuje" />
-  <meta property="og:description" content="PapírPOINT propojuje zákazníky a papírnictví. Prodejci, partneři a inspirace na jednom místě." />
+  <meta property="og:title" content="PapírPOINT – papírenský festival v Olomouci | 17. 10. 2026" />
+  <meta property="og:description" content="Papírenský festival českých autorských značek. 17. října 2026, Pevnost poznání Olomouc." />
   <meta property="og:url" content="https://papirpoint.cz/" />
   <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PapírPOINT – papírenský festival v Olomouci, 17. 10. 2026" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PapírPOINT – Místo, kde papír spojuje" />
-  <meta name="twitter:description" content="Prodejci, partneři a inspirace na jednom místě." />
+  <meta name="twitter:title" content="PapírPOINT – papírenský festival v Olomouci | 17. 10. 2026" />
+  <meta name="twitter:description" content="Papírenský festival českých autorských značek. 17. října 2026, Pevnost poznání Olomouc." />
   <meta name="twitter:image" content="https://papirpoint.cz/obrazky/preview.webp" />
 
   <meta name="theme-color" content="#f6f4f1" />
@@ -101,8 +123,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&family=Oooh+Baby&display=swap" rel="stylesheet" />
   
 </head>
 
@@ -112,14 +133,15 @@
 
   <!-- ✅ Full-width sekce, container je až uvnitř (lepší pro background/gradienty) -->
   <main>
-    <section class="section__banner fade-in">
+    <div class="section__banner fade-in">
     <section class="hero-banner">
       <div class="container hero-banner__inner">
-        
-        <img 
-          src="obrazky/papirpoint_banner.png" 
+
+        <img
+          src="/obrazky/papirpoint_banner.png"
           alt="PapírPOINT"
           class="hero-banner__logo"
+          fetchpriority="high"
         >
 
         <div class="hero-banner__claim">
@@ -128,7 +150,7 @@
 
       </div>
     </section>
-    
+
     <section class="event-strip">
       <div class="container">
         <div class="event-grid">
@@ -136,10 +158,9 @@
           <div class="event-block">
             <div class="event-icon" aria-hidden="true">
               <!-- kalendář -->
-              <img class="event-icon__image" src="/obrazky/homepage/kalendar.png"
-                alt="Kalendář.png">
+              <img class="event-icon__image" src="/obrazky/homepage/kalendar.png" alt="">
             </div>
-            
+
             <div class="event-main">17. 10. 2026</div>
             <div class="event-sub">10:00 – 18:00</div>
           </div>
@@ -147,8 +168,7 @@
           <div class="event-block">
             <div class="event-icon" aria-hidden="true">
               <!-- lokace -->
-              <img class="event-icon__image" src="/obrazky/homepage/point.png"
-                alt="Point.png">
+              <img class="event-icon__image" src="/obrazky/homepage/point.png" alt="">
             </div>
 
             <div class="event-main">Pevnost poznání</div>
@@ -161,12 +181,12 @@
         </div>
       </div>
     </section>
-    </section>
+    </div>
     <!-- O PROJEKTU -->
     <section class="section fade-in">
       <div class="container">
         <h2 class="section__title">O projektu</h2>
-        <p id="home-hero-desc">Načítám…</p>
+        <p id="home-hero-desc">PapírPOINT je první ročník papírenského festivalu českých autorských značek, který se uskuteční 17. října 2026 v Olomouci na Pevnosti poznání. Jedinečná akce propojí české výrobce papírenských produktů, originální značky a všechny milovníky papíru na jednom místě.</p>
         
       </div>
     </section>
@@ -174,7 +194,7 @@
     <section class="section fade-in hero section--soft">
       <div class="container">
 
-        <p id="home-about-text">Načítám…</p>
+        <p id="home-about-text">Na festivalu se představí pečlivě vybraní tvůrci z celé České republiky s rozmanitou nabídkou – od diářů a deníků přes samolepky, washi pásky a přáníčka až po ilustrace, kalendáře či fotoalba. Ať už sami tvoříte, milujete papírenské produkty nebo hledáte originální dárky, PapírPOINT by vám rozhodně neměl uniknout.</p>
 
         <div class="hero__actions">
           <a class="btn" href="stranky/o-nas.html">Zjistit víc</a>
@@ -200,7 +220,7 @@
     <section class="section fade-in">
       <div class="container">
         <h2 class="section__title">Sociální sítě</h2>
-        <p id="social-intro">Načítám…</p>
+        <p id="social-intro">Vybrané příspěvky (kliknutím otevřeš originál).</p>
 
         <!-- ✅ id upravené na správné podle JS (renderHomeFromJson používá #home-social-grid) -->
         <div class="social-grid fade-in" id="home-social-grid" aria-live="polite"></div>
