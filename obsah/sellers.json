@@ -191,6 +191,41 @@
         { "src": "obrazky/sellers/10/10_2.webp", "alt": "Výrobek1" },
         { "src": "obrazky/sellers/10/10_3.webp", "alt": "Výrobek2" }
       ]
+    },
+        {
+      "name": "Neli Hejduk",
+      "meta": "V posledních letech ji uchvátila technika linorytu",
+      "logo": "obrazky/sellers/11/11_logo.png",
+      "link": {
+          "socials": {
+            "instagram": "https://www.instagram.com/_nelinkovana_/"
+          }
+        },
+      "description": "Neli Hejduk aka _nelinkovana_ je teoretička umění z Brna, která již od dětství miluje papírnictví. V posledních letech ji uchvátila technika linorytu, nejraději zpracovává náměty každodenních okamžiků. Mezi jejími tisky najdete prchavá zátiší, městská zákoutí či momenty z cest i snů. ",
+      "photos": [
+        { "src": "obrazky/sellers/11/11_1.webp", "alt": "Stánek" },
+        { "src": "obrazky/sellers/11/11_2.webp", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/11/11_3.webp", "alt": "Výrobek2" }
+      ]
+    },
+        {
+      "name": "Saturday Sketch",
+      "meta": "Cílem je přinášet lidem malé radosti a inspirovat je k tvořivosti a všímavosti",
+      "logo": "obrazky/sellers/12/12_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.saturday-sketch.com/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/saturday.sketch/"
+          }
+        },
+      "description": "Saturday Sketch je malá autorská značka zaměřená na ilustrace a papírenské produkty. Inspiraci nachází v útulných kavárnách, městských zákoutích, knihách, přírodě a každodenních okamžicích, které stojí za to si zapamatovat. Všechny ilustrace vznikají ručně ve skicáku a následně se proměňují v samolepky, pohlednice, záložky a další papírenské drobnosti. Jejím cílem je přinášet lidem malé radosti a inspirovat je k tvořivosti a všímavosti.",
+      "photos": [
+        { "src": "obrazky/sellers/12/12_1.webp", "alt": "Stánek" },
+        { "src": "obrazky/sellers/12/12_2.webp", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/12/12_3.webp", "alt": "Výrobek2" }
+      ]
     }
   ]
 }
