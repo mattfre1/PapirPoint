@@ -5,7 +5,7 @@
     {
       "name": "Z lásky ke vzpomínkám",
       "meta": "Zastavte se na stánku a zamilujte si nové zvířecí přátelé. Vzhůru za dobrodružstvím Z lásky ke vzpomínkám!",
-      "logo": "obrazky/sellers/1/1_prodejce_logo.png",
+      "logo": "obrazky/sellers/1/1_logo.png",
       "link": {
           "type": "web",
           "url": "https://www.zlaskykevzpominkam.cz",
@@ -16,15 +16,15 @@
         },
       "description": "Sebi a Renča spolu tvoří Z lásky ke vzpomínkám přes 8 let. Na své si přijdou milovníci kvalitního papíru, samolepek, obrázků a vybrat si můžete třeba i nedatovaný kalendář, diář nebo omalovánky. Jejich prvním počinem byla kniha Já miminko, která slouží k uchování vzpomínek pro první chvíle s miminkem. Vznikl i 2. díl. Pokračování se jmenuje Já, rostu, je určeno dětem od dvou do šesti let a je ideální na zapsání hlášek malých raubířů. Knihami provázejí originální ilustrace mývalů a vyder, které si můžete odnést ve spoustě dalších podob na krásném papíře.",
       "photos": [
-        { "src": "obrazky/sellers/1/43.jpg", "alt": "Kalendář"},
-        { "src": "obrazky/sellers/1/62.jpg", "alt": "Samolepka" },
-        { "src": "obrazky/sellers/1/64.jpg", "alt": "Omalovánka" }
+        { "src": "obrazky/sellers/1/1_1.jpg", "alt": "Kalendář"},
+        { "src": "obrazky/sellers/1/1_2.jpg", "alt": "Samolepka" },
+        { "src": "obrazky/sellers/1/1_3.jpg", "alt": "Omalovánka" }
       ]
     },
     {
       "name": "Reformát",
       "meta": "Kde odpad získává nový život",
-      "logo": "obrazky/sellers/2/2_prodejce_logo.png",
+      "logo": "obrazky/sellers/2/2_logo.png",
       "link": {
         "type": "web",
         "url": "https://reformat.cz",          
@@ -43,7 +43,7 @@
     {
       "name": "Be Nice",
       "meta": "Designové eko papírnictví",
-      "logo": "obrazky/sellers/3/Be Nice logo.png",
+      "logo": "obrazky/sellers/3/3_logo.png",
       "link": {
         "type": "web",
         "url": "https://www.benice-shop.cz",          
@@ -54,9 +54,9 @@
         },
       "description": "Jmenujeme se Mirka a Terka a měly jsme sen založit designové papírnictví, které spojí dohromady krásný design, ekologii a lásku ke kvalitnímu papíru. Chtěly jsme do České republiky přinést designovou variantu papírových potřeb, které budou navíc ekologické a budou vám dělat radost. Spojily jsme tedy naše přednosti – znalost polygrafie, ekologie a designu a založily Be Nice – značku designového eko papírnictví. V nabídce Be Nice objevíte vše, co si milovník papíru může přát. Od balicích papírů, přes přání, až po dárky, deníky, samolepky a každodenní papírové pomocníky. Výrobky Be Nice jsou navrhovány a vyráběny v České republice v naší malé rodinné tiskárně z kvalitních ekologických materiálů, které osobně vybíráme a testujeme. Autorské ilustrace na výrobcích tvoří pro Be Nice přední české výtvarnice – motivy na vašem výrobku tudíž jinde než u nás nenajdete.",
       "photos": [
-        { "src": "obrazky/sellers/3/Be_Nice_Denik.jpg", "alt": "Deník pro miminko" },
-        { "src": "obrazky/sellers/3/Be_Nice_Denik1.jpg", "alt": "Zájmový deník" },
-        { "src": "obrazky/sellers/3/Be_Nice_fotoalbum.jpg", "alt": "Fotoalbum Adventure" }
+        { "src": "obrazky/sellers/3/3_1.jpg", "alt": "Deník pro miminko" },
+        { "src": "obrazky/sellers/3/3_2.jpg", "alt": "Zájmový deník" },
+        { "src": "obrazky/sellers/3/3_3.jpg", "alt": "Fotoalbum Adventure" }
       ]
     },
     {
@@ -73,15 +73,15 @@
         },
       "description": "Někdy stačí, když je okolí jen trochu hezčí. A to je pro mě taky cílem, udělat okolí trochu hezčí - vizuálně i pocitově. Ať už moje tvorba a výrobky udělají někomu radost, zkrášlí něčí deníček nebo nástěnku či inspirují k vlastní tvorbě, prostě pokud někomu moje práce udělá, v jakkoli malé či velké míře, trochu hezčí den, tak to považuji za úspěch.",
       "photos": [
-        { "src": "obrazky/sellers/4/4_1.png", "alt": "Stánek" },
-        { "src": "obrazky/sellers/4/4_2.png", "alt": "Výrobek1" },
-        { "src": "obrazky/sellers/4/4_3.png", "alt": "Výrobek2" }
+        { "src": "obrazky/sellers/4/4_1.jpg", "alt": "Stánek" },
+        { "src": "obrazky/sellers/4/4_2.jpg", "alt": "Výrobek1" },
+        { "src": "obrazky/sellers/4/4_3.jpg", "alt": "Výrobek2" }
       ]
     },
     {
       "name": "Tapira",
       "meta": "Malá česká značka ručně vyráběných zápisníků a autorských samolepek",
-      "logo": "obrazky/sellers/5/TAPIRACZ.png",
+      "logo": "obrazky/sellers/5/5_logo.png",
       "link": {
         "type": "web",
         "url": "https://www.tapira.cz/",          
@@ -100,7 +100,7 @@
         {
       "name": "Podle sebe",
       "meta": "E-shop se sebepoznávacími produkty",
-      "logo": "obrazky/sellers/6/ps_logo.png",
+      "logo": "obrazky/sellers/6/6_logo.png",
       "link": {
         "type": "web",
         "url": "https://www.podlesebe.cz/",          
@@ -225,6 +225,44 @@
         { "src": "obrazky/sellers/12/12_1.webp", "alt": "Stánek" },
         { "src": "obrazky/sellers/12/12_2.webp", "alt": "Výrobek1" },
         { "src": "obrazky/sellers/12/12_3.webp", "alt": "Výrobek2" }
+      ]
+    },
+    {
+      "name": "Wild Pencil",
+      "meta": "Autorské washi pásky, knihy, deníky nebo kovové piny",
+      "logo": "obrazky/sellers/13/13_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://wild-pencil.com/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/the.wild.pencil/"
+          }
+        },
+      "description": "Wild Pencil je autorské papírnictví ilustrátorky Magdaleny Konečné, inspirované především přírodou a cestováním. Začínali s pohlednicemi a samolepkami, ale během let fungování se jim sortiment rozšířil o vše, co milovník papíru potřebuje — autorské washi pásky, knihy, deníky nebo kovové piny. Přijďte se ponořit do jejich kouzelného papírového světa, kde se v údolí převaluje mlha jako mléko a květiny kvetou celý rok.",
+      "photos": [
+        { "src": "obrazky/sellers/13/13_1.jpg", "alt": "Výrobky Wild Pencil" },
+        { "src": "obrazky/sellers/13/13_2.jpg", "alt": "Výrobky Wild Pencil" },
+        { "src": "obrazky/sellers/13/13_3.jpg", "alt": "Výrobky Wild Pencil" }
+      ]
+    },
+    {
+      "name": "Illustera",
+      "meta": "Spojením lásky k ilustracím a Téry vznikla autorská značka Illustera.",
+      "logo": "obrazky/sellers/14/14_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://linktr.ee/illustera",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/illustera/"
+          }
+        },
+      "description": "Spojením lásky k ilustracím a Téry vznikla autorská značka Illustera. Je pro všechny milovníky papíru, kteří věří, že i výrobky s hravým designem mohou zlepšit den. Ilustrace i design má na svědomí majitelka značky. Illustera se zaměřuje na samolepky, to-do listy, přáníčka, trika s ilustracemi a na mnoho dalšího. ",
+      "photos": [
+        { "src": "obrazky/sellers/14/14_1.jpg", "alt": "Přáníčko Illustera" },
+        { "src": "obrazky/sellers/14/14_2.jpg", "alt": "Samolepky Illustera" },
+        { "src": "obrazky/sellers/14/14_3.jpg", "alt": "Výrobky Illustera" }
       ]
     }
   ]
