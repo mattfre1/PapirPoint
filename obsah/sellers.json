@@ -3,25 +3,6 @@
   "intro": "Prodejce budeme postupně představovat - máte se na co těšit!",
   "items": [
     {
-      "name": "Z lásky ke vzpomínkám",
-      "meta": "Zastavte se na stánku a zamilujte si nové zvířecí přátelé. Vzhůru za dobrodružstvím Z lásky ke vzpomínkám!",
-      "logo": "obrazky/sellers/1/1_logo.png",
-      "link": {
-          "type": "web",
-          "url": "https://www.zlaskykevzpominkam.cz",
-          "label": "Otevřít web",
-          "socials": {
-            "instagram": "https://www.instagram.com/zlaskykevzpominkam/"
-          }
-        },
-      "description": "Sebi a Renča spolu tvoří Z lásky ke vzpomínkám přes 8 let. Na své si přijdou milovníci kvalitního papíru, samolepek, obrázků a vybrat si můžete třeba i nedatovaný kalendář, diář nebo omalovánky. Jejich prvním počinem byla kniha Já miminko, která slouží k uchování vzpomínek pro první chvíle s miminkem. Vznikl i 2. díl. Pokračování se jmenuje Já, rostu, je určeno dětem od dvou do šesti let a je ideální na zapsání hlášek malých raubířů. Knihami provázejí originální ilustrace mývalů a vyder, které si můžete odnést ve spoustě dalších podob na krásném papíře.",
-      "photos": [
-        { "src": "obrazky/sellers/1/1_1.jpg", "alt": "Kalendář"},
-        { "src": "obrazky/sellers/1/1_2.jpg", "alt": "Samolepka" },
-        { "src": "obrazky/sellers/1/1_3.jpg", "alt": "Omalovánka" }
-      ]
-    },
-    {
       "name": "Reformát",
       "meta": "Kde odpad získává nový život",
       "logo": "obrazky/sellers/2/2_logo.png",
