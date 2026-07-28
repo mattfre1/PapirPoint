@@ -354,6 +354,16 @@ h1{
   justify-content: space-between;
   gap: 14px;
   margin: 0 10px;
+  flex-wrap: wrap;
+}
+
+/* Pravá část patičky: odkazy, sociální ikony a partnerské logo na jedné řadě */
+.footer-right{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .footer-copy{
@@ -1382,6 +1392,51 @@ body[data-page="sponsors"] #sponsors-intro{
   display: block;
   width: 100%;
   height: 380px;
+}
+
+/* ===== Partnerské logo v patičce (Kudy z nudy) ===== */
+.footer-partner{
+  display: inline-block;
+  line-height: 0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  opacity: 0.9;
+  transition: transform 150ms ease, opacity 150ms ease, background 150ms ease;
+}
+
+.footer-partner img{
+  display: block;
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-partner:hover{
+  transform: translateY(-2px);
+  opacity: 1;
+  background: rgba(255,255,255,0.7);
+}
+
+.footer-partner:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106,24,14,0.18);
+}
+
+@media (max-width: 820px){
+  .footer-right{
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* .social-links má jinde order: 1 – logo musí zůstat až za ním */
+  .footer-right .social-links{ order: 1; }
+  .footer-right .footer-partner{ order: 2; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .footer-partner:hover{ transform: none; }
 }
 
 /* ===== Footer “pill” odkazy (Cookies/GDPR/Podmínky) ===== */
