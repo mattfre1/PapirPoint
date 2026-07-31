@@ -31,7 +31,7 @@
       },
       "url": "https://papirpoint.cz/",
       "image": [
-        "https://papirpoint.cz/obrazky/preview.webp"
+        "https://papirpoint.cz/obrazky/preview.jpg"
       ],
       "location": {
         "@type": "Place",
@@ -64,7 +64,7 @@
       "name": "PapírPOINT",
       "url": "https://papirpoint.cz/",
       "logo": "https://papirpoint.cz/obrazky/papir.png",
-      "image": "https://papirpoint.cz/obrazky/preview.webp",
+      "image": "https://papirpoint.cz/obrazky/preview.jpg",
       "description": "PapírPOINT je papírenská akce v Olomouci propojující lokální tvůrce, značky a milovníky kreativního papírnictví.",
       "email": "info@papirpoint.cz",
       "sameAs": [
@@ -96,7 +96,7 @@
   <meta property="og:title" content="PapírPOINT – papírenský festival v Olomouci | 17. 10. 2026" />
   <meta property="og:description" content="Papírenský festival českých autorských značek. 17. října 2026, Pevnost poznání Olomouc." />
   <meta property="og:url" content="https://papirpoint.cz/" />
-  <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.webp" />
+  <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="PapírPOINT – papírenský festival v Olomouci, 17. 10. 2026" />
@@ -105,13 +105,12 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PapírPOINT – papírenský festival v Olomouci | 17. 10. 2026" />
   <meta name="twitter:description" content="Papírenský festival českých autorských značek. 17. října 2026, Pevnost poznání Olomouc." />
-  <meta name="twitter:image" content="https://papirpoint.cz/obrazky/preview.webp" />
+  <meta name="twitter:image" content="https://papirpoint.cz/obrazky/preview.jpg" />
 
   <meta name="theme-color" content="#f6f4f1" />
 
   <!-- Icons / PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -179,9 +178,36 @@
           </div>
 
         </div>
+
+        <!-- ODPOČET – uvnitř pískového pruhu -->
+        <div class="event-countdown">
+          <p class="event-countdown__label" id="countdown-label">Do festivalu zbývá</p>
+
+          <div class="countdown" id="countdown" role="timer" aria-live="off">
+            <div class="countdown__item">
+              <span class="countdown__num" id="cd-days">–</span>
+              <span class="countdown__label" id="cd-days-label">dní</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__num" id="cd-hours">–</span>
+              <span class="countdown__label" id="cd-hours-label">hodin</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__num" id="cd-minutes">–</span>
+              <span class="countdown__label" id="cd-minutes-label">minut</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__num" id="cd-seconds">–</span>
+              <span class="countdown__label" id="cd-seconds-label">sekund</span>
+            </div>
+          </div>
+
+          <p class="countdown__note" id="countdown-note" hidden></p>
+        </div>
       </div>
     </section>
     </div>
+
     <!-- O PROJEKTU -->
     <section class="section fade-in">
       <div class="container">
@@ -200,6 +226,23 @@
           <a class="btn" href="stranky/o-nas.html">Zjistit víc</a>
           <a class="btn btn--secondary" href="stranky/kontakty.html">Kontakt</a>
         </div>
+      </div>
+    </section>
+
+    <!-- CO TĚ ČEKÁ – náhodný výběr prodejců, mění se při každém načtení -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 class="section__title">Co tě čeká</h2>
+        <p id="featured-sellers-intro">Malá ochutnávka z tvůrců, kteří se představí. Při každém načtení stránky uvidíš jiné.</p>
+
+        <div class="featured-grid" id="featured-sellers" aria-live="polite"></div>
+
+        <!-- Detail prodejce se vkládá z partials/seller-modal.html -->
+        <div id="seller-modal-mount"></div>
+
+        <p class="featured-more">
+          <a class="btn btn--secondary" href="stranky/prodejci.html">Zobrazit všechny prodejce →</a>
+        </p>
       </div>
     </section>
 
