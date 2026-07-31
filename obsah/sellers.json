@@ -239,11 +239,46 @@
             "instagram": "https://www.instagram.com/illustera/"
           }
         },
-      "description": "Spojením lásky k ilustracím a Téry vznikla autorská značka Illustera. Je pro všechny milovníky papíru, kteří věří, že i výrobky s hravým designem mohou zlepšit den. Ilustrace i design má na svědomí majitelka značky. Illustera se zaměřuje na samolepky, to-do listy, přáníčka, trika s ilustracemi a na mnoho dalšího. ",
+      "description": "Spojením lásky k ilustracím a Téry vznikla autorská značka Illustera. Je pro všechny milovníky papíru, kteří věří, že i výrobky s hravým designem mohou zlepšit den. Ilustrace i design má na svědomí majitelka značky. Illustera se zaměřuje na samolepky, to-do listy, přáníčka, trika s ilustracemi a na mnoho dalšího.",
       "photos": [
         { "src": "obrazky/sellers/14/14_1.jpg", "alt": "Přáníčko Illustera" },
         { "src": "obrazky/sellers/14/14_2.jpg", "alt": "Samolepky Illustera" },
         { "src": "obrazky/sellers/14/14_3.jpg", "alt": "Výrobky Illustera" }
+      ]
+    },
+    {
+      "name": "Ostružka",
+      "meta": "Věříme, že tvořit může každý.",
+      "logo": "obrazky/sellers/15/15_logo.png",
+      "link": {
+          "socials": {
+            "instagram": "https://www.instagram.com/_ostruzka/"
+          }
+        },
+      "description": "Ostružka je kreativní obchůdek v centru Olomouce, kde najdete výtvarné potřeby, papírnictví i školní vybavení. Věříme, že tvořit může každý. Rádi vám pomůžeme vybrat vše, co k tomu potřebujete. Zastavte se načerpat inspiraci a objevit radost z tvoření. ",
+      "photos": [
+        { "src": "obrazky/sellers/15/15_1.jpg", "alt": "Interiér obchodu Ostružka v Olomouci" },
+        { "src": "obrazky/sellers/15/15_2.jpg", "alt": "Regál s výtvarnými potřebami a barvami" },
+        { "src": "obrazky/sellers/15/15_3.jpg", "alt": "Ruční výroba přáníčka" }
+      ]
+    },
+    {
+      "name": "Goosetown Paper",
+      "meta": "Jak se z linorytky nakonec stala papírnice.",
+      "logo": "obrazky/sellers/16/16_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.goosetownpaper.cz/",          
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/goosetownpaper/"
+          }
+        },
+      "description": "Goosetown Paper je nová papírenská značka z brněnských Husovic, za kterou stojí Tami a její velká podpora Marek. Značka spojuje tradiční a experimentální techniky zpracování a sušení ručního papíru, navíc však přináší taky vlastní řemeslné papírenské výrobky. Díky bohatým znalostem šití a techniky linorytu vyrábí ručně potisklé deníky, skicáky nebo diáře, nechybí ale ani pouzdra nebo autorské samolepky a razítka. Každý kousek má svůj jedinečný příběh - všechny ale spojuje brněnské srdce a hřejivá toskánská duše.",
+      "photos": [
+        { "src": "obrazky/sellers/16/16_1.jpg", "alt": "Ručně šité deníky s linorytovou vazbou" },
+        { "src": "obrazky/sellers/16/16_2.jpg", "alt": "Barevné obálky z ručního papíru" },
+        { "src": "obrazky/sellers/16/16_3.jpg", "alt": "Přáníčko z ručního papíru" }
       ]
     }
   ]
