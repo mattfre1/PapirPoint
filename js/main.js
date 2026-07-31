@@ -139,6 +139,7 @@ async function loadLayout() {
     inject("#site-header", `${p}partials/header.html`),
     inject("#site-footer", `${p}partials/footer.html`),
     inject("#cookie-mount", `${p}partials/cookies.html`),
+    inject("#seller-modal-mount", `${p}partials/seller-modal.html`),
   ]);
 
   setFooterYear();
@@ -632,6 +633,178 @@ async function renderGalleryFromJson() {
 }
 
 /* =========================
+   Odpočet do akce
+========================= */
+
+// +02:00 = letní čas, 17. 10. 2026 je ještě před koncem DST (25. 10.)
+const EVENT_START = new Date("2026-10-17T10:00:00+02:00");
+const EVENT_END = new Date("2026-10-17T18:00:00+02:00");
+
+// České skloňování: 1 den, 2–4 dny, 0 a 5+ dní
+function plural(n, one, few, many) {
+  if (n === 1) return one;
+  if (n >= 2 && n <= 4) return few;
+  return many;
+}
+
+function initCountdown() {
+  const wrap = document.querySelector("#countdown");
+  if (!wrap) return;
+
+  const el = {
+    days: document.querySelector("#cd-days"),
+    hours: document.querySelector("#cd-hours"),
+    minutes: document.querySelector("#cd-minutes"),
+    seconds: document.querySelector("#cd-seconds"),
+    daysLabel: document.querySelector("#cd-days-label"),
+    hoursLabel: document.querySelector("#cd-hours-label"),
+    minutesLabel: document.querySelector("#cd-minutes-label"),
+    secondsLabel: document.querySelector("#cd-seconds-label"),
+    note: document.querySelector("#countdown-note"),
+    title: document.querySelector("#countdown-label"),
+  };
+  if (!el.days) return;
+
+  // Zpráva místo odpočtu (během akce / po akci)
+  const showMessage = (text) => {
+    wrap.hidden = true;
+    if (el.title) el.title.hidden = true;
+    if (el.note) {
+      el.note.hidden = false;
+      el.note.textContent = text;
+    }
+  };
+
+  const tick = () => {
+    const now = Date.now();
+    const start = EVENT_START.getTime();
+    const end = EVENT_END.getTime();
+
+    // Akce už skončila
+    if (now >= end) {
+      showMessage("Festival PapírPOINT proběhl 17. října 2026. Děkujeme všem, kdo dorazili!");
+      return true; // hotovo, můžeme zastavit
+    }
+
+    // Akce právě probíhá
+    if (now >= start) {
+      showMessage("Festival právě probíhá! Přijď za námi na Pevnost poznání, otevřeno je do 18:00.");
+      return false;
+    }
+
+    // Odpočet – datum a místo jsou hned nad ním, poznámku tu nepotřebujeme
+    wrap.hidden = false;
+    if (el.title) el.title.hidden = false;
+    if (el.note) el.note.hidden = true;
+
+    let zbyva = Math.floor((start - now) / 1000);
+    const dny = Math.floor(zbyva / 86400); zbyva -= dny * 86400;
+    const hodiny = Math.floor(zbyva / 3600); zbyva -= hodiny * 3600;
+    const minuty = Math.floor(zbyva / 60);
+    const sekundy = zbyva - minuty * 60;
+
+    el.days.textContent = dny;
+    el.hours.textContent = String(hodiny).padStart(2, "0");
+    el.minutes.textContent = String(minuty).padStart(2, "0");
+    el.seconds.textContent = String(sekundy).padStart(2, "0");
+
+    if (el.daysLabel) el.daysLabel.textContent = plural(dny, "den", "dny", "dní");
+    if (el.hoursLabel) el.hoursLabel.textContent = plural(hodiny, "hodina", "hodiny", "hodin");
+    if (el.minutesLabel) el.minutesLabel.textContent = plural(minuty, "minuta", "minuty", "minut");
+    if (el.secondsLabel) el.secondsLabel.textContent = plural(sekundy, "sekunda", "sekundy", "sekund");
+
+    return false;
+  };
+
+  if (tick()) return; // akce už skončila, nemá smysl tikat
+  const timer = window.setInterval(() => {
+    if (tick()) window.clearInterval(timer);
+  }, 1000);
+}
+
+/* =========================
+   Co tě čeká – náhodní prodejci
+========================= */
+
+// Fisher–Yates, pracuje na kopii
+function shuffle(list) {
+  const a = list.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// index = pozice v celém seznamu prodejců (kvůli otevření detailu)
+function createFeaturedCard(item, index) {
+  const el = document.createElement("button");
+  el.type = "button";
+  el.className = "featured-card";
+  el.setAttribute("aria-label", `${item.name} – zobrazit detail`);
+
+  const img = document.createElement("img");
+  img.className = "featured-card__logo";
+  img.src = withPrefix(item.logo);
+  img.alt = item.logoAlt || `${item.name} logo`;
+  img.loading = "lazy";
+  img.decoding = "async";
+
+  const name = document.createElement("h3");
+  name.className = "featured-card__name";
+  name.textContent = item.name;
+
+  el.appendChild(img);
+  el.appendChild(name);
+
+  if (item.meta) {
+    const meta = document.createElement("p");
+    meta.className = "featured-card__meta";
+    meta.textContent = item.meta;
+    el.appendChild(meta);
+  }
+
+  el.addEventListener("click", () => openSellerModal(index));
+  return el;
+}
+
+async function renderFeaturedSellers() {
+  const grid = document.querySelector("#featured-sellers");
+  if (!grid) return;
+
+  const intro = document.querySelector("#featured-sellers-intro");
+
+  try {
+    const res = await fetch(withPrefix("obsah/sellers.json"));
+    if (!res.ok) throw new Error(`Fetch sellers.json failed (${res.status})`);
+    const data = await res.json();
+
+    const items = (Array.isArray(data.items) ? data.items : [])
+      .filter((i) => i && i.name && i.logo);
+
+    if (!items.length) {
+      grid.innerHTML = "";
+      if (intro) intro.textContent = "Prodejce brzy představíme.";
+      return;
+    }
+
+    // detail prodejce čte z globálního sellersItems (sdíleno se stránkou Prodejci)
+    sellersItems = items;
+
+    // losujeme z indexů, ať víme, koho v seznamu otevřít
+    const poradi = shuffle(items.map((_, i) => i)).slice(0, 3);
+
+    grid.innerHTML = "";
+    poradi.forEach((i) => grid.appendChild(createFeaturedCard(items[i], i)));
+
+    initSellerModalControls();
+  } catch (err) {
+    console.error(err);
+    if (intro) intro.textContent = "Ukázku prodejců se nepodařilo načíst.";
+  }
+}
+
+/* =========================
    Homepage blocks (content/home.json)
 ========================= */
 
@@ -1114,12 +1287,14 @@ async function initSite() {
 
   initCookieBar();
   initMapConsent();
+  initCountdown();
   // ✅ ať se stránka odhalí hned
   initFadeIn();
 
   // ✅ nenecháme render blokovat zobrazení
   Promise.allSettled([
     renderHomeFromJson(),
+    renderFeaturedSellers(),
     renderAboutFromJson(),
     renderSellersFromJson(),
     renderSponsorsFromJson(),
