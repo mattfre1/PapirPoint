@@ -21,10 +21,10 @@
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/main.js"></script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&family=Oooh+Baby&display=swap" rel="stylesheet" />
+  <!-- Písma hostovaná u nás (deklarace v css/style.css) -->
+  <link rel="preload" href="/fonts/league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/league-spartan-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+
 </head>
 
 <body data-page="gdpr">
@@ -50,93 +50,137 @@
         Správcem vašich osobních údajů je <strong>Natálie Svobodová</strong>, se sídlem <strong>Mrsklesy 103, 783 65</strong>, kontaktní e-mail: <a href="mailto:info@papirpoint.cz">info@papirpoint.cz</a>.
       </p>
 
-      <h2>Jaké údaje shromažďujeme</h2>
+      <p>
+        <strong>Tento web nepoužívá žádné sledovací skripty, analytické nástroje ani reklamní
+        systémy a sám nenastavuje žádné cookies.</strong> Nepoužíváme Google Analytics ani
+        obdobnou službu. O návštěvnosti víme pouze to, co vyplývá ze souhrnných statistik
+        popsaných níže – nesledujeme jednotlivé návštěvníky ani nevytváříme profily.
+      </p>
+
+      <h2>Jaké údaje zpracováváme</h2>
+
+      <h3>Údaje z kontaktního formuláře</h3>
       <ul class="legal-list">
-        <li>Jméno a příjmení</li>
+        <li>Jméno</li>
         <li>E-mailová adresa</li>
-        <li>Telefonní číslo</li>
-        <li>Obsah zprávy, kterou nám zasíláte prostřednictvím kontaktního formuláře</li>
-        <li>Údaje získané prostřednictvím nezbytných cookies</li>
-        <li>
-          Údaje o vašem chování na webových stránkách získané prostřednictvím Google Analytics, jako je IP adresa
-          (v anonymizované podobě), typ prohlížeče, operační systém, navštívené stránky, čas strávený na stránkách
-          a zdroje návštěv.
-        </li>
+        <li>Obsah zprávy, kterou nám odešlete (a případné další údaje, které do ní sami uvedete)</li>
       </ul>
+      <p>
+        Tyto údaje nám odesíláte dobrovolně, když nás chcete kontaktovat. Žádné jiné pole
+        formulář neobsahuje.
+      </p>
+
+      <h3>Provozní záznamy hostingu a souhrnné statistiky</h3>
+      <p>
+        Web je provozován na službě Netlify. Ta si, stejně jako každý webový server, vede
+        technické záznamy o přístupech, které mohou obsahovat vaši IP adresu, typ a verzi
+        prohlížeče, adresu navštívené stránky, čas přístupu a zemi, ze které se připojujete.
+        Slouží k provozu, zabezpečení a ochraně webu před zneužitím.
+      </p>
+      <p>
+        Z těchto záznamů se nám v administraci hostingu zobrazují <strong>souhrnné statistiky</strong>
+        – například počet zobrazení stránek, nejnavštěvovanější stránky nebo země návštěvníků.
+        Vznikají přímo na straně serveru, tedy bez cookies a bez jakéhokoliv skriptu ve vašem
+        prohlížeči. Vidíme v nich pouze souhrnná čísla, nikoliv konkrétní osoby, a nespojujeme
+        je s žádnými dalšími údaji.
+      </p>
+
+      <h3>Nástroje pro vyhledávače</h3>
+      <p>
+        Web máme registrovaný v nástrojích Google Search Console a Seznam Webmaster. Ty nám
+        ukazují, jak si web vede ve výsledcích vyhledávání – tedy kolikrát se odkaz zobrazil
+        a kolikrát na něj někdo klikl. Tato data sbírá provozovatel vyhledávače na své straně
+        ještě předtím, než na náš web vstoupíte; my dostáváme pouze souhrnné přehledy
+        a na webu kvůli nim neběží žádný měřicí kód.
+      </p>
+
+      <h3>Volba u mapy</h3>
+      <p>
+        Pokud si na stránce Kontakt necháte zobrazit mapu, uloží se vám do prohlížeče
+        (do localStorage) poznámka o této volbě, abychom se vás nemuseli ptát znovu.
+        Neobsahuje žádný údaj o vaší osobě a neodesílá se na server.
+      </p>
 
       <h2>Účel zpracování údajů</h2>
-      <p>Vaše údaje zpracováváme za účelem:</p>
       <ul class="legal-list">
-        <li>Odpovědi na vaše dotazy a komunikace s vámi</li>
-        <li>Poskytování služeb a informací na vaši žádost</li>
-        <li>
-          Zajištění základní funkčnosti webových stránek (např. navigace, zobrazení obsahu) prostřednictvím nezbytných cookies
-        </li>
-        <li>
-          Analýzy návštěvnosti a chování uživatelů na webových stránkách za účelem zlepšení jejich obsahu a funkčnosti pomocí služby
-          Google Analytics
-        </li>
+        <li>Odpověď na váš dotaz a další komunikace s vámi</li>
+        <li>Provoz, zabezpečení a dostupnost webových stránek</li>
+        <li>Zapamatování vaší volby ohledně zobrazení mapy</li>
       </ul>
 
       <h2>Právní základ zpracování</h2>
-      <p>Zpracování vašich údajů je založeno na následujících právních základech:</p>
       <ul class="legal-list">
         <li>
-          Oprávněný zájem správce (čl. 6 odst. 1 písm. f) GDPR) na komunikaci s uživateli a zajištění funkčnosti webových stránek.
+          <strong>Oprávněný zájem</strong> (čl. 6 odst. 1 písm. f) GDPR) – u zpráv z kontaktního
+          formuláře. Naším oprávněným zájmem je odpovědět vám na dotaz, který jste nám sami
+          položili. Proti tomuto zpracování můžete kdykoliv vznést námitku.
         </li>
         <li>
-          Souhlas uživatele (čl. 6 odst. 1 písm. a) GDPR), pokud jde o zpracování údajů pro účely odpovědi na dotazy prostřednictvím
-          kontaktního formuláře.
+          <strong>Oprávněný zájem</strong> (čl. 6 odst. 1 písm. f) GDPR) – u provozních záznamů
+          hostingu, tedy na zajištění funkčnosti a bezpečnosti webu.
         </li>
         <li>
-          Souhlas uživatele (čl. 6 odst. 1 písm. a) GDPR) s používáním cookies pro účely Google Analytics a souvisejícího zpracování
-          osobních údajů.
+          <strong>Souhlas</strong> (čl. 6 odst. 1 písm. a) GDPR) – výhradně u zobrazení mapy
+          od společnosti Google, který udělíte kliknutím na tlačítko „Zobrazit mapu“
+          a můžete jej kdykoliv odvolat.
         </li>
       </ul>
 
       <h2>Doba uchovávání údajů</h2>
-      <p>Vaše údaje uchováváme po dobu nezbytně nutnou pro splnění výše uvedených účelů, nejdéle však:</p>
       <ul class="legal-list">
         <li>
-          Pro účely odpovědi na dotazy – po dobu nezbytnou pro vyřízení dotazu a archivaci v souladu s právními předpisy.
+          <strong>Zprávy z formuláře</strong> – po dobu nutnou k vyřízení dotazu a následné
+          komunikace, poté je mažeme.
         </li>
         <li>
-          Pro účely zajištění funkčnosti webu (nezbytné cookies) – po dobu trvání relace prohlížeče, případně po dobu nezbytnou
-          pro zajištění funkčnosti konkrétní cookie.
+          <strong>Provozní záznamy hostingu</strong> – po dobu, po kterou je uchovává
+          poskytovatel hostingu v rámci svého provozu (řádově dny až týdny).
         </li>
         <li>
-          Údaje zpracovávané prostřednictvím Google Analytics budou na serverech společnosti Google uchovávány po dobu 14 měsíců.
-          Samotné analytické cookies ve vašem prohlížeči expirují za 2 roky od poslední návštěvy. Po uplynutí této doby budou data
-          automaticky anonymizována nebo smazána.
+          <strong>Volba u mapy</strong> – zůstává ve vašem prohlížeči, dokud ji nesmažete.
+          Zrušit ji můžete na stránce <a href="/stranky/cookies.html">Zásady cookies</a>.
         </li>
       </ul>
 
-      <h2>Sdílení údajů</h2>
+      <h2>Komu se údaje dostanou</h2>
       <p>
-        Vaše údaje nejsou sdíleny s třetími stranami, kromě případů, kdy je to vyžadováno zákonem nebo v případě, že využíváme
-        zpracovatele údajů (např. poskytovatelé IT služeb, kteří nám pomáhají spravovat webové stránky a související infrastrukturu).
-        Tito zpracovatelé se zavazují k ochraně osobních údajů podle platných právních předpisů.
+        Vaše údaje neprodáváme a nepředáváme nikomu pro marketingové účely. Využíváme však
+        následující služby, které se při provozu webu dostanou do styku s údaji jako
+        zpracovatelé:
       </p>
-
+      <ul class="legal-list">
+        <li>
+          <strong>Netlify, Inc.</strong> (USA) – hosting webových stránek. Zpracovává provozní
+          záznamy o přístupech popsané výše.
+          <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">Zásady ochrany soukromí</a>
+        </li>
+        <li>
+          <strong>Formspree, Inc.</strong> (USA) – doručení zpráv z kontaktního formuláře do naší
+          e-mailové schránky.
+          <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Zásady ochrany soukromí</a>
+        </li>
+        <li>
+          <strong>Google Ireland Limited</strong> – pouze mapa na stránce Kontakt, a to
+          <strong>až po vašem kliknutí</strong> na tlačítko „Zobrazit mapu“. Do té doby se
+          s Googlem nespojujeme. Písma máme uložená na vlastním serveru, nikoliv u Googlu.
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Zásady ochrany soukromí</a>
+        </li>
+        <li>
+          <strong>Seznam.cz, a.s.</strong> (ČR) – provoz naší e-mailové schránky, do níž chodí
+          zprávy z formuláře.
+        </li>
+      </ul>
       <p>
-        V souvislosti s používáním Google Analytics mohou být vaše údaje sdíleny se společností <strong>Google Ireland Limited</strong>,
-        se sídlem Gordon House, Barrow Street, Dublin 4, Irsko. Společnost <strong>Google LLC</strong>, se sídlem 1600 Amphitheatre Parkway,
-        Mountain View, CA 94043, USA, je mateřskou společností Google Ireland Limited a může k těmto datům mít také přístup.
-        Společnost Google může tyto údaje zpracovávat na serverech umístěných v různých zemích po celém světě.
-      </p>
-
-      <p>
-        Další informace o tom, jak společnost Google zpracovává osobní údaje v souvislosti se službou Google Analytics,
-        naleznete v jejich zásadách ochrany osobních údajů.
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Zobrazit</a>
+        Údaje dále můžeme předat, pokud nám to ukládá zákon nebo pokud to bude nezbytné
+        k ochraně našich práv.
       </p>
 
       <h2>Předání údajů do třetích zemí</h2>
       <p>
-        Vaše osobní údaje nebudou předávány do třetích zemí mimo Evropský hospodářský prostor (EHP) ani mezinárodním organizacím,
-        s výjimkou případů, kdy dochází k předání údajů společnosti Google v souvislosti s používáním služby Google Analytics.
-        V takovém případě se společnost Google zavazuje k dodržování standardních smluvních doložek vydaných Evropskou komisí,
-        které zajišťují odpovídající úroveň ochrany osobních údajů.
+        Někteří z výše uvedených zpracovatelů (Netlify, Formspree) sídlí ve Spojených státech,
+        takže může docházet k předání údajů mimo Evropský hospodářský prostor. Tyto společnosti
+        se zavazují k odpovídající úrovni ochrany osobních údajů, zpravidla prostřednictvím
+        standardních smluvních doložek vydaných Evropskou komisí.
       </p>
 
       <h2>Vaše práva</h2>
@@ -170,20 +214,18 @@
           <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer">www.uoou.cz</a>
         </li>
         <li>
-          <strong>Právo odvolat souhlas</strong> – pokud je zpracování založeno na vašem souhlasu (např. s používáním Google Analytics),
-          máte právo tento souhlas kdykoli odvolat, aniž by to ovlivnilo zákonnost zpracování založeného na souhlasu před jeho odvoláním.
-        </li>
-        <li>
-          <strong>Možnost odmítnout sledování Google Analytics</strong> – můžete odmítnout sledování instalací doplňku prohlížeče pro odhlášení
-          služby Google Analytics, který je k dispozici v Politice cookies.
+          <strong>Právo odvolat souhlas</strong> – pokud je zpracování založeno na vašem souhlasu
+          (např. souhlas se zobrazením mapy), máte právo jej kdykoli odvolat, aniž by to ovlivnilo
+          zákonnost zpracování před jeho odvoláním. Volbu u mapy zrušíte na stránce
+          <a href="/stranky/cookies.html">Zásady cookies</a>.
         </li>
       </ul>
 
       <h2>Zabezpečení údajů</h2>
       <p>
-        K ochraně vašich údajů používáme vhodná technická a organizační opatření, která zajistí jejich bezpečnost a zabrání neoprávněnému
-        přístupu, použití, ztrátě nebo zničení. Tato opatření zahrnují například šifrování, pravidelný audit bezpečnosti a omezený přístup
-        k údajům pouze pro autorizované osoby.
+        K ochraně vašich údajů používáme vhodná technická a organizační opatření. Web je dostupný
+        výhradně přes šifrované spojení (HTTPS) a přístup ke zprávám z formuláře má pouze
+        omezený okruh osob zajišťujících organizaci akce.
       </p>
 
       <h2>Kontaktní údaje pro uplatnění práv</h2>
@@ -198,13 +240,11 @@
         na těchto webových stránkách.
       </p>
 
-      <p class="legal-updated"><strong>Datum poslední aktualizace:</strong> 23.02.2026</p>
+      <p class="legal-updated"><strong>Datum poslední aktualizace:</strong> 1. 8. 2026</p>
     </section>
   </main>
 
   <div id="site-footer"></div>
 
-  <!-- cookie lišta vždy uvnitř body -->
-  <div id="cookie-mount"></div>
 </body>
 </html>

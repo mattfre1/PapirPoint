@@ -11,6 +11,14 @@
 /admin/*
   X-Robots-Tag: noindex
 
+# Fragmenty šablon (hlavička, patička, modal) – nejsou to samostatné stránky
+/partials/*
+  X-Robots-Tag: noindex
+
+# Písma – stabilní názvy, dlouhá cache
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Obrázky – cache 30 dní (při výměně obrázku ideálně změň i název souboru)
 /obrazky/*
   Cache-Control: public, max-age=2592000

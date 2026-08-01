@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Zásady cookies | PapírPOINT</title>
-  <meta name="description" content="Informace o používání cookies na webu PapírPOINT a možnost změnit nebo odvolat souhlas s volitelnými cookies." />
-  <link rel="canonical" href="https://papirpoint.cz/pages/cookies.html" />
+  <meta name="description" content="Informace o cookies na webu PapírPOINT. Web nepoužívá sledovací cookies ani neměří návštěvnost." />
+  <link rel="canonical" href="https://papirpoint.cz/stranky/cookies.html" />
 
   <!-- Doporučení: u cookies stránky klidně noindex (aby ti nezabírala SEO místo) -->
   <meta name="robots" content="noindex,follow" />
@@ -15,8 +15,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PapírPOINT" />
   <meta property="og:title" content="Zásady cookies | PapírPOINT" />
-  <meta property="og:description" content="Informace o cookies a možnost změnit nebo odvolat souhlas s volitelnými cookies." />
-  <meta property="og:url" content="https://papirpoint.cz/pages/cookies.html" />
+  <meta property="og:description" content="Web nepoužívá sledovací cookies ani neměří návštěvnost." />
+  <meta property="og:url" content="https://papirpoint.cz/stranky/cookies.html" />
   <meta property="og:image" content="https://papirpoint.cz/obrazky/preview.jpg" />
 
   <!-- Twitter -->
@@ -37,69 +37,93 @@
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/main.js"></script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&family=Oooh+Baby&display=swap" rel="stylesheet" />
+
+  <!-- Písma hostovaná u nás (deklarace v css/style.css) -->
+  <link rel="preload" href="/fonts/league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/league-spartan-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
 
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="container">
-    <h1>Zásady používání cookies</h1>
+    <section class="section fade-in">
+      <h1 class="section__title">Zásady používání cookies</h1>
 
-    <p>
-      Na tomto webu používáme cookies a podobné technologie pro zajištění správného fungování webu a pro načítání
-      obsahu třetích stran (např. Google Maps). Volitelné cookies si můžeš kdykoliv změnit.
-    </p>
+      <p>
+        Ve zkratce: <strong>tento web nepoužívá žádné sledovací cookies ani měřicí skripty.</strong>
+        Nemáme Google Analytics ani jiný analytický nástroj. Jediné, co se ti do prohlížeče uloží,
+        je tvoje vlastní volba ohledně mapy – a i to jen tehdy, pokud si mapu zobrazíš.
+      </p>
 
-    <h2>Co jsou cookies?</h2>
-    <p>
-      Cookies jsou malé textové soubory, které si web může uložit do tvého zařízení. Pomáhají například s tím,
-      aby web správně fungoval, nebo aby si pamatoval tvé volby.
-    </p>
+      <h2>Co jsou cookies</h2>
+      <p>
+        Cookies jsou malé textové soubory, které si web může uložit do tvého zařízení. Slouží
+        například k tomu, aby si web zapamatoval tvé volby nebo aby správně fungoval.
+      </p>
 
-    <h2>Jaké cookies používáme</h2>
+      <h2>Co ukládáme my</h2>
+      <p>Do úložiště prohlížeče (localStorage) ukládáme jedinou položku:</p>
+      <ul class="legal-list">
+        <li>
+          <strong>pp_map_consent_v1</strong> – poznámka o tom, že sis nechal zobrazit mapu na
+          stránce Kontakt. Díky ní se tě web nemusí ptát znovu. Neobsahuje žádný údaj o tvé osobě
+          a nikam se neodesílá. Smažeš ji tlačítkem níže nebo vymazáním dat webu v prohlížeči.
+        </li>
+      </ul>
 
-    <h3>Nezbytné (technické) cookies</h3>
-    <p>
-      Tyto cookies jsou nutné pro základní funkce webu (např. zobrazení stránek, bezpečnost, základní nastavení).
-      Tyto cookies nelze vypnout.
-    </p>
+      <h2>Mapa od Googlu</h2>
+      <p>
+        Na stránce Kontakt nabízíme mapu ze služby Google Maps. Mapa se <strong>nenačte sama</strong> –
+        zobrazí se až po kliknutí na tlačítko „Zobrazit mapu“. Teprve tím se Googlu odešle tvoje
+        IP adresa a údaje o prohlížeči a Google může uložit vlastní cookies podle
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">svých zásad</a>.
+        Dokud na tlačítko neklikneš, kvůli mapě se s Googlem nespojíme.
+      </p>
 
-    <h3>Externí obsah / volitelné cookies (např. Google Maps)</h3>
-    <p>
-      Pokud povolíš externí obsah, může se načíst mapa Google Maps. Třetí strany (Google) mohou používat cookies
-      a zpracovávat údaje o používání služby dle svých zásad.
-    </p>
+      <h2>Hosting, statistiky a písma</h2>
+      <p>
+        Web běží na službě Netlify, která si pro provoz a zabezpečení vede záznamy o přístupech
+        (IP adresa, typ prohlížeče, čas, země). Z nich se nám zobrazují souhrnné statistiky
+        návštěvnosti – vznikají přímo na serveru, tedy <strong>bez cookies a bez skriptu ve tvém
+        prohlížeči</strong>, a vidíme v nich jen celková čísla, ne konkrétní lidi.
+      </p>
+      <p>
+        Písma máme <strong>uložená přímo na našem serveru</strong>, nenačítají se z Google Fonts
+        ani odjinud. Kromě mapy, kterou si sám vyžádáš, tak web při běžném prohlížení
+        nenavazuje spojení s žádnou třetí stranou. Podrobnosti jsou v
+        <a href="/stranky/zasady-ochrany-osobnich-udaju.html">zásadách ochrany osobních údajů</a>.
+      </p>
 
-    <h2>Změna nebo odvolání souhlasu</h2>
-    <p>
-      Svůj souhlas můžeš kdykoliv změnit kliknutím na tlačítko níže. Poté se znovu zobrazí cookie lišta.
-    </p>
+      <h2>Zrušení uložené volby</h2>
+      <p>
+        Tlačítkem níže smažeš uloženou volbu u mapy. Web se tě pak příště zeptá znovu.
+      </p>
 
-    <button class="btn btn--secondary" type="button" id="cookies-reset">
-      Změnit nastavení cookies
-    </button>
+      <button class="btn btn--secondary" type="button" id="cookies-reset">
+        Zrušit uloženou volbu u mapy
+      </button>
+      <p id="cookies-reset-status" class="contact-form__status" role="status"></p>
 
-    <h2>Kontakt</h2>
-    <p>
-      Pokud máš dotazy k cookies, napiš nám přes kontaktní formulář na stránce Kontakt.
-    </p>
+      <h2>Kontakt</h2>
+      <p>
+        Máš dotaz? Napiš nám přes formulář na stránce
+        <a href="/stranky/kontakty.html">Kontakt</a>.
+      </p>
+    </section>
   </main>
 
   <div id="site-footer"></div>
-  <div id="cookie-mount"></div>
 
   <script>
-    // reset souhlasu
+    // zruseni ulozene volby u mapy
     document.addEventListener("DOMContentLoaded", () => {
       const btn = document.getElementById("cookies-reset");
+      const status = document.getElementById("cookies-reset-status");
       if (!btn) return;
       btn.addEventListener("click", () => {
-        try { localStorage.removeItem("pp_cookie_consent_v1"); } catch(e) {}
-        location.reload();
+        try { localStorage.removeItem("pp_map_consent_v1"); } catch (e) {}
+        if (status) status.textContent = "Hotovo – uložená volba byla smazána.";
       });
     });
   </script>

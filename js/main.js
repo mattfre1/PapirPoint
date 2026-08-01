@@ -138,7 +138,6 @@ async function loadLayout() {
   await Promise.all([
     inject("#site-header", `${p}partials/header.html`),
     inject("#site-footer", `${p}partials/footer.html`),
-    inject("#cookie-mount", `${p}partials/cookies.html`),
     inject("#seller-modal-mount", `${p}partials/seller-modal.html`),
   ]);
 
@@ -309,7 +308,7 @@ if (type !== "none" && url) {
   web.setAttribute("aria-label", "Web prodejce");
 
   web.innerHTML = `
-    <svg fill="#000000" width="20px" height="20px" viewBox="-1 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><path d="M16.417 9.57a7.917 7.917 0 1 1-8.144-7.908 1.758 1.758 0 0 1 .451 0 7.913 7.913 0 0 1 7.693 7.907zM5.85 15.838q.254.107.515.193a11.772 11.772 0 0 1-1.572-5.92h-3.08a6.816 6.816 0 0 0 4.137 5.727zM2.226 6.922a6.727 6.727 0 0 0-.511 2.082h3.078a11.83 11.83 0 0 1 1.55-5.89q-.249.083-.493.186a6.834 6.834 0 0 0-3.624 3.622zm8.87 2.082a14.405 14.405 0 0 0-.261-2.31 9.847 9.847 0 0 0-.713-2.26c-.447-.952-1.009-1.573-1.497-1.667a8.468 8.468 0 0 0-.253 0c-.488.094-1.05.715-1.497 1.668a9.847 9.847 0 0 0-.712 2.26 14.404 14.404 0 0 0-.261 2.309zm-.974 5.676a9.844 9.844 0 0 0 .713-2.26 14.413 14.413 0 0 0 .26-2.309H5.903a14.412 14.412 0 0 0 .261 2.31 9.844 9.844 0 0 0 .712 2.259c.487 1.036 1.109 1.68 1.624 1.68s1.137-.644 1.623-1.68zm4.652-2.462a6.737 6.737 0 0 0 .513-2.107h-3.082a11.77 11.77 0 0 1-1.572 5.922q.261-.086.517-.194a6.834 6.834 0 0 0 3.624-3.621zM11.15 3.3a6.82 6.82 0 0 0-.496-.187 11.828 11.828 0 0 1 1.55 5.89h3.081A6.815 6.815 0 0 0 11.15 3.3z"/></svg>
+    <svg viewBox="-1 0 19 19" fill="currentColor" aria-hidden="true"><path d="M16.417 9.57a7.917 7.917 0 1 1-8.144-7.908 1.758 1.758 0 0 1 .451 0 7.913 7.913 0 0 1 7.693 7.907zM5.85 15.838q.254.107.515.193a11.772 11.772 0 0 1-1.572-5.92h-3.08a6.816 6.816 0 0 0 4.137 5.727zM2.226 6.922a6.727 6.727 0 0 0-.511 2.082h3.078a11.83 11.83 0 0 1 1.55-5.89q-.249.083-.493.186a6.834 6.834 0 0 0-3.624 3.622zm8.87 2.082a14.405 14.405 0 0 0-.261-2.31 9.847 9.847 0 0 0-.713-2.26c-.447-.952-1.009-1.573-1.497-1.667a8.468 8.468 0 0 0-.253 0c-.488.094-1.05.715-1.497 1.668a9.847 9.847 0 0 0-.712 2.26 14.404 14.404 0 0 0-.261 2.309zm-.974 5.676a9.844 9.844 0 0 0 .713-2.26 14.413 14.413 0 0 0 .26-2.309H5.903a14.412 14.412 0 0 0 .261 2.31 9.844 9.844 0 0 0 .712 2.259c.487 1.036 1.109 1.68 1.624 1.68s1.137-.644 1.623-1.68zm4.652-2.462a6.737 6.737 0 0 0 .513-2.107h-3.082a11.77 11.77 0 0 1-1.572 5.922q.261-.086.517-.194a6.834 6.834 0 0 0 3.624-3.621zM11.15 3.3a6.82 6.82 0 0 0-.496-.187 11.828 11.828 0 0 1 1.55 5.89h3.081A6.815 6.815 0 0 0 11.15 3.3z"/></svg>
   `;
 
   actionsWrap.appendChild(web);
@@ -326,7 +325,7 @@ if (type !== "none" && url) {
     ig.setAttribute("aria-label", "Instagram");
 
     ig.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.34,5.46h0a1.2,1.2,0,1,0,1.2,1.2A1.2,1.2,0,0,0,17.34,5.46Zm4.6,2.42a7.59,7.59,0,0,0-.46-2.43,4.94,4.94,0,0,0-1.16-1.77,4.7,4.7,0,0,0-1.77-1.15,7.3,7.3,0,0,0-2.43-.47C15.06,2,14.72,2,12,2s-3.06,0-4.12.06a7.3,7.3,0,0,0-2.43.47A4.78,4.78,0,0,0,3.68,3.68,4.7,4.7,0,0,0,2.53,5.45a7.3,7.3,0,0,0-.47,2.43C2,8.94,2,9.28,2,12s0,3.06.06,4.12a7.3,7.3,0,0,0,.47,2.43,4.7,4.7,0,0,0,1.15,1.77,4.78,4.78,0,0,0,1.77,1.15,7.3,7.3,0,0,0,2.43.47C8.94,22,9.28,22,12,22s3.06,0,4.12-.06a7.3,7.3,0,0,0,2.43-.47,4.7,4.7,0,0,0,1.77-1.15,4.85,4.85,0,0,0,1.16-1.77,7.59,7.59,0,0,0,.46-2.43c0-1.06.06-1.4.06-4.12S22,8.94,21.94,7.88ZM20.14,16a5.61,5.61,0,0,1-.34,1.86,3.06,3.06,0,0,1-.75,1.15,3.19,3.19,0,0,1-1.15.75,5.61,5.61,0,0,1-1.86.34c-1,.05-1.37.06-4,.06s-3,0-4-.06A5.73,5.73,0,0,1,6.1,19.8,3.27,3.27,0,0,1,5,19.05a3,3,0,0,1-.74-1.15A5.54,5.54,0,0,1,3.86,16c0-1-.06-1.37-.06-4s0-3,.06-4A5.54,5.54,0,0,1,4.21,6.1,3,3,0,0,1,5,5,3.14,3.14,0,0,1,6.1,4.2,5.73,5.73,0,0,1,8,3.86c1,0,1.37-.06,4-.06s3,0,4,.06a5.61,5.61,0,0,1,1.86.34A3.06,3.06,0,0,1,19.05,5,3.06,3.06,0,0,1,19.8,6.1,5.61,5.61,0,0,1,20.14,8c.05,1,.06,1.37.06,4S20.19,15,20.14,16ZM12,6.87A5.13,5.13,0,1,0,17.14,12,5.12,5.12,0,0,0,12,6.87Zm0,8.46A3.33,3.33,0,1,1,15.33,12,3.33,3.33,0,0,1,12,15.33Z"></path>
         </svg>
     `;
@@ -1163,8 +1162,9 @@ async function renderContactsFromJson() {
 
     // FORM TEXTS
     const form = data.form || {};
-    if (formTitleEl) formTitleEl.textContent = form.title || "";
-    if (formNoteEl) formNoteEl.textContent = form.note || "";
+    if (formTitleEl && form.title) formTitleEl.textContent = form.title;
+    // prázdná poznámka v JSON nesmí přepsat text (a odkaz) z HTML
+    if (formNoteEl && form.note) formNoteEl.textContent = form.note;
 
     // Uložíme texty pro initContactForm (volitelně)
     // Pokud chceš, můžeš si je vyčíst v initContactForm z datasetu.
@@ -1195,69 +1195,20 @@ async function renderContactsFromJson() {
   }
 }
 
-const CONSENT_KEY = "pp_cookie_consent_v1"; 
-// hodnoty: "necessary" | "analytics"
+/* =========================
+   Souhlas s načtením mapy
+   Web sám žádné cookies nenastavuje ani neměří návštěvnost.
+   Souhlas se týká výhradně vložené mapy od Googlu na stránce Kontakt.
+========================= */
 
-function getConsent() {
-  try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
+const MAP_CONSENT_KEY = "pp_map_consent_v1"; // hodnota: "granted"
+
+function getMapConsent() {
+  try { return localStorage.getItem(MAP_CONSENT_KEY); } catch { return null; }
 }
 
-function setConsent(value) {
-  try { localStorage.setItem(CONSENT_KEY, value); } catch {}
-}
-
-function showCookieBar() {
-  const bar = document.querySelector("#cookiebar");
-  if (!bar) return;
-  bar.hidden = false;
-  requestAnimationFrame(() => bar.classList.add("is-visible"));
-}
-
-function hideCookieBar() {
-  const bar = document.querySelector("#cookiebar");
-  if (!bar) return;
-  bar.classList.remove("is-visible");
-  window.setTimeout(() => (bar.hidden = true), 160);
-}
-
-function enableAnalyticsIfAllowed() {
-  const consent = getConsent();
-  if (consent !== "analytics") return;
-
-  // ✅ Sem patří načtení GA / Plausible / Matomo apod.
-  // Příklad: načíst script až po souhlasu
-  // const s = document.createElement("script");
-  // s.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXX";
-  // s.async = true;
-  // document.head.appendChild(s);
-}
-
-function initCookieBar() {
-  const bar = document.querySelector("#cookiebar");
-  const acceptBtn = document.querySelector("#cookie-accept");
-  const declineBtn = document.querySelector("#cookie-decline");
-  if (!bar || !acceptBtn || !declineBtn) return;
-
-  // zabránit dvojí inicializaci
-  if (bar.dataset.bound === "1") return;
-  bar.dataset.bound = "1";
-
-  const consent = getConsent();
-  if (!consent) showCookieBar();
-  else enableAnalyticsIfAllowed();
-
-  acceptBtn.addEventListener("click", () => {
-  setConsent("analytics");
-  hideCookieBar();
-
-  enableAnalyticsIfAllowed();
-  loadMapNow(); // ✅ automaticky načíst mapu po souhlasu
-  });
-
-  declineBtn.addEventListener("click", () => {
-    setConsent("necessary");
-    hideCookieBar();
-  });
+function setMapConsent(value) {
+  try { localStorage.setItem(MAP_CONSENT_KEY, value); } catch {}
 }
 
 function loadMapNow() {
@@ -1273,8 +1224,23 @@ function loadMapNow() {
 }
 
 function initMapConsent() {
-  const consent = getConsent(); // "necessary" | "analytics" | null
-  if (consent === "analytics") loadMapNow();
+  const wrap = document.querySelector("#map-consent");
+  if (!wrap) return; // nejsme na stránce s mapou
+
+  // souhlas z dřívější návštěvy
+  if (getMapConsent() === "granted") {
+    loadMapNow();
+    return;
+  }
+
+  const btn = document.querySelector("#map-consent-btn");
+  if (!btn || btn.dataset.bound === "1") return;
+  btn.dataset.bound = "1";
+
+  btn.addEventListener("click", () => {
+    setMapConsent("granted");
+    loadMapNow();
+  });
 }
 
 
@@ -1285,7 +1251,6 @@ function initMapConsent() {
 async function initSite() {
   await loadLayout();
 
-  initCookieBar();
   initMapConsent();
   initCountdown();
   // ✅ ať se stránka odhalí hned
