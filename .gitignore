@@ -5,6 +5,11 @@ TODO.md
 # Podklady od prodejců (originály, dokumenty) – nepublikovat
 podklady/
 
+# DOČASNÉ: rozpracovaná stránka Časté dotazy.
+# Obsahuje viditelné značky ⚠️ u nedoplněných odpovědí, proto ještě nemá jít na web.
+# Až budou odpovědi hotové, smaž tento řádek – tím se stránka začne verzovat a nasadí se.
+stranky/caste-dotazy.html
+
 # Systémové soubory
 Thumbs.db
 .DS_Store
