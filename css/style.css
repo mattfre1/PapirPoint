@@ -747,6 +747,9 @@ button.grid-item{
 .contact-item__value:hover{ text-decoration: underline; }
 .contact-item__value--block:hover{ text-decoration: none; }
 
+/* Víc hodnot pod sebou (např. dvě telefonní čísla) */
+.contact-item__value--block > .contact-item__value{ display: block; }
+
 /* Social sekce v kontaktu */
 .contact-social-block{
   padding-top: 14px;
@@ -1036,32 +1039,6 @@ html.js .fade-in.is-visible{
 
 .about-list li{
   margin: 0.25rem 0;
-}
-
-/* ===== About: užší sloupec i pro H1 ===== */
-body[data-page="about"] #about-title{
-  width: 100%;
-  max-width: 72ch;
-  margin: 0 auto 10px;
-}
-
-/* Úvod */
-body[data-page="about"] #about-intro{
-  width: 100%;
-  max-width: 72ch;
-  margin: 0 auto;
-}
-
-/* Dynamické sekce */
-body[data-page="about"] #about-sections > section{
-  width: 100%;
-}
-
-body[data-page="about"] #about-sections > section > *{
-  width: 100%;
-  max-width: 72ch;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ===== About – sjednocená čitelná osa ===== */
@@ -1382,8 +1359,8 @@ body[data-page="contact"] .contact-social-links .social-link svg{
 ========================= */
 body[data-page="sellers"] .section__title,
 body[data-page="sponsors"] .section__title,
-body[data-page="sellers"] #sellers-intro,
-body[data-page="sponsors"] #sponsors-intro{
+body[data-page="sellers"] .section__intro,
+body[data-page="sponsors"] .section__intro{
   max-width: 820px;
   margin-left: auto;
   margin-right: auto;
@@ -1817,6 +1794,10 @@ body[data-page="sponsors"] #sponsors-intro{
 
   transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
 }
+
+/* Na homepage jsou v HTML kartičky všech prodejců, vidět je jen náhodná trojice.
+   Bez tohohle pravidla by display:flex výše přebil atribut hidden. */
+.featured-card[hidden]{ display: none; }
 
 .featured-card:hover{
   transform: translateY(-3px);

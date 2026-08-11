@@ -60,38 +60,35 @@
 
   <main class="container">
     <section class="section fade-in">
-      <h1 class="section__title" id="contacts-title">Kontakt</h1>
-      <p id="contacts-intro">Napiš nám nebo se ozvi přímo. Odpovídáme obvykle do 1–2 pracovních dnů.</p>
+      <h1 class="section__title">Kontakt</h1>
+      <p>Napiš nám nebo se ozvi přímo. Odpovídáme obvykle do 1–2 pracovních dnů.</p>
 
       <div class="contact-layout">
         <!-- Kontaktní karta -->
         <div class="contact-card">
-          <h2 class="contact-card__title" id="contacts-card-title">PapírPoint</h2>
+          <h2 class="contact-card__title">PapírPoint</h2>
 
           <div class="contact-list">
             <div class="contact-item">
-              <div class="contact-item__label" id="contacts-email-label">E-mail</div>
-              <a class="contact-item__value" id="contacts-email" href="#">—</a>
-            </div>
-
-            <div class="contact-item" id="contacts-phone-item">
-              <div class="contact-item__label" id="contacts-phone-label">Telefon</div>
-              <div class="contact-item__value contact-item__value--block" id="contacts-phones"></div>
+              <div class="contact-item__label">E-mail</div>
+              <a class="contact-item__value" href="mailto:info@papirpoint.cz">info@papirpoint.cz</a>
             </div>
 
             <div class="contact-item">
-              <div class="contact-item__label" id="contacts-address-label">Adresa</div>
-              <div class="contact-item__value contact-item__value--block" id="contacts-address"></div>
+              <div class="contact-item__label">Telefon</div>
+              <div class="contact-item__value contact-item__value--block">
+                <a class="contact-item__value" href="tel:+420776780628">+420 776 780 628</a>
+                <a class="contact-item__value" href="tel:+420723225652">+420 723 225 652</a>
+              </div>
             </div>
           </div>
 
           <div class="contact-social-block">
-            <div class="contact-social-title" id="contacts-social-label">Sociální sítě</div>
+            <div class="contact-social-title">Sociální sítě</div>
 
             <div class="social-links contact-social-links" aria-label="Sociální sítě">
               <a
-                id="contacts-social-instagram"
-                href="#"
+                href="https://www.instagram.com/papirpoint/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -104,8 +101,7 @@
               </a>
 
               <a
-                id="contacts-social-facebook"
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61586903846637"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -124,7 +120,7 @@
         <form class="contact-form" id="contact-form"
               action="https://formspree.io/f/xykdwanp"
               method="POST">
-          <h2 class="contact-form__title" id="contacts-form-title">Napiš zprávu</h2>
+          <h2 class="contact-form__title">Napiš zprávu</h2>
 
           <input type="hidden" name="_subject" id="contact-form-subject" value="PapírPoint – nová zpráva z webu">
           <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
@@ -148,7 +144,7 @@
 
           <button class="btn contact-form__submit" type="submit">Odeslat</button>
 
-          <p class="contact-form__note" id="contacts-form-note">
+          <p class="contact-form__note">
             Údaje použijeme jen k odpovědi na tvůj dotaz.
             <a href="/stranky/zasady-ochrany-osobnich-udaju.html">Více o ochraně údajů</a>
           </p>
@@ -159,7 +155,7 @@
     </section>
 
     <section class="section fade-in">
-      <h2 class="section__title" id="contacts-map-title">Kde nás najdeš</h2>
+      <h2 class="section__title">Kde nás najdeš</h2>
 
       <div class="map-consent" id="map-consent">
         <img class="map-consent__pin" src="/obrazky/homepage/point.png" alt="" aria-hidden="true">
@@ -190,8 +186,6 @@
           </iframe>
         </div>
       </template>
-
-      <p id="contacts-map-note"></p>
     </section>
   </main>
 

@@ -65,11 +65,22 @@
 
   <main class="container">
     <section class="section fade-in">
-      <h1 class="section__title" id="gallery-title">Galerie</h1>
+      <h1 class="section__title">Galerie</h1>
 
-      <p id="gallery-intro">Momentky z projektu a zákulisí.</p>
+      <p>Momentky z projektu a zákulisí.</p>
 
-      <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+      <p>Galerie je zatím prázdná – fotky doplníme po akci.</p>
+
+      <!-- Fotky se přidávají sem. Jedna položka = jedno tlačítko; kliknutí otevře
+           lightbox (js/main.js). Volitelně data-full = větší verze do lightboxu,
+           data-caption = popisek pod fotkou.
+
+      <div class="gallery-grid" id="gallery-grid">
+        <button type="button" class="gallery-item" data-caption="Popisek fotky">
+          <img src="/obrazky/galerie/nahled.jpg" alt="Popis fotky" loading="lazy" decoding="async">
+        </button>
+      </div>
+      -->
 
       <dialog class="lightbox" id="lightbox">
         <button class="lightbox__close" type="button" aria-label="Zavřít">✕</button>

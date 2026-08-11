@@ -1,6 +1,5 @@
 {
-  "title": "Prodejci",
-  "intro": "Prodejce budeme postupně představovat - máte se na co těšit!",
+  "_info": "Zdroj dat o prodejcích. Po každé úpravě pusť .claude/generuj-prodejce.ps1 – přepíše karty v index.html a stranky/prodejci.html. Nadpis a úvodní text stránky jsou přímo v prodejci.html.",
   "items": [
     {
       "name": "Reformát",
@@ -279,6 +278,44 @@
         { "src": "obrazky/sellers/16/16_1.jpg", "alt": "Ručně šité deníky s linorytovou vazbou" },
         { "src": "obrazky/sellers/16/16_2.jpg", "alt": "Barevné obálky z ručního papíru" },
         { "src": "obrazky/sellers/16/16_3.jpg", "alt": "Přáníčko z ručního papíru" }
+      ]
+    },
+    {
+      "name": "Onthewaytoo",
+      "meta": "Láska k cestování přenesená na papír.",
+      "logo": "obrazky/sellers/17/17_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://shop.onthewaytoo.com",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/onthewaytoo.studio/"
+          }
+        },
+      "description": "Láska k cestování přenesená na papír. Onthewaytoo je značka, pod kterou vznikají zejména autorské ilustrované plakáty inspirované všemi různými kouty světa. Jejím cílem je nabídnout osobnější dekorace, při kterých si každý zavzpomíná na zážitky z cest, připomene si oblíbené místo, a nebo se obklopí svou vysněnou destinací. Co za produkty u nás najdete? Plakáty, pohlednice, samolepky, přání, kalendáře, plecháčky, termosky, trička.",
+      "photos": [
+        { "src": "obrazky/sellers/17/17_1.jpg", "alt": "Ilustrovaný plakát s dřevěnou horskou vilou v rámu" },
+        { "src": "obrazky/sellers/17/17_2.jpg", "alt": "Plecháček s ilustrací domku pod zasněženými horami" },
+        { "src": "obrazky/sellers/17/17_3.jpg", "alt": "Tričko s potiskem hor a lesa" }
+      ]
+    },
+    {
+      "name": "Mia.chaela.studio",
+      "meta": "Jemné ilustrace propojené s moderním designem.",
+      "logo": "obrazky/sellers/18/18_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://miachaelastudio.com",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/mia.chaela.studio/"
+          }
+        },
+      "description": "Jmenuji se Michaela a tvořím pod svou značkou Mia.chaela.studio. Prolínám svět jemných ilustrací s moderním designem. Moje práce jsou protkané romantickými a přírodními motivy, které vyprávějí příběhy každodenního života. Baví mě kombinovat pastelové odstíny s výraznými sytými barvami, tvořit koláže a nacházet krásu v obyčejných momentech. V mých ilustracích najdete melancholii i radost, smutky i naději – vše, co dělá náš život tak jedinečným.",
+      "photos": [
+        { "src": "obrazky/sellers/18/18_1.jpg", "alt": "Pohlednice s podzimní ilustrací městské ulice" },
+        { "src": "obrazky/sellers/18/18_2.jpg", "alt": "Zarámovaný plakát Cin cin s ilustracemi drinků" },
+        { "src": "obrazky/sellers/18/18_3.jpg", "alt": "Ilustrace dívky na kole s kyticí v košíku" }
       ]
     }
   ]

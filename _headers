@@ -7,10 +7,6 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-# Administrace CMS – neindexovat
-/admin/*
-  X-Robots-Tag: noindex
-
 # Fragmenty šablon (hlavička, patička, modal) – nejsou to samostatné stránky
 /partials/*
   X-Robots-Tag: noindex

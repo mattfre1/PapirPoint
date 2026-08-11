@@ -1,6 +1,10 @@
 // Označí, že běží JS – CSS pak smí skrývat .fade-in prvky (progressive enhancement)
 document.documentElement.classList.add("js");
 
+/* =========================
+   Šablony (hlavička, patička, modal)
+========================= */
+
 function pathPrefix() {
   return window.location.pathname.includes("/stranky/") ? "../" : "";
 }
@@ -42,7 +46,7 @@ function initMobileMenu() {
   nav.classList.remove("is-open");
   btn.classList.remove("is-open");
   btn.setAttribute("aria-expanded", "false");
-  
+
   if (btn.dataset.bound === "1") return;
   btn.dataset.bound = "1";
 
@@ -214,11 +218,31 @@ function initContactForm() {
 }
 
 /* =========================
-   Sellers
+   Detail prodejce (modal)
+
+   Data nejsou v JS ani v JSON – jsou přímo v HTML ve skrytých blocích
+   .prodejce-detail, které do stránky vygeneruje .claude/generuj-prodejce.ps1
+   ze souboru obsah/sellers.json. Modal si z nich jen klonuje obsah.
+
+   Fotky mají v HTML data-src (ne src), aby se stahovaly až při otevření
+   detailu – jinak by skrytý blok stáhl fotky všech prodejců hned.
 ========================= */
 
-let sellersItems = [];
-let sellersIndex = 0;
+const IKONA_WEB = `<svg viewBox="-1 0 19 19" fill="currentColor" aria-hidden="true"><path d="M16.417 9.57a7.917 7.917 0 1 1-8.144-7.908 1.758 1.758 0 0 1 .451 0 7.913 7.913 0 0 1 7.693 7.907zM5.85 15.838q.254.107.515.193a11.772 11.772 0 0 1-1.572-5.92h-3.08a6.816 6.816 0 0 0 4.137 5.727zM2.226 6.922a6.727 6.727 0 0 0-.511 2.082h3.078a11.83 11.83 0 0 1 1.55-5.89q-.249.083-.493.186a6.834 6.834 0 0 0-3.624 3.622zm8.87 2.082a14.405 14.405 0 0 0-.261-2.31 9.847 9.847 0 0 0-.713-2.26c-.447-.952-1.009-1.573-1.497-1.667a8.468 8.468 0 0 0-.253 0c-.488.094-1.05.715-1.497 1.668a9.847 9.847 0 0 0-.712 2.26 14.404 14.404 0 0 0-.261 2.309zm-.974 5.676a9.844 9.844 0 0 0 .713-2.26 14.413 14.413 0 0 0 .26-2.309H5.903a14.412 14.412 0 0 0 .261 2.31 9.844 9.844 0 0 0 .712 2.259c.487 1.036 1.109 1.68 1.624 1.68s1.137-.644 1.623-1.68zm4.652-2.462a6.737 6.737 0 0 0 .513-2.107h-3.082a11.77 11.77 0 0 1-1.572 5.922q.261-.086.517-.194a6.834 6.834 0 0 0 3.624-3.621zM11.15 3.3a6.82 6.82 0 0 0-.496-.187 11.828 11.828 0 0 1 1.55 5.89h3.081A6.815 6.815 0 0 0 11.15 3.3z"/></svg>`;
+
+const IKONA_INSTAGRAM = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.34,5.46h0a1.2,1.2,0,1,0,1.2,1.2A1.2,1.2,0,0,0,17.34,5.46Zm4.6,2.42a7.59,7.59,0,0,0-.46-2.43,4.94,4.94,0,0,0-1.16-1.77,4.7,4.7,0,0,0-1.77-1.15,7.3,7.3,0,0,0-2.43-.47C15.06,2,14.72,2,12,2s-3.06,0-4.12.06a7.3,7.3,0,0,0-2.43.47A4.78,4.78,0,0,0,3.68,3.68,4.7,4.7,0,0,0,2.53,5.45a7.3,7.3,0,0,0-.47,2.43C2,8.94,2,9.28,2,12s0,3.06.06,4.12a7.3,7.3,0,0,0,.47,2.43,4.7,4.7,0,0,0,1.15,1.77,4.78,4.78,0,0,0,1.77,1.15,7.3,7.3,0,0,0,2.43.47C8.94,22,9.28,22,12,22s3.06,0,4.12-.06a7.3,7.3,0,0,0,2.43-.47,4.7,4.7,0,0,0,1.77-1.15,4.85,4.85,0,0,0,1.16-1.77,7.59,7.59,0,0,0,.46-2.43c0-1.06.06-1.4.06-4.12S22,8.94,21.94,7.88ZM20.14,16a5.61,5.61,0,0,1-.34,1.86,3.06,3.06,0,0,1-.75,1.15,3.19,3.19,0,0,1-1.15.75,5.61,5.61,0,0,1-1.86.34c-1,.05-1.37.06-4,.06s-3,0-4-.06A5.73,5.73,0,0,1,6.1,19.8,3.27,3.27,0,0,1,5,19.05a3,3,0,0,1-.74-1.15A5.54,5.54,0,0,1,3.86,16c0-1-.06-1.37-.06-4s0-3,.06-4A5.54,5.54,0,0,1,4.21,6.1,3,3,0,0,1,5,5,3.14,3.14,0,0,1,6.1,4.2,5.73,5.73,0,0,1,8,3.86c1,0,1.37-.06,4-.06s3,0,4,.06a5.61,5.61,0,0,1,1.86.34A3.06,3.06,0,0,1,19.05,5,3.06,3.06,0,0,1,19.8,6.1,5.61,5.61,0,0,1,20.14,8c.05,1,.06,1.37.06,4S20.19,15,20.14,16ZM12,6.87A5.13,5.13,0,1,0,17.14,12,5.12,5.12,0,0,0,12,6.87Zm0,8.46A3.33,3.33,0,1,1,15.33,12,3.33,3.33,0,0,1,12,15.33Z"/></svg>`;
+
+function vytvorIkonuOdkazu(url, popis, social) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.className = "social-link";
+  a.setAttribute("aria-label", popis);
+  if (social) a.setAttribute("data-social", social);
+  a.innerHTML = social === "instagram" ? IKONA_INSTAGRAM : IKONA_WEB;
+  return a;
+}
 
 function openSellerModal(index) {
   const dlg = document.querySelector("#seller-modal");
@@ -230,34 +254,40 @@ function openSellerModal(index) {
 
   if (!dlg || !titleEl || !descEl || !photosEl || !actionsEl) return;
 
-  sellersIndex = index;
-  const item = sellersItems[sellersIndex];
-  if (!item) return;
+  const detail = document.querySelector(`.prodejce-detail[data-prodejce="${index}"]`);
+  if (!detail) return;
 
-  titleEl.textContent = item.name || "";
+  // název
+  titleEl.textContent = detail.dataset.nazev || "";
 
   // meta
-  metaEl.textContent = item.meta || "";
-  metaEl.style.display = item.meta ? "" : "none";
+  const meta = detail.querySelector(".prodejce-detail__meta")?.textContent.trim() || "";
+  metaEl.textContent = meta;
+  metaEl.style.display = meta ? "" : "none";
 
   // popis
-  descEl.textContent = item.description || "";
-  descEl.style.display = item.description ? "" : "none";
+  const desc = detail.querySelector(".prodejce-detail__desc")?.textContent.trim() || "";
+  descEl.textContent = desc;
+  descEl.style.display = desc ? "" : "none";
 
-  // fotky (max 3)
+  // fotky – v HTML jsou jen jako data-src, <img> vzniká až tady,
+  // takže se stahují na vyžádání a ne u všech prodejců najednou
   photosEl.innerHTML = "";
-  const photos = Array.isArray(item.photos) ? item.photos.slice(0, 3) : [];
+  const fotky = detail.querySelectorAll(".prodejce-detail__photo");
 
-  if (photos.length) {
+  if (fotky.length) {
     photosEl.style.display = "";
-    photos.forEach((p, i) => {
-      if (!p?.src) return;
+    fotky.forEach((zdroj) => {
+      if (!zdroj.dataset.src) return;
+
       const wrap = document.createElement("div");
       wrap.className = "seller-modal__photo-wrap";
+
       const img = document.createElement("img");
       img.loading = "lazy";
-      img.src = withPrefix(p.src);
-      img.alt = p.alt || `${item.name} – fotka ${i + 1}`;
+      img.src = zdroj.dataset.src;
+      img.alt = zdroj.dataset.alt || "";
+
       wrap.appendChild(img);
       photosEl.appendChild(wrap);
     });
@@ -265,72 +295,18 @@ function openSellerModal(index) {
     photosEl.style.display = "none";
   }
 
-  // akce
+  // odkazy (web + Instagram)
   actionsEl.innerHTML = "";
   actionsEl.style.display = "none";
-
-  const link = item.link || null;
-  const legacyUrl =
-    typeof item.url === "string" && item.url.trim().length
-      ? item.url.trim()
-      : "";
-
-  const type = link?.type || (legacyUrl ? "web" : "none");
-  const url =
-    (typeof link?.url === "string" && link.url.trim().length
-      ? link.url.trim()
-      : "") || legacyUrl;
-
-  const customLabel =
-    typeof link?.label === "string" ? link.label.trim() : "";
-
-  const socials =
-    link && typeof link.socials === "object" && link.socials
-      ? link.socials
-      : {};
-
-  const instagramUrl =
-    typeof socials.instagram === "string" && socials.instagram.trim().length
-      ? socials.instagram.trim()
-      : "";
 
   const actionsWrap = document.createElement("div");
   actionsWrap.className = "seller-actions";
 
-  // WEB tlačítko
-// WEB ikona
-if (type !== "none" && url) {
-  const web = document.createElement("a");
-  web.href = url;
-  web.target = "_blank";
-  web.rel = "noopener noreferrer";
-  web.className = "social-link";
-  web.setAttribute("aria-label", "Web prodejce");
-
-  web.innerHTML = `
-    <svg viewBox="-1 0 19 19" fill="currentColor" aria-hidden="true"><path d="M16.417 9.57a7.917 7.917 0 1 1-8.144-7.908 1.758 1.758 0 0 1 .451 0 7.913 7.913 0 0 1 7.693 7.907zM5.85 15.838q.254.107.515.193a11.772 11.772 0 0 1-1.572-5.92h-3.08a6.816 6.816 0 0 0 4.137 5.727zM2.226 6.922a6.727 6.727 0 0 0-.511 2.082h3.078a11.83 11.83 0 0 1 1.55-5.89q-.249.083-.493.186a6.834 6.834 0 0 0-3.624 3.622zm8.87 2.082a14.405 14.405 0 0 0-.261-2.31 9.847 9.847 0 0 0-.713-2.26c-.447-.952-1.009-1.573-1.497-1.667a8.468 8.468 0 0 0-.253 0c-.488.094-1.05.715-1.497 1.668a9.847 9.847 0 0 0-.712 2.26 14.404 14.404 0 0 0-.261 2.309zm-.974 5.676a9.844 9.844 0 0 0 .713-2.26 14.413 14.413 0 0 0 .26-2.309H5.903a14.412 14.412 0 0 0 .261 2.31 9.844 9.844 0 0 0 .712 2.259c.487 1.036 1.109 1.68 1.624 1.68s1.137-.644 1.623-1.68zm4.652-2.462a6.737 6.737 0 0 0 .513-2.107h-3.082a11.77 11.77 0 0 1-1.572 5.922q.261-.086.517-.194a6.834 6.834 0 0 0 3.624-3.621zM11.15 3.3a6.82 6.82 0 0 0-.496-.187 11.828 11.828 0 0 1 1.55 5.89h3.081A6.815 6.815 0 0 0 11.15 3.3z"/></svg>
-  `;
-
-  actionsWrap.appendChild(web);
-}
-
-  // Instagram ikona
-  if (instagramUrl) {
-    const ig = document.createElement("a");
-    ig.href = instagramUrl;
-    ig.target = "_blank";
-    ig.rel = "noopener noreferrer";
-    ig.className = "social-link";
-    ig.setAttribute("data-social", "instagram");
-    ig.setAttribute("aria-label", "Instagram");
-
-    ig.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.34,5.46h0a1.2,1.2,0,1,0,1.2,1.2A1.2,1.2,0,0,0,17.34,5.46Zm4.6,2.42a7.59,7.59,0,0,0-.46-2.43,4.94,4.94,0,0,0-1.16-1.77,4.7,4.7,0,0,0-1.77-1.15,7.3,7.3,0,0,0-2.43-.47C15.06,2,14.72,2,12,2s-3.06,0-4.12.06a7.3,7.3,0,0,0-2.43.47A4.78,4.78,0,0,0,3.68,3.68,4.7,4.7,0,0,0,2.53,5.45a7.3,7.3,0,0,0-.47,2.43C2,8.94,2,9.28,2,12s0,3.06.06,4.12a7.3,7.3,0,0,0,.47,2.43,4.7,4.7,0,0,0,1.15,1.77,4.78,4.78,0,0,0,1.77,1.15,7.3,7.3,0,0,0,2.43.47C8.94,22,9.28,22,12,22s3.06,0,4.12-.06a7.3,7.3,0,0,0,2.43-.47,4.7,4.7,0,0,0,1.77-1.15,4.85,4.85,0,0,0,1.16-1.77,7.59,7.59,0,0,0,.46-2.43c0-1.06.06-1.4.06-4.12S22,8.94,21.94,7.88ZM20.14,16a5.61,5.61,0,0,1-.34,1.86,3.06,3.06,0,0,1-.75,1.15,3.19,3.19,0,0,1-1.15.75,5.61,5.61,0,0,1-1.86.34c-1,.05-1.37.06-4,.06s-3,0-4-.06A5.73,5.73,0,0,1,6.1,19.8,3.27,3.27,0,0,1,5,19.05a3,3,0,0,1-.74-1.15A5.54,5.54,0,0,1,3.86,16c0-1-.06-1.37-.06-4s0-3,.06-4A5.54,5.54,0,0,1,4.21,6.1,3,3,0,0,1,5,5,3.14,3.14,0,0,1,6.1,4.2,5.73,5.73,0,0,1,8,3.86c1,0,1.37-.06,4-.06s3,0,4,.06a5.61,5.61,0,0,1,1.86.34A3.06,3.06,0,0,1,19.05,5,3.06,3.06,0,0,1,19.8,6.1,5.61,5.61,0,0,1,20.14,8c.05,1,.06,1.37.06,4S20.19,15,20.14,16ZM12,6.87A5.13,5.13,0,1,0,17.14,12,5.12,5.12,0,0,0,12,6.87Zm0,8.46A3.33,3.33,0,1,1,15.33,12,3.33,3.33,0,0,1,12,15.33Z"></path>
-        </svg>
-    `;
-
-    actionsWrap.appendChild(ig);
+  if (detail.dataset.web) {
+    actionsWrap.appendChild(vytvorIkonuOdkazu(detail.dataset.web, "Web prodejce"));
+  }
+  if (detail.dataset.instagram) {
+    actionsWrap.appendChild(vytvorIkonuOdkazu(detail.dataset.instagram, "Instagram", "instagram"));
   }
 
   if (actionsWrap.children.length > 0) {
@@ -372,159 +348,25 @@ function initSellerModalControls() {
   });
 }
 
-function createSellerCard(item, index) {
-  const el = document.createElement("button");
-  el.type = "button";
-  el.className = "grid-item";
-  el.setAttribute("aria-label", `Detail: ${item.name}`);
-  el.dataset.index = String(index);
+// Karty prodejců jsou v HTML; JS jim jen navěsí otevření detailu.
+// Bez JS zůstane seznam čitelný, jen bez modalu.
+function initSellerCards() {
+  const karty = document.querySelectorAll("[data-prodejce-karta]");
+  if (!karty.length) return;
 
-  const img = document.createElement("img");
-  img.className = "grid-item__logo";
-  img.alt = item.logoAlt || `${item.name} logo`;
-  img.loading = "lazy";
-  img.src = withPrefix(item.logo);
-
-  const textWrap = document.createElement("div");
-  textWrap.className = "grid-item__text";
-
-  const title = document.createElement("h2");
-  title.className = "grid-item__title";
-  title.textContent = item.name;
-
-  const meta = document.createElement("p");
-  meta.className = "grid-item__meta";
-  meta.textContent = item.meta || "";
-
-  textWrap.appendChild(title);
-  if (item.meta) textWrap.appendChild(meta);
-  if (item.description) {
-  const desc = document.createElement("p");
-  desc.className = "grid-item__desc";
-  desc.textContent = item.description.slice(0, 120) + "...";
-  textWrap.appendChild(desc);
-  }
-
-  el.appendChild(img);
-  el.appendChild(textWrap);
-
-  el.addEventListener("click", () => openSellerModal(index));
-  return el;
-}
-
-async function renderSellersFromJson() {
-  const grid = document.querySelector("#sellers-grid");
-  if (!grid) return; // nejsme na stránce sellers
-
-  const titleEl = document.querySelector("#sellers-title");
-  const introEl = document.querySelector("#sellers-intro");
-
-  try {
-    const res = await fetch(withPrefix("obsah/sellers.json"));
-    if (!res.ok) throw new Error(`Fetch sellers.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    const items = Array.isArray(data.items) ? data.items : [];
-    sellersItems = items;
-
-    grid.innerHTML = "";
-    items.forEach((item, idx) => {
-      if (!item || !item.name || !item.logo) return;
-      grid.appendChild(createSellerCard(item, idx));
+  karty.forEach((karta) => {
+    karta.addEventListener("click", () => {
+      openSellerModal(karta.dataset.prodejceKarta);
     });
+  });
 
-    if (items.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádní prodejci.";
-
-    initSellerModalControls();
-  } catch (err) {
-    console.error(err);
-    if (introEl) introEl.textContent = "Prodejce se nepodařilo načíst.";
-  }
+  initSellerModalControls();
 }
 
 /* =========================
-   Sponsors
-========================= */
+   Galerie + Lightbox
 
-function createSponsorCard(item) {
-  const hasUrl = !!item.url;
-  const el = document.createElement(hasUrl ? "a" : "div");
-  el.className = "grid-item";
-  if (!hasUrl) el.classList.add("grid-item--static");
-
-  el.dataset.type = "sponsor";  
-
-  if (hasUrl) {
-    el.href = item.url;
-    el.target = "_blank";
-    el.rel = "noopener noreferrer";
-    el.setAttribute("aria-label", `${item.name} (otevřít web)`);
-  } else {
-    el.setAttribute("role", "group");
-    el.setAttribute("aria-label", item.name);
-  }
-
-  const img = document.createElement("img");
-  img.className = "grid-item__logo";
-  img.alt = item.logoAlt || `${item.name} logo`;
-  img.loading = "lazy";
-  img.src = withPrefix(item.logo);
-
-  const textWrap = document.createElement("div");
-  textWrap.className = "grid-item__text";
-
-  const title = document.createElement("h2");
-  title.className = "grid-item__title";
-  title.textContent = item.name;
-
-  const meta = document.createElement("p");
-  meta.className = "grid-item__meta";
-  meta.textContent = item.meta || "";
-
-  textWrap.appendChild(title);
-  if (item.meta) textWrap.appendChild(meta);
-
-  el.appendChild(img);
-  el.appendChild(textWrap);
-
-  return el;
-}
-
-async function renderSponsorsFromJson() {
-  const grid = document.querySelector("#sponsors-grid");
-  if (!grid) return; // nejsme na stránce sponzorů
-
-  const titleEl = document.querySelector("#sponsors-title");
-  const introEl = document.querySelector("#sponsors-intro");
-
-  try {
-    const res = await fetch(withPrefix("obsah/sponsors.json"));
-    if (!res.ok) throw new Error(`Fetch sponsors.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    grid.innerHTML = "";
-    const items = Array.isArray(data.items) ? data.items : [];
-
-    for (const item of items) {
-      if (!item || !item.name || !item.logo) continue;
-      grid.appendChild(createSponsorCard(item));
-    }
-
-    if (items.length === 0 && introEl) introEl.textContent = "Zatím tu nejsou žádní sponzoři.";
-  } catch (err) {
-    console.error(err);
-    if (introEl) introEl.textContent = "Sponzory se nepodařilo načíst.";
-  }
-}
-
-/* =========================
-   Gallery + Lightbox
+   Fotky jsou přímo v HTML (galerie.html) jako <button class="gallery-item">.
 ========================= */
 
 let galleryItems = [];
@@ -536,12 +378,15 @@ function openLightbox(index) {
   const cap = document.querySelector("#lightbox-caption");
   if (!dlg || !img) return;
 
-  galleryIndex = index;
-  const item = galleryItems[galleryIndex];
+  const btn = galleryItems[index];
+  if (!btn) return;
 
-  img.src = withPrefix(item.src);
-  img.alt = item.alt || "";
-  if (cap) cap.textContent = item.caption || "";
+  galleryIndex = index;
+  const zdroj = btn.querySelector("img");
+
+  img.src = btn.dataset.full || zdroj?.src || "";
+  img.alt = zdroj?.alt || "";
+  if (cap) cap.textContent = btn.dataset.caption || "";
 
   dlg.showModal();
 }
@@ -586,49 +431,18 @@ function initLightboxControls() {
   });
 }
 
-async function renderGalleryFromJson() {
+function initGallery() {
   const grid = document.querySelector("#gallery-grid");
   if (!grid) return;
 
-  const titleEl = document.querySelector("#gallery-title");
-  const introEl = document.querySelector("#gallery-intro");
+  galleryItems = Array.from(grid.querySelectorAll(".gallery-item"));
+  if (!galleryItems.length) return;
 
-  try {
-    const res = await fetch(withPrefix("obsah/gallery.json"));
-    if (!res.ok) throw new Error(`Fetch gallery.json failed (${res.status})`);
-    const data = await res.json();
+  galleryItems.forEach((btn, idx) => {
+    btn.addEventListener("click", () => openLightbox(idx));
+  });
 
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    const items = Array.isArray(data.items) ? data.items : [];
-    galleryItems = items.filter((x) => x && x.src);
-
-    grid.innerHTML = "";
-
-    galleryItems.forEach((item, idx) => {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "gallery-item";
-      card.setAttribute("aria-label", item.caption || item.alt || `Fotka ${idx + 1}`);
-
-      const img = document.createElement("img");
-      img.loading = "lazy";
-      img.src = withPrefix(item.src);
-      img.alt = item.alt || "";
-
-      card.appendChild(img);
-      card.addEventListener("click", () => openLightbox(idx));
-      grid.appendChild(card);
-    });
-
-    if (galleryItems.length === 0 && introEl) introEl.textContent = "Galerie je zatím prázdná.";
-
-    initLightboxControls();
-  } catch (err) {
-    console.error(err);
-    if (introEl) introEl.textContent = "Galerii se nepodařilo načíst.";
-  }
+  initLightboxControls();
 }
 
 /* =========================
@@ -722,7 +536,10 @@ function initCountdown() {
 }
 
 /* =========================
-   Co tě čeká – náhodní prodejci
+   Co tě čeká – náhodná trojice prodejců
+
+   V HTML jsou kartičky všech prodejců, první tři viditelné a zbytek hidden.
+   JS jen prohodí, která trojice je vidět – bez JS uvidíš první tři.
 ========================= */
 
 // Fisher–Yates, pracuje na kopii
@@ -735,464 +552,22 @@ function shuffle(list) {
   return a;
 }
 
-// index = pozice v celém seznamu prodejců (kvůli otevření detailu)
-function createFeaturedCard(item, index) {
-  const el = document.createElement("button");
-  el.type = "button";
-  el.className = "featured-card";
-  el.setAttribute("aria-label", `${item.name} – zobrazit detail`);
+const POCET_NAHLEDU = 3;
 
-  const img = document.createElement("img");
-  img.className = "featured-card__logo";
-  img.src = withPrefix(item.logo);
-  img.alt = item.logoAlt || `${item.name} logo`;
-  img.loading = "lazy";
-  img.decoding = "async";
-
-  const name = document.createElement("h3");
-  name.className = "featured-card__name";
-  name.textContent = item.name;
-
-  el.appendChild(img);
-  el.appendChild(name);
-
-  if (item.meta) {
-    const meta = document.createElement("p");
-    meta.className = "featured-card__meta";
-    meta.textContent = item.meta;
-    el.appendChild(meta);
-  }
-
-  el.addEventListener("click", () => openSellerModal(index));
-  return el;
-}
-
-async function renderFeaturedSellers() {
+function initFeaturedSellers() {
   const grid = document.querySelector("#featured-sellers");
   if (!grid) return;
 
-  const intro = document.querySelector("#featured-sellers-intro");
-
-  try {
-    const res = await fetch(withPrefix("obsah/sellers.json"));
-    if (!res.ok) throw new Error(`Fetch sellers.json failed (${res.status})`);
-    const data = await res.json();
-
-    const items = (Array.isArray(data.items) ? data.items : [])
-      .filter((i) => i && i.name && i.logo);
-
-    if (!items.length) {
-      grid.innerHTML = "";
-      if (intro) intro.textContent = "Prodejce brzy představíme.";
-      return;
-    }
-
-    // detail prodejce čte z globálního sellersItems (sdíleno se stránkou Prodejci)
-    sellersItems = items;
-
-    // losujeme z indexů, ať víme, koho v seznamu otevřít
-    const poradi = shuffle(items.map((_, i) => i)).slice(0, 3);
-
-    grid.innerHTML = "";
-    poradi.forEach((i) => grid.appendChild(createFeaturedCard(items[i], i)));
-
-    initSellerModalControls();
-  } catch (err) {
-    console.error(err);
-    if (intro) intro.textContent = "Ukázku prodejců se nepodařilo načíst.";
-  }
-}
-
-/* =========================
-   Homepage blocks (content/home.json)
-========================= */
-
-function createHomeSponsorCard(item) {
-  const a = document.createElement("a");
-  a.className = "sponsor-card";
-  a.href = item.url || "#";
-
-  if (item.url) {
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-  }
-
-  a.setAttribute("aria-label", item.name || "Sponzor");
-
-  const img = document.createElement("img");
-  img.src = withPrefix(item.logo);
-  img.alt = item.logoAlt || item.name || "Sponzor";
-  img.loading = "lazy";
-
-  a.appendChild(img);
-  return a;
-}
-
-function createHomeSocialItem(item, idx = 0) {
-  const a = document.createElement("a");
-
-  const platform = (item.platform || "").toLowerCase();
-  a.className = "social-item" + (platform === "instagram" ? " social-item--ig" : "");
-
-  a.href = item.url || "#";
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";
-  a.setAttribute("aria-label", (item.caption || "Příspěvek") + " (otevřít)");
-
-  const img = document.createElement("img");
-  img.src = withPrefix(item.image);
-  img.alt = item.caption || "Příspěvek";
-  img.loading = idx < 3 ? "eager" : "lazy";
-  img.decoding = "async";
-  a.appendChild(img);
-  if (idx < 1) img.fetchPriority = "high"; // jen úplně první
-
-  return a;
-}
-
-
-async function renderHomeFromJson() {
-  const heroDescEl = document.querySelector("#home-hero-desc");
-  const aboutEl = document.querySelector("#home-about-text");
-  const aboutLongEl = document.querySelector("#home-about-long");
-  const sponsorsGrid = document.querySelector("#home-sponsors-grid");
-  const socialGrid = document.querySelector("#home-social-grid");
-  const socialIntro = document.querySelector("#social-intro");
-
-  // nejsme na homepage
-  if (!heroDescEl && !aboutEl && !aboutLongEl && !sponsorsGrid && !socialGrid) return;
-
-  try {
-    const res = await fetch(withPrefix("obsah/home.json"));
-    if (!res.ok) throw new Error(`Fetch home.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (heroDescEl && typeof data.heroDesc === "string") heroDescEl.textContent = data.heroDesc;
-    if (aboutEl && typeof data.aboutTeaser === "string") aboutEl.textContent = data.aboutTeaser;
-
-    if (aboutLongEl) {
-      if (typeof data.aboutLong === "string" && data.aboutLong.trim().length) {
-        aboutLongEl.textContent = data.aboutLong;
-        aboutLongEl.style.display = "";
-      } else {
-        aboutLongEl.textContent = "";
-        aboutLongEl.style.display = "none";
-      }
-    }
-
-    if (sponsorsGrid) {
-      sponsorsGrid.innerHTML = "";
-      const featured = Array.isArray(data.featuredSponsors) ? data.featuredSponsors : [];
-      featured.forEach((item) => {
-        if (!item || !item.logo) return;
-        sponsorsGrid.appendChild(createHomeSponsorCard(item));
-      });
-    }
-
-    if (socialGrid) {
-      socialGrid.innerHTML = "";
-      const featured = Array.isArray(data.featuredSocial) ? data.featuredSocial : [];
-      featured.forEach((item, idx) => {
-        if (!item || !item.image || !item.url) return;
-      socialGrid.appendChild(createHomeSocialItem(item, idx));
-      });
-
-      if (socialIntro) {
-        socialIntro.textContent = featured.length
-          ? "Vybrané příspěvky (kliknutím otevřeš originál)."
-          : "Zatím tu nejsou žádné příspěvky.";
-      }
-    }
-  } catch (err) {
-    console.error(err);
-    if (socialIntro) socialIntro.textContent = "Nepodařilo se načíst obsah homepage.";
-  }
-}
-
-async function renderAboutFromJson() {
-  // když nejsme na about stránce, nic nedělej
-  const titleEl = document.querySelector("#about-title");
-  const introEl = document.querySelector("#about-intro");
-  const container = document.querySelector("#about-sections");
-  const fallbackSection1 = document.querySelector("#about-h2-1"); // pokud jedeš “pevná IDčka”
-
-  // podporujeme 2 varianty:
-  // 1) dynamické sekce do #about-sections
-  // 2) fallback na pevná IDčka (h2/p1/p2…)
-  const hasDynamic = !!container;
-  const hasStatic = !!titleEl || !!introEl || !!fallbackSection1;
-
-  if (!hasDynamic && !hasStatic) return;
-
-  try {
-    const res = await fetch(withPrefix("obsah/about.json"));
-    if (!res.ok) throw new Error(`Fetch about.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    // Varianta 1: dynamický render do #about-sections
-    if (container) {
-      container.innerHTML = "";
-      const sections = Array.isArray(data.sections) ? data.sections : [];
-
-      sections.forEach((sec) => {
-        if (!sec) return;
-
-        const sectionEl = document.createElement("section");
-        sectionEl.className = "section fade-in";
-
-        if (sec.heading) {
-          const h2 = document.createElement("h2");
-          h2.textContent = sec.heading;
-          sectionEl.appendChild(h2);
-        }
-
-        // odstavce
-        const paragraphs = Array.isArray(sec.paragraphs) ? sec.paragraphs : [];
-        paragraphs.forEach((p) => {
-          const text = typeof p === "string" ? p : p?.text;
-          if (!text) return;
-
-          const para = document.createElement("p");
-          para.textContent = text;
-          sectionEl.appendChild(para);
-        });
-
-        // ✅ ODRÁŽKY (VOLITELNÉ)
-        const bullets = Array.isArray(sec.bullets) ? sec.bullets : [];
-        const safeBullets = bullets
-          .map((b) => (typeof b === "string" ? b : b?.text))
-          .filter((t) => typeof t === "string" && t.trim().length);
-
-        if (safeBullets.length) {
-          const ul = document.createElement("ul");
-          ul.className = "about-list";
-
-          safeBullets.forEach((text) => {
-            const li = document.createElement("li");
-            li.textContent = text;
-            ul.appendChild(li);
-          });
-
-          sectionEl.appendChild(ul);
-        }
-
-        container.appendChild(sectionEl);
-      });
-    } else {
-      // Varianta 2: pevná IDčka (volitelné)
-      const sections = Array.isArray(data.sections) ? data.sections : [];
-
-      const setText = (id, text) => {
-        const el = document.querySelector(id);
-        if (!el) return;
-        el.textContent = text || "";
-        if (!text) el.style.display = "none";
-      };
-
-      setText("#about-h2-1", sections[0]?.heading);
-      setText("#about-p-1", sections[0]?.paragraphs?.[0]?.text ?? sections[0]?.paragraphs?.[0]);
-      setText("#about-p-2", sections[0]?.paragraphs?.[1]?.text ?? sections[0]?.paragraphs?.[1]);
-
-      setText("#about-h2-2", sections[1]?.heading);
-      setText("#about-p-3", sections[1]?.paragraphs?.[0]?.text ?? sections[1]?.paragraphs?.[0]);
-      setText("#about-p-4", sections[1]?.paragraphs?.[1]?.text ?? sections[1]?.paragraphs?.[1]);
-
-      // ODRÁŽKY u statické varianty:
-      // Aby šly vykreslit i tady, musel bys mít v HTML např. <ul id="about-ul-1"></ul>, <ul id="about-ul-2"></ul>
-      // Když je nemáš, nic se neděje (žádná chyba).
-    }
-  } catch (err) {
-    console.error(err);
-    if (titleEl) titleEl.textContent = "O projektu";
-    if (introEl) introEl.textContent = "Obsah se nepodařilo načíst.";
-  }
-}
-
-
-async function renderContactsFromJson() {
-  const titleEl = document.querySelector("#contacts-title");
-  const introEl = document.querySelector("#contacts-intro");
-
-  // když nejsme na kontakt stránce, pryč
-  if (!titleEl && !introEl) return;
-
-  const addressLabelEl = document.querySelector("#contacts-address-label");
-  const addressEl = document.querySelector("#contacts-address");
-
-  const emailLabelEl = document.querySelector("#contacts-email-label");
-  const emailEl = document.querySelector("#contacts-email");
-
-  const phoneLabelEl = document.querySelector("#contacts-phone-label");
-  const phonesWrapEl = document.querySelector("#contacts-phones");
-
-  const socialLabelEl = document.querySelector("#contacts-social-label");
-  const socialsEl = document.querySelector("#contacts-socials");
-
-  const formTitleEl = document.querySelector("#contacts-form-title");
-  const formNoteEl = document.querySelector("#contacts-form-note");
-
-  const mapTitleEl = document.querySelector("#contacts-map-title");
-  const mapEl = document.querySelector("#contacts-map");
-  const mapNoteEl = document.querySelector("#contacts-map-note");
-
-  try {
-    const res = await fetch(withPrefix("obsah/contacts.json"));
-    if (!res.ok) throw new Error(`Fetch contacts.json failed (${res.status})`);
-    const data = await res.json();
-
-    if (titleEl && data.title) titleEl.textContent = data.title;
-    if (introEl && data.intro) introEl.textContent = data.intro;
-
-    // LEFT
-    const left = data.left || {};
-
-    if (addressLabelEl) addressLabelEl.textContent = left.addressLabel || "";
-    if (addressEl) {
-      addressEl.innerHTML = "";
-      const lines = Array.isArray(left.addressLines) ? left.addressLines : [];
-
-      const parentItem = addressEl.closest(".contact-item");
-
-      if (lines.length === 0) {
-        if (parentItem) parentItem.style.display = "none";
-      } else {
-        lines.forEach((line) => {
-          const t = typeof line === "string" ? line : line?.text;
-          if (!t) return;
-          const div = document.createElement("div");
-          div.textContent = t;
-          addressEl.appendChild(div);
-        });
-      }
-    }
-
-    if (emailLabelEl) emailLabelEl.textContent = left.emailLabel || "";
-    if (emailEl) {
-      const email = left.email || "";
-      emailEl.textContent = email;
-      emailEl.href = email ? `mailto:${email}` : "#";
-      if (!email) emailEl.style.display = "none";
-    }
-
-    if (phoneLabelEl) phoneLabelEl.textContent = left.phoneLabel || "Telefon";
-
-    if (phonesWrapEl) {
-      phonesWrapEl.innerHTML = "";
-
-      const phones = [left.phone, left.phone2]
-        .filter((p) => typeof p === "string" && p.trim().length);
-
-      const phoneItemEl = document.querySelector("#contacts-phone-item");
-
-      if (!phones.length) {
-        if (phoneItemEl) phoneItemEl.style.display = "none";
-      } else {
-        phones.forEach((phone) => {
-          const a = document.createElement("a");
-          a.className = "contact-item__value";
-          a.href = `tel:${phone.replace(/\s+/g, "")}`;
-          a.textContent = phone;
-          a.style.display = "block"; // každé číslo pod sebe
-          phonesWrapEl.appendChild(a);
-        });
-      }
-    }
-
-  if (socialLabelEl) socialLabelEl.textContent = left.socialLabel || "";
-
-  const socials = Array.isArray(left.socials) ? left.socials : [];
-
-  const findByLabel = (label) =>
-    socials.find((s) => (s?.label || "").trim().toLowerCase() === label);
-
-  const ig = findByLabel("instagram");
-  const fb = findByLabel("facebook");
-  const tt = findByLabel("tiktok");
-
-  // 1) Preferujeme ikonky v HTML (když existují)
-  const igA = document.querySelector("#contacts-social-instagram");
-  const fbA = document.querySelector("#contacts-social-facebook");
-  const ttA = document.querySelector("#contacts-social-tiktok");
-
-  const hasIconSet = !!(igA || fbA || ttA);
-
-  if (hasIconSet) {
-    if (igA) {
-      if (ig?.url) { igA.href = ig.url; igA.style.display = ""; }
-      else { igA.style.display = "none"; }
-    }
-    if (fbA) {
-      if (fb?.url) { fbA.href = fb.url; fbA.style.display = ""; }
-      else { fbA.style.display = "none"; }
-    }
-    if (ttA) {
-      if (tt?.url) { ttA.href = tt.url; ttA.style.display = ""; }
-      else { ttA.style.display = "none"; }
-    }
-
-    // Pokud máš starý <ul id="contacts-socials"> z minula, klidně ho schovej
-    if (socialsEl) socialsEl.style.display = "none";
-  } else {
-    // 2) Fallback: textový seznam (původní chování)
-    if (socialsEl) {
-      socialsEl.style.display = "";
-      socialsEl.innerHTML = "";
-
-      socials.forEach((s) => {
-        if (!s || !s.url) return;
-
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = s.url;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = s.label || s.url;
-
-        li.appendChild(a);
-        socialsEl.appendChild(li);
-      });
-
-      if (!socials.length) socialsEl.style.display = "none";
-    }
-  }
-
-
-    // FORM TEXTS
-    const form = data.form || {};
-    if (formTitleEl && form.title) formTitleEl.textContent = form.title;
-    // prázdná poznámka v JSON nesmí přepsat text (a odkaz) z HTML
-    if (formNoteEl && form.note) formNoteEl.textContent = form.note;
-
-    // Uložíme texty pro initContactForm (volitelně)
-    // Pokud chceš, můžeš si je vyčíst v initContactForm z datasetu.
-    const status = document.querySelector("#contact-status");
-    if (status) {
-      status.dataset.successText = form.successText || "";
-      status.dataset.errorText = form.errorText || "";
-    }
-
-    // MAP
-    const map = data.map || {};
-    if (mapTitleEl) mapTitleEl.textContent = map.title || "";
-    if (mapEl) {
-      const src = map.iframeSrc || "";
-      if (src) {
-        mapEl.src = src;
-        mapEl.style.display = "";
-      } else {
-        mapEl.removeAttribute("src");
-        mapEl.style.display = "none";
-      }
-    }
-    if (mapNoteEl) mapNoteEl.textContent = map.note || "";
-
-  } catch (err) {
-    console.error(err);
-    if (introEl) introEl.textContent = "Kontakty se nepodařilo načíst.";
-  }
+  const karty = Array.from(grid.children);
+  if (karty.length <= POCET_NAHLEDU) return; // není z čeho losovat
+
+  const vybrane = new Set(
+    shuffle(karty.map((_, i) => i)).slice(0, POCET_NAHLEDU)
+  );
+
+  karty.forEach((karta, i) => {
+    karta.hidden = !vybrane.has(i);
+  });
 }
 
 /* =========================
@@ -1249,28 +624,17 @@ function initMapConsent() {
 ========================= */
 
 async function initSite() {
-  await loadLayout();
-
+  // co nepotřebuje hlavičku ani patičku, rozjedeme hned
   initMapConsent();
   initCountdown();
-  // ✅ ať se stránka odhalí hned
+  initFeaturedSellers();
+  initGallery();
+  initContactForm();
   initFadeIn();
 
-  // ✅ nenecháme render blokovat zobrazení
-  Promise.allSettled([
-    renderHomeFromJson(),
-    renderFeaturedSellers(),
-    renderAboutFromJson(),
-    renderSellersFromJson(),
-    renderSponsorsFromJson(),
-    renderGalleryFromJson(),
-    renderContactsFromJson(),
-  ]).then(() => {
-    // ✅ po doplnění dynamických sekcí znovu napoj observer
-    initFadeIn();
-  });
-
-  initContactForm();
+  // modal se vkládá z partials, takže karty prodejců až potom
+  await loadLayout();
+  initSellerCards();
 }
 
 initSite().catch(console.error);
