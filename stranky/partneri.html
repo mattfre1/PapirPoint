@@ -8,6 +8,11 @@
   <meta name="description" content="Partneři papírenského festivalu PapírPOINT v Olomouci. Děkujeme všem, kteří podporují české tvůrce a kreativní papírnictví." />
   <link rel="canonical" href="https://papirpoint.cz/stranky/partneri.html" />
 
+  <!-- Dokud tu není ani jeden partner, stránka se neindexuje a nevede na ni
+       odkaz z menu ani ze sitemapy. Až přibude první partner: smazat tenhle
+       noindex, vrátit odkaz v partials/header.html a řádek do sitemap.xml. -->
+  <meta name="robots" content="noindex,follow" />
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -69,7 +74,7 @@
       <div class="grid">
         <a class="grid-item" href="https://…" target="_blank" rel="noopener noreferrer"
            data-type="sponsor" aria-label="Název partnera (otevřít web)">
-          <img class="grid-item__logo" src="/obrazky/…" alt="Název partnera logo" loading="lazy" decoding="async">
+          <img class="grid-item__logo" src="/obrazky/…" alt="Název partnera logo" width="512" height="512" loading="lazy" decoding="async">
           <div class="grid-item__text">
             <h2 class="grid-item__title">Název partnera</h2>
             <p class="grid-item__meta">Krátký popisek</p>
