@@ -928,6 +928,10 @@ button.grid-item{
 
 .social-item img{
   width: 100%;
+  /* height: auto musí zůstat – obrázky mají v HTML atributy width/height
+     (kvůli rezervaci místa) a bez tohohle řádku by se výška vzala z nich
+     a čtvercový ořez by přestal platit. */
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
