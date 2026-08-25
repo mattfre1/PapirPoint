@@ -51,7 +51,7 @@
             "instagram": "https://www.instagram.com/trochuhezci/"
           }
         },
-      "description": "Někdy stačí, když je okolí jen trochu hezčí. A to je pro mě taky cílem, udělat okolí trochu hezčí - vizuálně i pocitově. Ať už moje tvorba a výrobky udělají někomu radost, zkrášlí něčí deníček nebo nástěnku či inspirují k vlastní tvorbě, prostě pokud někomu moje práce udělá, v jakkoli malé či velké míře, trochu hezčí den, tak to považuji za úspěch.",
+      "description": "Někdy stačí, když je okolí jen trochu hezčí. A to je pro mě taky cílem, udělat okolí trochu hezčí – vizuálně i pocitově. Ať už moje tvorba a výrobky udělají někomu radost, zkrášlí něčí deníček nebo nástěnku či inspirují k vlastní tvorbě, prostě pokud někomu moje práce udělá, v jakkoli malé či velké míře, trochu hezčí den, tak to považuji za úspěch.",
       "photos": [
         { "src": "obrazky/sellers/4/4_1.jpg", "alt": "Stánek" },
         { "src": "obrazky/sellers/4/4_2.jpg", "alt": "Výrobek1" },
@@ -273,7 +273,7 @@
             "instagram": "https://www.instagram.com/goosetownpaper/"
           }
         },
-      "description": "Goosetown Paper je nová papírenská značka z brněnských Husovic, za kterou stojí Tami a její velká podpora Marek. Značka spojuje tradiční a experimentální techniky zpracování a sušení ručního papíru, navíc však přináší taky vlastní řemeslné papírenské výrobky. Díky bohatým znalostem šití a techniky linorytu vyrábí ručně potisklé deníky, skicáky nebo diáře, nechybí ale ani pouzdra nebo autorské samolepky a razítka. Každý kousek má svůj jedinečný příběh - všechny ale spojuje brněnské srdce a hřejivá toskánská duše.",
+      "description": "Goosetown Paper je nová papírenská značka z brněnských Husovic, za kterou stojí Tami a její velká podpora Marek. Značka spojuje tradiční a experimentální techniky zpracování a sušení ručního papíru, navíc však přináší taky vlastní řemeslné papírenské výrobky. Díky bohatým znalostem šití a techniky linorytu vyrábí ručně potisklé deníky, skicáky nebo diáře, nechybí ale ani pouzdra nebo autorské samolepky a razítka. Každý kousek má svůj jedinečný příběh – všechny ale spojuje brněnské srdce a hřejivá toskánská duše.",
       "photos": [
         { "src": "obrazky/sellers/16/16_1.jpg", "alt": "Ručně šité deníky s linorytovou vazbou" },
         { "src": "obrazky/sellers/16/16_2.jpg", "alt": "Barevné obálky z ručního papíru" },
@@ -316,6 +316,95 @@
         { "src": "obrazky/sellers/18/18_1.jpg", "alt": "Pohlednice s podzimní ilustrací městské ulice" },
         { "src": "obrazky/sellers/18/18_2.jpg", "alt": "Zarámovaný plakát Cin cin s ilustracemi drinků" },
         { "src": "obrazky/sellers/18/18_3.jpg", "alt": "Ilustrace dívky na kole s kyticí v košíku" }
+      ]
+    },
+    {
+      "name": "Láska v papíru",
+      "meta": "Přáníčka, pečeti a obálky pro důležité okamžiky.",
+      "logo": "obrazky/sellers/19/19_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://laskavpapiru.cz",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/laskavpapiru/"
+          }
+        },
+      "description": "Za značkou Láska v papíru stojí Janča. Tvoří hlavně přáníčka, kterými můžete svým blízkým během jejich důležitých okamžiků dát najevo, že vám na nich záleží. Prostě taková malá „láska v papíru“. Udělat si u ní můžete radost také ručně vyráběnými samolepicími pečetěmi, kterými krásně ozdobíte obálky nebo dárky. Nechybí ani zdobené obálky na peníze či poukazy – těšit se můžete na 20 barev a spoustu různých motivů, včetně těch vánočních. A pokud rádi zdobíte své zápisníky a diáře, najdete u ní také několik aršíků samolepek. A protože má Janča ráda překvapení, ráda by na akci představila také úplně nový produkt. A co to bude? Zastavte se a uvidíte!",
+      "photos": [
+        { "src": "obrazky/sellers/19/19_1.jpg", "alt": "Vrstvené přáníčko s medovým hrncem a včelkou" },
+        { "src": "obrazky/sellers/19/19_2.jpg", "alt": "Ručně vyráběné samolepicí pečeti v pastelových barvách" },
+        { "src": "obrazky/sellers/19/19_3.jpg", "alt": "Ražené vánoční obálky na peníze" }
+      ]
+    },
+    {
+      "name": "Krapet radosti",
+      "meta": "Ilustrace inspirované přírodou a všedními maličkostmi.",
+      "logo": "obrazky/sellers/20/20_logo.png",
+      "link": {
+          "socials": {
+            "instagram": "https://www.instagram.com/krapet.radosti/"
+          }
+        },
+      "description": "Krapet radosti je malá česká autorská značka, ve které vznikají ilustrace inspirované přírodou a každodenními maličkostmi, které dělají život krásnější. V nabídce najdete především samolepky, papírenské produkty a další drobnosti, které přinášejí radost do plánování, tvoření i běžných dnů. Obzvláště spokojenými zákazníky jsou příznivci jezevčíků, kteří v jejích ilustracích převládají. Každý motiv je nakreslený s láskou a péčí, aby vám přinesl alespoň krapet radosti.",
+      "photos": [
+        { "src": "obrazky/sellers/20/20_1.jpg", "alt": "Aršík samolepek s jezevčíky" },
+        { "src": "obrazky/sellers/20/20_2.jpg", "alt": "Aršík samolepek se zahradními motivy" },
+        { "src": "obrazky/sellers/20/20_3.jpg", "alt": "Zelená záložka do knihy se zahradními ilustracemi" }
+      ]
+    },
+    {
+      "name": "Ahoj omalovánky",
+      "meta": "Tvořivé produkty pro děti i pro dospělé.",
+      "logo": "obrazky/sellers/21/21_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.ahoj-omalovanky.cz",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/ahoj_omalovanky/"
+          }
+        },
+      "description": "Za značkou Ahoj omalovánky stojí Kateřina. Navrhuje tvořivé produkty především pro děti, ale i pro dospělé, kteří si chtějí na chvíli odpočinout, tvořit a užít si společný čas trochu jinak. Každý produkt vzniká od prvního nápadu přes ilustrace až po finální zpracování pod jejíma rukama. Dbá na to, aby byly nejen krásné, ale hlavně zábavné, praktické a podporovaly kreativitu, fantazii i společně strávené chvíle. Věří, že i obyčejná omalovánka nebo hra může být začátkem malého dobrodružství, chvílí plných smíchu a vzpomínek, na které se nezapomíná. A právě tyhle malé okamžiky jsou to, co ji na její práci baví nejvíc.",
+      "photos": [
+        { "src": "obrazky/sellers/21/21_1.jpg", "alt": "Kniha Jo, to jsem prostě já s fixami" },
+        { "src": "obrazky/sellers/21/21_2.jpg", "alt": "Tetovačky k vybarvení v růžových obálkách" },
+        { "src": "obrazky/sellers/21/21_3.jpg", "alt": "Plakát Já jsem… v dřevěné liště" }
+      ]
+    },
+    {
+      "name": "Chci si pamatovat",
+      "meta": "Papírové produkty, které dají prostor vašim vzpomínkám.",
+      "logo": "obrazky/sellers/22/22_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.chcisipamatovat.cz",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/chci_si_pamatovat/"
+          }
+        },
+      "description": "Denča, která značku Chci si pamatovat založila, věří, že ty nejcennější vzpomínky stojí za to nejen prožít, ale i uchovat. Tvoří papírové produkty, které dávají prostor vašim příběhům – od každodenních radostí až po životní okamžiky. V její nabídce najdete například offline kroniku, byznys plánovače, samolepky a nejrůznější bločky.",
+      "photos": [
+        { "src": "obrazky/sellers/22/22_1.jpg", "alt": "Offline kronika s pastelkami a fotkami" },
+        { "src": "obrazky/sellers/22/22_2.jpg", "alt": "Vyplněná stránka kroniky s fotkami ze zoo" },
+        { "src": "obrazky/sellers/22/22_3.jpg", "alt": "Aršíky samolepek vložené v kronice" }
+      ]
+    },
+    {
+      "name": "Emmas Illustration",
+      "meta": "Ilustrace plné ženského kouzla, folkloru a lásky k přírodě.",
+      "logo": "obrazky/sellers/23/23_logo.png",
+      "link": {
+          "socials": {
+            "instagram": "https://www.instagram.com/emmas_illustration_/"
+          }
+        },
+      "description": "Za značkou Emmas Illustration stojí začínající ilustrátorka Emma Šuplíková, která do svých ilustrací vkládá kus ženského kouzla, folkloru a lásky k přírodě. Ráda si hraje se slovy a pořekadly, kterými odkazuje na malé rituály všedního dne – šálek čaje za deštivého odpoledne, procházku lesem nebo tichou chvilku s oblíbenou knihou. Odneste si domů kousek z autorčina světa divů – v podobě autorského tisku, plátěnky, záložky, samolepek a mnoha dalších drobností. Možná právě mezi nimi najdete malou radost, která vám zpříjemní obyčejný den.",
+      "photos": [
+        { "src": "obrazky/sellers/23/23_1.jpg", "alt": "Autorské tisky s folklorními motivy" },
+        { "src": "obrazky/sellers/23/23_2.jpg", "alt": "Plátěná taška s ilustrací bábovky" },
+        { "src": "obrazky/sellers/23/23_3.jpg", "alt": "Papírové ozdoby ve tvaru hub a listů" }
       ]
     }
   ]
