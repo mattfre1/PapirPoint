@@ -406,6 +406,60 @@
         { "src": "obrazky/sellers/23/23_2.jpg", "alt": "Plátěná taška s ilustrací bábovky" },
         { "src": "obrazky/sellers/23/23_3.jpg", "alt": "Papírové ozdoby ve tvaru hub a listů" }
       ]
+    },
+    {
+      "name": "Mocer",
+      "meta": "Autorské papírnictví s cyklickým diářem 2v1",
+      "logo": "obrazky/sellers/24/24_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.mocer.cz",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/mocercz/"
+          }
+        },
+      "description": "Mocer je malé autorské papírnictví, které od návrhu po ilustrace tvoří sama Bára. Srdcem značky je diář Mocer – cyklický diář 2v1, který propojuje osobní rytmus s plánováním a zároveň funguje jako stolní kalendář. Těšit se můžete i na spoustu praktických i dekorativních samolepek, zápisníků, bločků a dalších papírenských radostí.",
+      "photos": [
+        { "src": "obrazky/sellers/24/24_1.jpg", "alt": "Cyklický diář Mocer rozevřený na stolním stojánku" },
+        { "src": "obrazky/sellers/24/24_2.jpg", "alt": "Bločky s květinovými a přírodními motivy na dřevěném stole" },
+        { "src": "obrazky/sellers/24/24_3.jpg", "alt": "Aršík samolepek s podzimními motivy vedle otevřeného diáře" }
+      ]
+    },
+    {
+      "name": "Od Kristýny",
+      "meta": "Originální obrazy a printy inspirované přírodou",
+      "logo": "obrazky/sellers/25/25_logo.png",
+      "link": {
+        "type": "web",
+        "url": "https://www.fler.cz/od-kristyny",
+        "label": "Otevřít web",
+          "socials": {
+            "instagram": "https://www.instagram.com/od.kristyny/"
+          }
+        },
+      "description": "Kristýna, autorka značky Od Kristýny, se výtvarné tvorbě aktivně věnuje přes deset let. Svou tvorbu ráda spojuje s přírodou, křehkostí a také vnitřním, duchovním světem člověka. Najdete u ní originální obrazy, printy, přání, pohlednice, záložky a také drobnosti pro štěstí. Snaží se, aby co nejvíce věcí z její tvorby bylo originálem určeným pouze pro jednoho člověka.",
+      "photos": [
+        { "src": "obrazky/sellers/25/25_1.jpg", "alt": "Akvarelový obraz horské krajiny s vřesem a zlatými detaily" },
+        { "src": "obrazky/sellers/25/25_2.jpg", "alt": "Tři akvarelová přání s krajinou a ručně psanými nápisy" },
+        { "src": "obrazky/sellers/25/25_3.jpg", "alt": "Tři akvarelové záložky s krajinou a zlatou cestičkou" }
+      ]
+    },
+    {
+      "name": "Divishka",
+      "meta": "Ručně razítkovaná přáníčka na kraftovém papíru",
+      "logo": "obrazky/sellers/26/26_logo.png",
+      "link": {
+          "socials": {
+            "instagram": "https://www.instagram.com/divishka.3/"
+          }
+        },
+      "description": "Divishka je malá značka, která ručně vyrábí produkty, jež lidem vyřeší starosti se sháněním vkusných přáníček a kartiček – takových, které vykouzlí úsměv na tváři darujícího i obdarovaného. Sady přáníček i jednotlivé kousky jsou na kraftovém papíru ručně narazítkované a doplněné bílým gelovým rolerem. Novinkou v sortimentu jsou komplimentky v atypickém rozměru, které zaujmou hned na první pohled. Kreativní, přírodní a efektní – to je značka DIVISHKA.",
+      "photos": [
+        { "src": "obrazky/sellers/26/26_1.jpg", "alt": "Kraftové kartičky s narazítkovanými labutěmi a bílými hvězdičkami" },
+        { "src": "obrazky/sellers/26/26_2.jpg", "alt": "Balíčky přáníček z kraftového papíru se samolepkami Divishka" },
+        { "src": "obrazky/sellers/26/26_3.jpg", "alt": "Zabalené sady přáníček, komplimentky a děkovná kartička" }
+      ]
     }
   ]
 }
