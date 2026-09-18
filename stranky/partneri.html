@@ -8,11 +8,6 @@
   <meta name="description" content="Partneři papírenského festivalu PapírPOINT v Olomouci. Děkujeme všem, kteří podporují české tvůrce a kreativní papírnictví." />
   <link rel="canonical" href="https://papirpoint.cz/stranky/partneri.html" />
 
-  <!-- Dokud tu není ani jeden partner, stránka se neindexuje a nevede na ni
-       odkaz z menu ani ze sitemapy. Až přibude první partner: smazat tenhle
-       noindex, vrátit odkaz v partials/header.html a řádek do sitemap.xml. -->
-  <meta name="robots" content="noindex,follow" />
-
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,22 +61,101 @@
   <main class="container">
     <section class="section fade-in">
       <h1 class="section__title">Partneři</h1>
-      <p class="section__intro">Partneři, kteří stojí za tímto projektem.</p>
+      <p class="section__intro">Děkujeme všem, kteří PapírPOINT podporují. Bez nich by festival nebyl.</p>
 
-      <!-- Zatím tu žádný partner není. Až nějaký přibude, zkopíruj sem tuhle kartu
-           a vyplň ji (styly na ni jsou v CSS připravené):
+      <!-- Partneři jsou seřazení podle abecedy, aby z pořadí nešlo číst důležitost.
 
-      <div class="grid">
-        <a class="grid-item" href="https://…" target="_blank" rel="noopener noreferrer"
-           data-type="sponsor" aria-label="Název partnera (otevřít web)">
-          <img class="grid-item__logo" src="/obrazky/…" alt="Název partnera logo" width="512" height="512" loading="lazy" decoding="async">
-          <div class="grid-item__text">
-            <h2 class="grid-item__title">Název partnera</h2>
-            <p class="grid-item__meta">Krátký popisek</p>
-          </div>
-        </a>
+           Přidání dalšího partnera:
+           1. logo ořízni od prázdných okrajů, zmenši na max 800 px a ulož jako
+              .webp do /obrazky/sponsors/ (originál patří do podklady/partneri/),
+           2. zkopíruj jeden blok níž a doplň název, soubor a jeho rozměry,
+           3. má-li partner bílé logo, přidej dlaždici třídu partner__tile--dark.
+
+           Obrázky mají schválně alt="" – název partnera je hned pod dlaždicí
+           jako text, jinak by ho čtečka přečetla dvakrát.
+
+           Dlaždice schválně nikam neodkazují – je to poděkování, ne rozcestník. -->
+
+      <div class="partner-grid">
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/angry-albatros.png" alt="" width="222" height="205" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Angry Albatros</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/bao-quyen.webp" alt="" width="600" height="554" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Bảo Quyên</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/grizly.svg" alt="" width="1752" height="462" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Grizly</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile partner__tile--dark">
+            <img src="/obrazky/sponsors/kafe-jako-lusk.webp" alt="" width="800" height="800" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Kafe jako lusk</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/kelimkuj.webp" alt="" width="800" height="197" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Kelímkuj</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/radovankov.webp" alt="" width="774" height="800" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Radovánkov</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/sonnentor.webp" alt="" width="800" height="510" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Sonnentor</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/tana-sekerkova.svg" alt="" width="201" height="180" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Táňa Sekerková</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/trhnete-si.webp" alt="" width="700" height="588" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Trhněte si</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/twinberg.webp" alt="" width="800" height="195" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Twinberg</p>
+        </div>
+
+        <div class="partner">
+          <span class="partner__tile">
+            <img src="/obrazky/sponsors/work-by-any.webp" alt="" width="700" height="224" loading="lazy" decoding="async">
+          </span>
+          <p class="partner__name">Work by Any</p>
+        </div>
+
       </div>
-      -->
     </section>
   </main>
 

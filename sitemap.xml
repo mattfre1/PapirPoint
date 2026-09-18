@@ -20,12 +20,24 @@
   </url>
 
   <url>
+    <loc>https://papirpoint.cz/stranky/partneri.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://papirpoint.cz/stranky/kontakty.html</loc>
     <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
 
-  <!-- Partneři a Galerie tu schválně nejsou – obě stránky mají noindex,
-       dokud nebude co ukázat. Až se vrátí, přidat sem řádek zpátky. -->
+  <url>
+    <loc>https://papirpoint.cz/stranky/caste-dotazy.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Galerie tu schválně není – stránka má noindex, dokud nebudou fotky z akce.
+       Až se vrátí, přidat sem řádek zpátky. -->
 
 </urlset>
